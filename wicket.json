@@ -1,0 +1,27 @@
+{
+  "attack": {
+    "inning1": [
+      { "phase": "Start Phase", "teamA": 2, "teamB": 3 },
+      { "phase": "Middle Phase", "teamA": 4, "teamB": 2 },
+      { "phase": "End Phase", "teamA": 3, "teamB": 5 }
+    ],
+    "inning2": [
+      { "phase": "Start Phase", "teamA": 1, "teamB": 4 },
+      { "phase": "Middle Phase", "teamA": 3, "teamB": 3 },
+      { "phase": "End Phase", "teamA": 4, "teamB": 2 }
+    ]
+  },
+
+  "defence": {
+    "inning1": [
+      { "phase": "Start Phase", "teamA": 3, "teamB": 2 },
+      { "phase": "Middle Phase", "teamA": 2, "teamB": 4 },
+      { "phase": "End Phase", "teamA": 4, "teamB": 3 }
+    ],
+    "inning2": [
+      { "phase": "Start Phase", "teamA": 2, "teamB": 3 },
+      { "phase": "Middle Phase", "teamA": 4, "teamB": 2 },
+      { "phase": "End Phase", "teamA": 3, "teamB": 4 }
+    ]
+  }
+}
