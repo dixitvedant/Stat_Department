@@ -81,3 +81,14 @@ body {
     box-shadow: 0 18px 35px rgba(37, 99, 235, 0.18);
     border-color: #2563eb;
 }
+
+/* ========== FOOTER ========== */
+.footer {
+    margin-top: 60px;
+    padding: 20px;
+    text-align: center;
+    background: #ffffff;
+    border-top: 1px solid #e2e8f0;
+    font-size: 13px;
+    color: #64748b;
+}
