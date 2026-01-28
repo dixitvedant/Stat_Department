@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Match Details | KhoKhoStats</title>
+
+    <link rel="stylesheet" href="cmn_navbar.css">
+    <link rel="stylesheet" href="match_details.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div id="navbar"></div>
+    <script>
+        fetch("cmn_navbar.html")
+            .then(res => res.text())
+            .then(data => document.getElementById("navbar").innerHTML = data);
+    </script>
+
+    <!-- BACK -->
+    <a href="match_wise.html" class="back-btn">← Back to Matches</a>
+
+    <!-- MATCH HEADER -->
+    <header class="match-header">
+        <h1 id="matchTitle">Match Details</h1>
+        <p id="matchId">Match ID</p>
+    </header>
+
+    <!-- SECTION NAV -->
+    <section class="section-nav">
+        <button data-section="wickets">Wicket Analysis</button>
+        <button data-section="h2h">Head to Head</button>
+        <button data-section="roster">Team Roster</button>
+        <button data-section="mvp">MVP Leaderboard</button>
+    </section>
+
+    <!-- ================= SECTIONS ================= -->
+
+    <!-- WICKET ANALYSIS -->
+    <section id="wickets" class="section-content hidden">
+
+        <div class="control-card">
+            <h2>Wickets Analysis</h2>
+
+            <div class="controls">
+                <select id="typeSelect">
+                    <option value="">Select Type</option>
+                    <option value="attack">Attack</option>
+                    <option value="defence">Defence</option>
+                </select>
+
+                <select id="inningSelect" disabled>
+                    <option value="">Select Inning</option>
+                    <option value="inning1">Inning 1</option>
+                    <option value="inning2">Inning 2</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="chart-card hidden" id="chartSection">
+            <canvas id="tornadoChart"></canvas>
+        </div>
+
+    </section>
+
+    <!-- H2H -->
+    <section id="h2h" class="section-content hidden">
+        <div class="info-card">
+            <h2>Head to Head</h2>
+            <p>H2H chart and last 5 matches will appear here</p>
+        </div>
+    </section>
+
+    <!-- ROSTER -->
+    <section id="roster" class="section-content hidden">
+        <div class="info-card">
+            <h2>Team Roster</h2>
+            <p>Attackers · Defenders · All-Rounders charts here</p>
+        </div>
+    </section>
+
+    <!-- MVP -->
+    <section id="mvp" class="section-content hidden">
+        <div class="info-card">
+            <h2>MVP Leaderboard</h2>
+
+            <select class="role-select">
+                <option>Attacker</option>
+                <option>Defender</option>
+                <option>All-Rounder</option>
+            </select>
+
+            <p>Leaderboard will update based on role</p>
+        </div>
+    </section>
+
+    <script src="match_details.js"></script>
+</body>
+
+</html>

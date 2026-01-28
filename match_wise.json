@@ -1,0 +1,293 @@
+{
+  "matches": [
+    {
+      "id": "M01",
+      "name": "Maharashtra vs Gujarat",
+      "attack": {
+        "inning1": {
+          "Early": { "teamA": 3, "teamB": 1 },
+          "Mid": { "teamA": 4, "teamB": 3 },
+          "End": { "teamA": 2, "teamB": 4 }
+        },
+        "inning2": {
+          "Early": { "teamA": 2, "teamB": 2 },
+          "Mid": { "teamA": 3, "teamB": 5 },
+          "End": { "teamA": 3, "teamB": 4 }
+        }
+      },
+      "defence": {
+        "inning1": {
+          "Early": { "teamA": 1, "teamB": 3 },
+          "Mid": { "teamA": 4, "teamB": 2 },
+          "End": { "teamA": 5, "teamB": 2 }
+        },
+        "inning2": {
+          "Early": { "teamA": 2, "teamB": 3 },
+          "Mid": { "teamA": 5, "teamB": 4 },
+          "End": { "teamA": 3, "teamB": 2 }
+        }
+      }
+    },
+
+    {
+      "id": "M02",
+      "name": "Delhi vs Karnataka",
+      "attack": {
+        "inning1": {
+          "Early": { "teamA": 2, "teamB": 3 },
+          "Mid": { "teamA": 3, "teamB": 4 },
+          "End": { "teamA": 1, "teamB": 2 }
+        },
+        "inning2": {
+          "Early": { "teamA": 3, "teamB": 1 },
+          "Mid": { "teamA": 4, "teamB": 2 },
+          "End": { "teamA": 2, "teamB": 3 }
+        }
+      },
+      "defence": {
+        "inning1": {
+          "Early": { "teamA": 2, "teamB": 1 },
+          "Mid": { "teamA": 3, "teamB": 4 },
+          "End": { "teamA": 4, "teamB": 2 }
+        },
+        "inning2": {
+          "Early": { "teamA": 1, "teamB": 2 },
+          "Mid": { "teamA": 4, "teamB": 3 },
+          "End": { "teamA": 3, "teamB": 1 }
+        }
+      }
+    },
+
+    {
+      "id": "M03",
+      "name": "Pune vs Mumbai",
+      "attack": {
+        "inning1": {
+          "Early": { "teamA": 4, "teamB": 2 },
+          "Mid": { "teamA": 5, "teamB": 3 },
+          "End": { "teamA": 2, "teamB": 3 }
+        },
+        "inning2": {
+          "Early": { "teamA": 3, "teamB": 2 },
+          "Mid": { "teamA": 4, "teamB": 4 },
+          "End": { "teamA": 3, "teamB": 5 }
+        }
+      },
+      "defence": {
+        "inning1": {
+          "Early": { "teamA": 2, "teamB": 3 },
+          "Mid": { "teamA": 4, "teamB": 5 },
+          "End": { "teamA": 3, "teamB": 2 }
+        },
+        "inning2": {
+          "Early": { "teamA": 3, "teamB": 4 },
+          "Mid": { "teamA": 5, "teamB": 3 },
+          "End": { "teamA": 2, "teamB": 3 }
+        }
+      }
+    },
+
+    {
+      "id": "M04",
+      "name": "Rajasthan vs Haryana",
+      "attack": {
+        "inning1": {
+          "Early": { "teamA": 1, "teamB": 3 },
+          "Mid": { "teamA": 2, "teamB": 4 },
+          "End": { "teamA": 2, "teamB": 3 }
+        },
+        "inning2": {
+          "Early": { "teamA": 2, "teamB": 1 },
+          "Mid": { "teamA": 3, "teamB": 2 },
+          "End": { "teamA": 4, "teamB": 2 }
+        }
+      },
+      "defence": {
+        "inning1": {
+          "Early": { "teamA": 3, "teamB": 2 },
+          "Mid": { "teamA": 5, "teamB": 4 },
+          "End": { "teamA": 4, "teamB": 3 }
+        },
+        "inning2": {
+          "Early": { "teamA": 2, "teamB": 3 },
+          "Mid": { "teamA": 4, "teamB": 5 },
+          "End": { "teamA": 3, "teamB": 4 }
+        }
+      }
+    },
+
+    {
+      "id": "M05",
+      "name": "Kerala vs Tamil Nadu",
+      "attack": {
+        "inning1": {
+          "Early": { "teamA": 3, "teamB": 3 },
+          "Mid": { "teamA": 4, "teamB": 5 },
+          "End": { "teamA": 2, "teamB": 4 }
+        },
+        "inning2": {
+          "Early": { "teamA": 2, "teamB": 2 },
+          "Mid": { "teamA": 5, "teamB": 4 },
+          "End": { "teamA": 3, "teamB": 3 }
+        }
+      },
+      "defence": {
+        "inning1": {
+          "Early": { "teamA": 4, "teamB": 3 },
+          "Mid": { "teamA": 5, "teamB": 4 },
+          "End": { "teamA": 3, "teamB": 2 }
+        },
+        "inning2": {
+          "Early": { "teamA": 3, "teamB": 4 },
+          "Mid": { "teamA": 4, "teamB": 5 },
+          "End": { "teamA": 2, "teamB": 3 }
+        }
+      }
+    },
+
+    {
+      "id": "M06",
+      "name": "Uttar Pradesh vs Bihar",
+      "attack": {
+        "inning1": {
+          "Early": { "teamA": 2, "teamB": 1 },
+          "Mid": { "teamA": 4, "teamB": 3 },
+          "End": { "teamA": 3, "teamB": 2 }
+        },
+        "inning2": {
+          "Early": { "teamA": 3, "teamB": 2 },
+          "Mid": { "teamA": 5, "teamB": 4 },
+          "End": { "teamA": 4, "teamB": 3 }
+        }
+      },
+      "defence": {
+        "inning1": {
+          "Early": { "teamA": 3, "teamB": 2 },
+          "Mid": { "teamA": 4, "teamB": 3 },
+          "End": { "teamA": 2, "teamB": 3 }
+        },
+        "inning2": {
+          "Early": { "teamA": 2, "teamB": 3 },
+          "Mid": { "teamA": 4, "teamB": 5 },
+          "End": { "teamA": 3, "teamB": 4 }
+        }
+      }
+    },
+
+    {
+      "id": "M07",
+      "name": "West Bengal vs Odisha",
+      "attack": {
+        "inning1": {
+          "Early": { "teamA": 1, "teamB": 2 },
+          "Mid": { "teamA": 3, "teamB": 4 },
+          "End": { "teamA": 2, "teamB": 3 }
+        },
+        "inning2": {
+          "Early": { "teamA": 2, "teamB": 3 },
+          "Mid": { "teamA": 4, "teamB": 5 },
+          "End": { "teamA": 3, "teamB": 4 }
+        }
+      },
+      "defence": {
+        "inning1": {
+          "Early": { "teamA": 2, "teamB": 3 },
+          "Mid": { "teamA": 3, "teamB": 5 },
+          "End": { "teamA": 4, "teamB": 3 }
+        },
+        "inning2": {
+          "Early": { "teamA": 3, "teamB": 4 },
+          "Mid": { "teamA": 5, "teamB": 3 },
+          "End": { "teamA": 2, "teamB": 4 }
+        }
+      }
+    },
+
+    {
+      "id": "M08",
+      "name": "Assam vs Manipur",
+      "attack": {
+        "inning1": {
+          "Early": { "teamA": 2, "teamB": 1 },
+          "Mid": { "teamA": 3, "teamB": 2 },
+          "End": { "teamA": 2, "teamB": 1 }
+        },
+        "inning2": {
+          "Early": { "teamA": 3, "teamB": 2 },
+          "Mid": { "teamA": 4, "teamB": 3 },
+          "End": { "teamA": 3, "teamB": 2 }
+        }
+      },
+      "defence": {
+        "inning1": {
+          "Early": { "teamA": 3, "teamB": 1 },
+          "Mid": { "teamA": 4, "teamB": 2 },
+          "End": { "teamA": 3, "teamB": 2 }
+        },
+        "inning2": {
+          "Early": { "teamA": 2, "teamB": 3 },
+          "Mid": { "teamA": 4, "teamB": 5 },
+          "End": { "teamA": 3, "teamB": 4 }
+        }
+      }
+    },
+
+    {
+      "id": "M09",
+      "name": "Goa vs Chhattisgarh",
+      "attack": {
+        "inning1": {
+          "Early": { "teamA": 3, "teamB": 2 },
+          "Mid": { "teamA": 4, "teamB": 3 },
+          "End": { "teamA": 2, "teamB": 3 }
+        },
+        "inning2": {
+          "Early": { "teamA": 2, "teamB": 3 },
+          "Mid": { "teamA": 5, "teamB": 4 },
+          "End": { "teamA": 4, "teamB": 3 }
+        }
+      },
+      "defence": {
+        "inning1": {
+          "Early": { "teamA": 2, "teamB": 3 },
+          "Mid": { "teamA": 4, "teamB": 5 },
+          "End": { "teamA": 3, "teamB": 2 }
+        },
+        "inning2": {
+          "Early": { "teamA": 3, "teamB": 4 },
+          "Mid": { "teamA": 5, "teamB": 3 },
+          "End": { "teamA": 4, "teamB": 3 }
+        }
+      }
+    },
+
+    {
+      "id": "M10",
+      "name": "Telangana vs Andhra Pradesh",
+      "attack": {
+        "inning1": {
+          "Early": { "teamA": 2, "teamB": 2 },
+          "Mid": { "teamA": 3, "teamB": 4 },
+          "End": { "teamA": 1, "teamB": 3 }
+        },
+        "inning2": {
+          "Early": { "teamA": 3, "teamB": 1 },
+          "Mid": { "teamA": 4, "teamB": 2 },
+          "End": { "teamA": 2, "teamB": 3 }
+        }
+      },
+      "defence": {
+        "inning1": {
+          "Early": { "teamA": 3, "teamB": 2 },
+          "Mid": { "teamA": 5, "teamB": 4 },
+          "End": { "teamA": 4, "teamB": 3 }
+        },
+        "inning2": {
+          "Early": { "teamA": 2, "teamB": 3 },
+          "Mid": { "teamA": 4, "teamB": 5 },
+          "End": { "teamA": 3, "teamB": 4 }
+        }
+      }
+    }
+  ]
+}

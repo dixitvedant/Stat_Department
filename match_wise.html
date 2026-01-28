@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Match-wise Statistics | KhoKhoStats</title>
+    <link rel="stylesheet" href="match_wise.css">
+    <link rel="stylesheet" href="cmn_navbar.css">
+
+</head>
+
+<body>
+    <!-- NAVBAR -->
+    <div id="navbar"></div>
+
+    <script>
+        fetch("cmn_navbar.html")
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById("navbar").innerHTML = data;
+            });
+    </script>
+    <!-- HERO HEADER -->
+    <header class="page-hero">
+        <div class="hero-content">
+            <h1>Match-wise Statistics</h1>
+            <p>Select a match to view detailed analytics</p>
+        </div>
+    </header>
+
+    <!-- MATCH LIST SECTION -->
+    <section class="content-section">
+        <h2 class="section-title">Available Matches</h2>
+
+        <div id="matchList" class="match-list"></div>
+    </section>
+
+    <!-- LOAD MATCHES -->
+    <script>
+        fetch("match_wise.json")
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById("matchList");
+
+                data.matches.forEach(match => {
+                    const card = document.createElement("a");
+                    card.href = `match_details.html?matchId=${match.id}`;
+                    card.className = "match-card";
+                    card.innerHTML = `
+              <h3>${match.name}</h3>
+              <p>Match ID: ${match.id}</p>
+          `;
+                    container.appendChild(card);
+                });
+            });
+    </script>
+
+</body>
+
+</html>

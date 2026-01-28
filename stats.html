@@ -5,9 +5,22 @@
     <meta charset="UTF-8">
     <title>Statistics | KhoKhoStats</title>
     <link rel="stylesheet" href="stats.css">
+    <link rel="stylesheet" href="cmn_navbar.css">
+
 </head>
 
 <body>
+    <!-- NAVBAR -->
+    <div id="navbar"></div>
+
+    <script>
+        fetch("cmn_navbar.html")
+            .then(res => res.text())
+            .then(data => {
+                document.getElementById("navbar").innerHTML = data;
+            });
+    </script>
+
 
     <!-- ===== HEADER ===== -->
     <header class="stats-header">
@@ -18,17 +31,15 @@
     <!-- ===== STATISTICS NAV ===== -->
     <section class="stats-nav">
         <a href="overview.html" class="active">Overview</a>
-        <a href="wicket.html">Match-wise Stats</a>
+        <a href="match_wise.html">Match-wise Stats</a>
         <a href="player-stats.html">Player Stats</a>
         <a href="team-stats.html">Team Stats</a>
         <a href="comparison.html">Comparison</a>
     </section>
 
-
     <!-- ===== CONTENT AREA ===== -->
     <section class="stats-content">
 
-        <!-- Overview -->
         <div class="stats-card">
             <h2>Overview</h2>
             <p>
@@ -37,7 +48,6 @@
             </p>
         </div>
 
-        <!-- Match-wise -->
         <div class="stats-card">
             <h2>Match-wise Statistics</h2>
             <p>
@@ -46,7 +56,6 @@
             </p>
         </div>
 
-        <!-- Player -->
         <div class="stats-card">
             <h2>Player Statistics</h2>
             <p>
@@ -55,7 +64,6 @@
             </p>
         </div>
 
-        <!-- Team -->
         <div class="stats-card">
             <h2>Team Statistics</h2>
             <p>
@@ -64,7 +72,6 @@
             </p>
         </div>
 
-        <!-- Comparison -->
         <div class="stats-card">
             <h2>Comparison</h2>
             <p>
@@ -77,7 +84,7 @@
 
     <!-- ===== FOOTER ===== -->
     <footer class="footer">
-        <p>© 2026 KhoKhoStats | Department of Statistics | OJT Project</p>
+        <p>© 2026 KhoKhoStats | Department of Statistics </p>
     </footer>
 
 </body>
