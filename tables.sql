@@ -123,16 +123,6 @@ VALUES
 (29, 29, 2, 0, 0, 0, 0),
 (30, 30, 2, 2, 90, 0, 1);*/
 
-Create Table Player_season_stat(
-		player_id INT PRIMARY KEY,
-		matches_played INT,
-		total_points INT,
-		avg_points Float,
-		best_match_point INT,
-		ranking INT,
-        FOREIGN KEY(player_id) REFERENCES Player(player_id)
-);
-
 Create Table team_stat(
 		team_id INT PRIMARY KEY,
 		matches_played INT,
@@ -173,3 +163,15 @@ VALUES
 (7, 1, 'Defender Self Out', 'Late Entry', 0, 0),
 (8, 1, 'Defender Self Out', 'Retired', 0, 0),
 (9, 1, 'Defender Self Out', 'Warning', 0, 0);*/
+
+Create Table team_stat(
+		team_id INT PRIMARY KEY,
+		matches_played INT,
+		matches_wins INT,
+		matches_lost INT,
+	    matches_draws INT,
+		total_points INT,
+        FOREIGN KEY(team_id) REFERENCES Team(team_id)
+	);
+
+
