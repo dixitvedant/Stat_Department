@@ -75,44 +75,63 @@ function drawAttackTornado(inning) {
 
     const phaseObj = matchData?.attack?.[inning];
 
-    if (!phaseObj) {
-        alert("Attack data not available for this inning");
-        return;
-    }
+    const phases = Object.keys(phaseObj);
 
-    const labels = Object.keys(phaseObj);
-    const teamA = labels.map(p => -phaseObj[p].teamA);
-    const teamB = labels.map(p => phaseObj[p].teamB);
+    const labels = phases.map((_, i) => `Phase ${i + 1}`);
+
+    const teamA = phases.map(p => phaseObj[p].teamA);
+    const teamB = phases.map(p => phaseObj[p].teamB);
 
     if (chart) chart.destroy();
 
-    chart = new Chart(canvas, {
+    chart = new Chart(document.getElementById("tornadoChart"), {
         type: "bar",
         data: {
             labels,
             datasets: [
-                { label: "Team A", data: teamA, backgroundColor: "#2563eb" },
-                { label: "Team B", data: teamB, backgroundColor: "#f97316" }
+                {
+                    label: "Team A",
+                    data: teamA.map(v => -v),   // left side
+                    backgroundColor: "#2563eb"
+                },
+                {
+                    label: "Team B",
+                    data: teamB,                // right side
+                    backgroundColor: "#f97316"
+                }
             ]
         },
         options: {
-            indexAxis: "y",
             responsive: true,
-            animation: {
-                duration: 1200,
-                easing: "easeOutQuart",
-                delay: ctx => ctx.dataIndex * 120
-            },
+            indexAxis: "y",   // 🔥 vertical growth
             scales: {
                 x: {
-                    ticks: { callback: v => Math.abs(v) },
-                    title: { display: true, text: "Wickets" }
+                    stacked: true,
+                    ticks: {
+                        callback: v => Math.abs(v)
+                    },
+                    title: {
+                        display: true,
+                        text: "Wickets"
+                    }
+                },
+                y: {
+                    stacked: true,
+                    reverse: false, // 🔥 bottom → top
+                    title: {
+                        display: true,
+                        text: "Phases"
+                    }
                 }
+            },
+            animation: {
+                duration: 1400,
+                easing: "easeOutCubic"
             },
             plugins: {
                 title: {
                     display: true,
-                    text: `Attack Analysis – ${inning.toUpperCase()}`
+                    text: `Attack Comparison – ${inning.toUpperCase()}`
                 },
                 tooltip: {
                     callbacks: {
@@ -124,6 +143,7 @@ function drawAttackTornado(inning) {
         }
     });
 }
+
 
 // ================= DEFENCE TIMELINE =================
 function drawDefenceTimeline(inning) {
