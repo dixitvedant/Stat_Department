@@ -57,71 +57,123 @@ Promise.all([
 
     // -------------------- H2H SECTION --------------------
     fetch("h2h.json")
-      .then(res => res.json())
-      .then(h2hData => {
-          const h2hMatches = h2hData[matchId];
-          const h2hContent = document.getElementById("h2hContent");
+        .then(res => res.json())
+        .then(h2hData => {
+            const h2hMatches = h2hData[matchId];
+            const h2hContent = document.getElementById("h2hContent");
 
-          if (!h2hMatches || h2hMatches.length === 0) {
-              h2hContent.innerHTML = "<p class='text-muted'>No previous matches found.</p>";
-              return;
-          }
+            if (!h2hMatches || h2hMatches.length === 0) {
+                h2hContent.innerHTML = "<p class='text-muted'>No previous matches found.</p>";
+                return;
+            }
 
-          // 1️⃣ Create Table
-          const table = document.createElement("table");
-          table.className = "table table-striped mt-3";
+            const teamAName = rosterData.teamA.name;
+            const teamBName = rosterData.teamB.name;
 
-          const thead = document.createElement("thead");
-          thead.innerHTML = `<tr>
-              <th>Match</th>
-              <th>Winner</th>
-              <th>Team A</th>
-              <th>Team B</th>
-              <th>Total Wickets</th>
-          </tr>`;
-          table.appendChild(thead);
+            const teamAWins = h2hMatches.filter(m => m.winner === teamAName).length;
+            const teamBWins = h2hMatches.filter(m => m.winner === teamBName).length;
+            const draws = h2hMatches.length - (teamAWins + teamBWins);
+            const total = h2hMatches.length;
 
-          const tbody = document.createElement("tbody");
-          h2hMatches.forEach(m => {
-              const tr = document.createElement("tr");
-              tr.innerHTML = `<td>${m.match}</td>
-                              <td>${m.winner}</td>
-                              <td>${m.teamA}</td>
-                              <td>${m.teamB}</td>
-                              <td>${m.totalWickets}</td>`;
-              tbody.appendChild(tr);
-          });
-          table.appendChild(tbody);
-          h2hContent.appendChild(table);
+            const teamAPercent = (teamAWins / total) * 100;
+            const drawPercent = (draws / total) * 100;
+            const teamBPercent = (teamBWins / total) * 100;
 
-          // 2️⃣ Mini Chart
-          const teamAWins = h2hMatches.filter(m => m.winner === rosterData.teamA.name).length;
-          const teamBWins = h2hMatches.filter(m => m.winner === rosterData.teamB.name).length;
+            // Title
+            const title = document.createElement("h6");
+            title.className = "mt-3 mb-2 text-center";
+            title.textContent = `Last ${total} Matches`;
+            h2hContent.appendChild(title);
 
-          const canvasH2H = document.createElement("canvas");
-          canvasH2H.classList.add("mt-3");
-          h2hContent.appendChild(canvasH2H);
+            // Labels
+            const labelRow = document.createElement("div");
+            labelRow.className = "d-flex justify-content-between mb-1 fw-semibold";
+            labelRow.innerHTML = `
+          <span>${teamAName} (${teamAWins})</span>
+          <span>Draws (${draws})</span>
+          <span>${teamBName} (${teamBWins})</span>
+      `;
+            h2hContent.appendChild(labelRow);
 
-          new Chart(canvasH2H, {
-              type: "bar",
-              data: {
-                  labels: [rosterData.teamA.name, rosterData.teamB.name],
-                  datasets: [{
-                      label: "Wins in last 5 matches",
-                      data: [teamAWins, teamBWins],
-                      backgroundColor: ["#2563eb", "#f97316"]
-                  }]
-              },
-              options: {
-                  indexAxis: 'y',
-                  responsive: true,
-                  plugins: { legend: { display: false } },
-                  scales: { x: { beginAtZero: true, precision: 0 } }
-              }
-          });
-      })
-      .catch(err => console.error("H2H data error:", err));
+            // Bar Container
+            const bar = document.createElement("div");
+            bar.style.display = "flex";
+            bar.style.height = "14px";
+            bar.style.borderRadius = "8px";
+            bar.style.overflow = "hidden";
+            bar.style.background = "#e5e7eb";
+
+            // Team A Bar
+            const barA = document.createElement("div");
+            barA.style.width = `${teamAPercent}%`;
+            barA.style.background = "#2563eb";
+
+            // Draw Bar
+            const barDraw = document.createElement("div");
+            barDraw.style.width = `${drawPercent}%`;
+            barDraw.style.background = "#9ca3af";
+
+            // Team B Bar
+            const barB = document.createElement("div");
+            barB.style.width = `${teamBPercent}%`;
+            barB.style.background = "#dc2626";
+
+            bar.appendChild(barA);
+            bar.appendChild(barDraw);
+            bar.appendChild(barB);
+
+            h2hContent.appendChild(bar);
+
+            // Match List (keep your table)
+            const table = document.createElement("table");
+            table.className = "table table-striped mt-4";
+
+            table.innerHTML = `
+          <thead>
+              <tr>
+                  <th>Match</th>
+                  <th>Winner</th>
+                  <th>Team A</th>
+                  <th>Team B</th>
+                  <th>Total Wickets</th>
+              </tr>
+          </thead>
+          <tbody>
+              ${h2hMatches.map(m => `
+                  <tr>
+                      <td>${m.match}</td>
+                      <td>${m.winner}</td>
+                      <td>${m.teamA}</td>
+                      <td>${m.teamB}</td>
+                      <td>${m.totalWickets}</td>
+                  </tr>
+              `).join("")}
+          </tbody>
+      `;
+
+            h2hContent.appendChild(table);
+        })
+        .catch(err => console.error("H2H data error:", err));
+
 });
+fetch("mvp.json")
+    .then(r => r.json())
+    .then(mvpData => {
+        const list = mvpData[matchId];
+        if (!list || list.length === 0) return;
+
+        loadMvp(list);
+
+        document.getElementById("mvpRoleFilter")
+            .addEventListener("change", e => {
+                const role = e.target.value;
+                const filtered = role === "All"
+                    ? list
+                    : list.filter(p => p.role === role);
+                renderMvpList(filtered);
+            });
+    });
+
 
 // TYPE CHANGE
 typeSelect.addEventListener("change", () => {
@@ -272,6 +324,37 @@ function getTotalPlayers(statsContainerId) {
     }
     return 0;
 }
+function loadMvp(players) {
+    const top = players.reduce((a, b) => b.points > a.points ? b : a);
+
+    document.getElementById("topMvpName").textContent = top.name;
+    document.getElementById("topMvpRole").textContent = top.role;
+    document.getElementById("topMvpPoints").textContent = `${top.points} pts`;
+
+    renderMvpList(players);
+}
+
+function renderMvpList(players) {
+    const container = document.getElementById("mvpList");
+    container.innerHTML = "";
+
+    players.forEach((p, i) => {
+        const row = document.createElement("div");
+        row.className = "mvp-row";
+        row.style.animationDelay = `${i * 0.1}s`;
+
+        row.innerHTML = `
+            <div>
+                <div class="mvp-name">${p.name}</div>
+                <div class="mvp-role">${p.role}</div>
+            </div>
+            <span class="badge bg-primary">${p.points}</span>
+        `;
+
+        container.appendChild(row);
+    });
+}
+
 
 // -------------------- SECTION NAV --------------------
 // SHOW ROSTER FIRST BY DEFAULT

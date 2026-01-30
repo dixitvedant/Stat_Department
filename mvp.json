@@ -1,0 +1,61 @@
+{
+  "M01": [
+    { "name": "Rohit Patil", "role": "Defender", "points": 94 },
+    { "name": "Sagar Pawar", "role": "Attacker", "points": 88 },
+    { "name": "Amit Kulkarni", "role": "All-Rounder", "points": 76 }
+  ],
+
+  "M02": [
+    { "name": "Amit Singh", "role": "Attacker", "points": 92 },
+    { "name": "Vikas Rao", "role": "Defender", "points": 85 },
+    { "name": "Rohit Sharma", "role": "All-Rounder", "points": 78 }
+  ],
+
+  "M03": [
+    { "name": "Kunal Deshmukh", "role": "Attacker", "points": 95 },
+    { "name": "Ajinkya More", "role": "Defender", "points": 87 },
+    { "name": "Siddhesh Patil", "role": "All-Rounder", "points": 80 }
+  ],
+
+  "M04": [
+    { "name": "Deepak Yadav", "role": "Defender", "points": 93 },
+    { "name": "Ravi Meena", "role": "Attacker", "points": 86 },
+    { "name": "Manoj Singh", "role": "All-Rounder", "points": 79 }
+  ],
+
+  "M05": [
+    { "name": "Arjun Nair", "role": "Attacker", "points": 96 },
+    { "name": "Suresh Kumar", "role": "Defender", "points": 89 },
+    { "name": "Vignesh Rao", "role": "All-Rounder", "points": 82 }
+  ],
+
+  "M06": [
+    { "name": "Ankit Verma", "role": "Attacker", "points": 91 },
+    { "name": "Rohit Singh", "role": "Defender", "points": 84 },
+    { "name": "Pankaj Yadav", "role": "All-Rounder", "points": 77 }
+  ],
+
+  "M07": [
+    { "name": "Manas Rout", "role": "Defender", "points": 93 },
+    { "name": "Subham Das", "role": "Attacker", "points": 86 },
+    { "name": "Satyajit Behera", "role": "All-Rounder", "points": 80 }
+  ],
+
+  "M08": [
+    { "name": "Bikash Bora", "role": "Attacker", "points": 90 },
+    { "name": "Ranjit Singh", "role": "Defender", "points": 83 },
+    { "name": "Dilip Das", "role": "All-Rounder", "points": 76 }
+  ],
+
+  "M09": [
+    { "name": "Ajay Thakur", "role": "Defender", "points": 94 },
+    { "name": "Nilesh Naik", "role": "Attacker", "points": 88 },
+    { "name": "Pratik Sawant", "role": "All-Rounder", "points": 81 }
+  ],
+
+  "M10": [
+    { "name": "Sai Teja", "role": "Attacker", "points": 92 },
+    { "name": "Kiran Reddy", "role": "Defender", "points": 85 },
+    { "name": "Harsha Vardhan", "role": "All-Rounder", "points": 79 }
+  ]
+}
