@@ -1,0 +1,55 @@
+{
+  "M01": [
+    {
+      "match": "M21",
+      "winner": "Maharashtra",
+      "teamA": "Maharashtra",
+      "teamB": "Gujarat",
+      "totalWickets": 22
+    },
+    {
+      "match": "M15",
+      "winner": "Gujarat",
+      "teamA": "Maharashtra",
+      "teamB": "Gujarat",
+      "totalWickets": 20
+    },
+    {
+      "match": "M10",
+      "winner": "Maharashtra",
+      "teamA": "Maharashtra",
+      "teamB": "Gujarat",
+      "totalWickets": 18
+    },
+    {
+      "match": "M05",
+      "winner": "Gujarat",
+      "teamA": "Maharashtra",
+      "teamB": "Gujarat",
+      "totalWickets": 21
+    },
+    {
+      "match": "M02",
+      "winner": "Maharashtra",
+      "teamA": "Maharashtra",
+      "teamB": "Gujarat",
+      "totalWickets": 23
+    }
+  ],
+  "M02": [
+    {
+      "match": "M18",
+      "winner": "Delhi",
+      "teamA": "Delhi",
+      "teamB": "Karnataka",
+      "totalWickets": 19
+    },
+    {
+      "match": "M12",
+      "winner": "Karnataka",
+      "teamA": "Delhi",
+      "teamB": "Karnataka",
+      "totalWickets": 20
+    }
+  ]
+}

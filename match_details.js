@@ -54,6 +54,73 @@ Promise.all([
 
     // LOAD ROSTER SECTION
     loadRoster();
+
+    // -------------------- H2H SECTION --------------------
+    fetch("h2h.json")
+      .then(res => res.json())
+      .then(h2hData => {
+          const h2hMatches = h2hData[matchId];
+          const h2hContent = document.getElementById("h2hContent");
+
+          if (!h2hMatches || h2hMatches.length === 0) {
+              h2hContent.innerHTML = "<p class='text-muted'>No previous matches found.</p>";
+              return;
+          }
+
+          // 1️⃣ Create Table
+          const table = document.createElement("table");
+          table.className = "table table-striped mt-3";
+
+          const thead = document.createElement("thead");
+          thead.innerHTML = `<tr>
+              <th>Match</th>
+              <th>Winner</th>
+              <th>Team A</th>
+              <th>Team B</th>
+              <th>Total Wickets</th>
+          </tr>`;
+          table.appendChild(thead);
+
+          const tbody = document.createElement("tbody");
+          h2hMatches.forEach(m => {
+              const tr = document.createElement("tr");
+              tr.innerHTML = `<td>${m.match}</td>
+                              <td>${m.winner}</td>
+                              <td>${m.teamA}</td>
+                              <td>${m.teamB}</td>
+                              <td>${m.totalWickets}</td>`;
+              tbody.appendChild(tr);
+          });
+          table.appendChild(tbody);
+          h2hContent.appendChild(table);
+
+          // 2️⃣ Mini Chart
+          const teamAWins = h2hMatches.filter(m => m.winner === rosterData.teamA.name).length;
+          const teamBWins = h2hMatches.filter(m => m.winner === rosterData.teamB.name).length;
+
+          const canvasH2H = document.createElement("canvas");
+          canvasH2H.classList.add("mt-3");
+          h2hContent.appendChild(canvasH2H);
+
+          new Chart(canvasH2H, {
+              type: "bar",
+              data: {
+                  labels: [rosterData.teamA.name, rosterData.teamB.name],
+                  datasets: [{
+                      label: "Wins in last 5 matches",
+                      data: [teamAWins, teamBWins],
+                      backgroundColor: ["#2563eb", "#f97316"]
+                  }]
+              },
+              options: {
+                  indexAxis: 'y',
+                  responsive: true,
+                  plugins: { legend: { display: false } },
+                  scales: { x: { beginAtZero: true, precision: 0 } }
+              }
+          });
+      })
+      .catch(err => console.error("H2H data error:", err));
 });
 
 // TYPE CHANGE
@@ -206,7 +273,11 @@ function getTotalPlayers(statsContainerId) {
     return 0;
 }
 
-// SECTION NAV
+// -------------------- SECTION NAV --------------------
+// SHOW ROSTER FIRST BY DEFAULT
+document.querySelectorAll(".section-content").forEach(s => s.classList.add("hidden"));
+document.getElementById("roster").classList.remove("hidden");
+
 document.querySelectorAll("#sectionNav .nav-link").forEach(btn => {
     btn.addEventListener("click", () => {
         document.querySelectorAll("#sectionNav .nav-link").forEach(b => b.classList.remove("active"));
