@@ -1,0 +1,94 @@
+{
+  "matches": [
+    {
+      "id": "M01",
+      "name": "Maharashtra vs Gujarat",
+      "winner": "Maharashtra",
+      "totalWickets": 23,
+      "bestAttacker": "Sagar Pawar",
+      "bestDefender": "Rohit Patil",
+      "mvp": "Rohit Patil"
+    },
+    {
+      "id": "M02",
+      "name": "Delhi vs Karnataka",
+      "winner": "Karnataka",
+      "totalWickets": 21,
+      "bestAttacker": "Amit Singh",
+      "bestDefender": "Vikas Rao",
+      "mvp": "Amit Singh"
+    },
+    {
+      "id": "M03",
+      "name": "Pune vs Mumbai",
+      "winner": "Mumbai",
+      "totalWickets": 24,
+      "bestAttacker": "Kunal Deshmukh",
+      "bestDefender": "Ajinkya More",
+      "mvp": "Kunal Deshmukh"
+    },
+    {
+      "id": "M04",
+      "name": "Rajasthan vs Haryana",
+      "winner": "Haryana",
+      "totalWickets": 20,
+      "bestAttacker": "Ravi Meena",
+      "bestDefender": "Deepak Yadav",
+      "mvp": "Deepak Yadav"
+    },
+    {
+      "id": "M05",
+      "name": "Kerala vs Tamil Nadu",
+      "winner": "Tamil Nadu",
+      "totalWickets": 25,
+      "bestAttacker": "Arjun Nair",
+      "bestDefender": "Suresh Kumar",
+      "mvp": "Arjun Nair"
+    },
+    {
+      "id": "M06",
+      "name": "Uttar Pradesh vs Bihar",
+      "winner": "Uttar Pradesh",
+      "totalWickets": 19,
+      "bestAttacker": "Ankit Verma",
+      "bestDefender": "Rohit Singh",
+      "mvp": "Ankit Verma"
+    },
+    {
+      "id": "M07",
+      "name": "West Bengal vs Odisha",
+      "winner": "Odisha",
+      "totalWickets": 22,
+      "bestAttacker": "Subham Das",
+      "bestDefender": "Manas Rout",
+      "mvp": "Manas Rout"
+    },
+    {
+      "id": "M08",
+      "name": "Assam vs Manipur",
+      "winner": "Assam",
+      "totalWickets": 17,
+      "bestAttacker": "Bikash Bora",
+      "bestDefender": "Ranjit Singh",
+      "mvp": "Bikash Bora"
+    },
+    {
+      "id": "M09",
+      "name": "Goa vs Chhattisgarh",
+      "winner": "Goa",
+      "totalWickets": 21,
+      "bestAttacker": "Nilesh Naik",
+      "bestDefender": "Ajay Thakur",
+      "mvp": "Ajay Thakur"
+    },
+    {
+      "id": "M10",
+      "name": "Telangana vs Andhra Pradesh",
+      "winner": "Telangana",
+      "totalWickets": 23,
+      "bestAttacker": "Sai Teja",
+      "bestDefender": "Kiran Reddy",
+      "mvp": "Sai Teja"
+    }
+  ]
+}

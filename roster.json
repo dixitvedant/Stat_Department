@@ -1,0 +1,176 @@
+{
+  "M01": {
+    "teamA": {
+      "name": "Maharashtra",
+      "attackers": [
+        "Sagar Pawar",
+        "Akash Jadhav",
+        "Rahul Deshmukh",
+        "Rohan More"
+      ],
+      "defenders": ["Rohit Patil", "Nitin Kale", "Sujit Patil"],
+      "allRounders": ["Amit Shinde", "Sameer Joshi", "Kunal Sathe"]
+    },
+    "teamB": {
+      "name": "Gujarat",
+      "attackers": [
+        "Rahul Solanki",
+        "Parth Desai",
+        "Nikhil Patel",
+        "Dhruv Mehta"
+      ],
+      "defenders": ["Ketan Patel", "Hardik Shah", "Manish Desai"],
+      "allRounders": ["Yash Mehta", "Ravi Trivedi", "Jay Shah"]
+    }
+  },
+
+  "M02": {
+    "teamA": {
+      "name": "Delhi",
+      "attackers": ["Amit Singh", "Rohit Sharma", "Sahil Gupta", "Vikas Yadav"],
+      "defenders": ["Ravi Kumar", "Aman Verma", "Sandeep Singh"],
+      "allRounders": ["Mohit Verma", "Ajay Kumar", "Rahul Choudhary"]
+    },
+    "teamB": {
+      "name": "Karnataka",
+      "attackers": ["Suresh Rao", "Vijay Kumar", "Arjun Shetty", "Prakash Rao"],
+      "defenders": ["Vikas Rao", "Raghav Singh", "Anand Kumar"],
+      "allRounders": ["Anil Kumar", "Naveen Patil", "Rohit Rao"]
+    }
+  },
+
+  "M03": {
+    "teamA": {
+      "name": "Pune",
+      "attackers": [
+        "Karan Patil",
+        "Siddharth More",
+        "Rohan Joshi",
+        "Vivek Deshmukh"
+      ],
+      "defenders": ["Ajay Pawar", "Suresh Patil", "Rahul More"],
+      "allRounders": ["Manoj Joshi", "Nikhil Deshmukh", "Sameer Patil"]
+    },
+    "teamB": {
+      "name": "Mumbai",
+      "attackers": [
+        "Rohit Sharma",
+        "Akshay Jadhav",
+        "Aditya Mehta",
+        "Vikram Singh"
+      ],
+      "defenders": ["Kunal Sharma", "Harish Reddy", "Siddharth K"],
+      "allRounders": ["Pratik Shah", "Rakesh Mehta", "Saurabh Desai"]
+    }
+  },
+
+  "M04": {
+    "teamA": {
+      "name": "Rajasthan",
+      "attackers": [
+        "Amit Bansal",
+        "Rohit Meena",
+        "Saurabh Sharma",
+        "Manish Rathore"
+      ],
+      "defenders": ["Vikas Sharma", "Sandeep Meena", "Ajay Rathore"],
+      "allRounders": ["Rajesh Kumar", "Rohit Singh", "Aman Meena"]
+    },
+    "teamB": {
+      "name": "Haryana",
+      "attackers": ["Rajesh Singh", "Harpreet Kaur", "Gurpreet S", "Navjot S"],
+      "defenders": ["Jaspreet B", "Manpreet S", "Kuldeep R"],
+      "allRounders": ["Rajdeep S", "Harman K", "Ravinder S"]
+    }
+  },
+
+  "M05": {
+    "teamA": {
+      "name": "Kerala",
+      "attackers": ["Anand P", "Vishnu S", "Rohit K", "Ajay T"],
+      "defenders": ["Suresh P", "Ramesh K", "Pradeep M"],
+      "allRounders": ["Harish S", "Rakesh P", "Manoj T"]
+    },
+    "teamB": {
+      "name": "Tamil Nadu",
+      "attackers": ["Karthik Raja", "Arun Kumar", "Vikram Iyer", "Manoj Nair"],
+      "defenders": ["Ramesh Kumar", "Suresh Reddy", "Hari Prasad"],
+      "allRounders": ["Ajith Kumar", "Kiran R", "Praveen S"]
+    }
+  },
+
+  "M06": {
+    "teamA": {
+      "name": "Uttar Pradesh",
+      "attackers": ["Saurabh Y", "Ankit T", "Rajat K", "Vivek S"],
+      "defenders": ["Pankaj R", "Ajay S", "Siddharth K"],
+      "allRounders": ["Rohit Y", "Aman K", "Praveen T"]
+    },
+    "teamB": {
+      "name": "Bihar",
+      "attackers": ["Rakesh S", "Sanjay K", "Vikram T", "Anil P"],
+      "defenders": ["Rohit K", "Manish S", "Ajay T"],
+      "allRounders": ["Rahul S", "Deepak K", "Suresh P"]
+    }
+  },
+
+  "M07": {
+    "teamA": {
+      "name": "West Bengal",
+      "attackers": ["Subham Roy", "Arindam Das", "Debasish Sen", "Rajat Ghosh"],
+      "defenders": ["Sourav B", "Anirban D", "Prasun M"],
+      "allRounders": ["Souvik K", "Rupam S", "Tanmay P"]
+    },
+    "teamB": {
+      "name": "Odisha",
+      "attackers": ["Siddharth P", "Rakesh T", "Ajay S", "Subhash K"],
+      "defenders": ["Raman R", "Deepak S", "Arun K"],
+      "allRounders": ["Anil P", "Pradeep R", "Rohit S"]
+    }
+  },
+
+  "M08": {
+    "teamA": {
+      "name": "Assam",
+      "attackers": ["Rupam B", "Arup D", "Debojit S", "Sourav P"],
+      "defenders": ["Naba K", "Subham R", "Anup P"],
+      "allRounders": ["Ritesh S", "Sourabh K", "Pranjal T"]
+    },
+    "teamB": {
+      "name": "Manipur",
+      "attackers": ["Rohit P", "Anil S", "Vikram K", "Siddharth R"],
+      "defenders": ["Rakesh K", "Pradeep S", "Sunil R"],
+      "allRounders": ["Rahul K", "Aman P", "Deepak R"]
+    }
+  },
+
+  "M09": {
+    "teamA": {
+      "name": "Goa",
+      "attackers": ["Sunil P", "Rajan K", "Deepak P", "Anil M"],
+      "defenders": ["Vikas T", "Praveen K", "Rajesh M"],
+      "allRounders": ["Amit P", "Siddharth M", "Rahul P"]
+    },
+    "teamB": {
+      "name": "Chhattisgarh",
+      "attackers": ["Pradeep K", "Rohit T", "Saurabh S", "Vikas P"],
+      "defenders": ["Ankit S", "Sunil P", "Rakesh P"],
+      "allRounders": ["Amit K", "Siddharth S", "Rahul P"]
+    }
+  },
+
+  "M10": {
+    "teamA": {
+      "name": "Telangana",
+      "attackers": ["Akhil R", "Rohit D", "Vivek S", "Saurabh K"],
+      "defenders": ["Rakesh P", "Sandeep K", "Manoj S"],
+      "allRounders": ["Ajay R", "Harshit K", "Ankit P"]
+    },
+    "teamB": {
+      "name": "Andhra Pradesh",
+      "attackers": ["Rohit P", "Anil S", "Vikram K", "Siddharth R"],
+      "defenders": ["Rakesh K", "Pradeep S", "Sunil R"],
+      "allRounders": ["Rahul K", "Aman P", "Deepak R"]
+    }
+  }
+}

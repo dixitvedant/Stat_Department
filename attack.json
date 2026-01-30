@@ -1,0 +1,122 @@
+{
+  "M01": {
+    "inning1": {
+      "Early": { "teamA": 3, "teamB": 1 },
+      "Mid": { "teamA": 4, "teamB": 3 },
+      "End": { "teamA": 2, "teamB": 4 }
+    },
+    "inning2": {
+      "Early": { "teamA": 2, "teamB": 2 },
+      "Mid": { "teamA": 3, "teamB": 5 },
+      "End": { "teamA": 3, "teamB": 4 }
+    }
+  },
+  "M02": {
+    "inning1": {
+      "Early": { "teamA": 2, "teamB": 3 },
+      "Mid": { "teamA": 3, "teamB": 4 },
+      "End": { "teamA": 1, "teamB": 2 }
+    },
+    "inning2": {
+      "Early": { "teamA": 3, "teamB": 1 },
+      "Mid": { "teamA": 4, "teamB": 2 },
+      "End": { "teamA": 2, "teamB": 3 }
+    }
+  },
+  "M03": {
+    "inning1": {
+      "Early": { "teamA": 4, "teamB": 2 },
+      "Mid": { "teamA": 5, "teamB": 3 },
+      "End": { "teamA": 2, "teamB": 3 }
+    },
+    "inning2": {
+      "Early": { "teamA": 3, "teamB": 2 },
+      "Mid": { "teamA": 4, "teamB": 4 },
+      "End": { "teamA": 3, "teamB": 5 }
+    }
+  },
+  "M04": {
+    "inning1": {
+      "Early": { "teamA": 1, "teamB": 3 },
+      "Mid": { "teamA": 2, "teamB": 4 },
+      "End": { "teamA": 2, "teamB": 3 }
+    },
+    "inning2": {
+      "Early": { "teamA": 2, "teamB": 1 },
+      "Mid": { "teamA": 3, "teamB": 2 },
+      "End": { "teamA": 4, "teamB": 2 }
+    }
+  },
+  "M05": {
+    "inning1": {
+      "Early": { "teamA": 3, "teamB": 3 },
+      "Mid": { "teamA": 4, "teamB": 5 },
+      "End": { "teamA": 2, "teamB": 4 }
+    },
+    "inning2": {
+      "Early": { "teamA": 2, "teamB": 2 },
+      "Mid": { "teamA": 5, "teamB": 4 },
+      "End": { "teamA": 3, "teamB": 3 }
+    }
+  },
+  "M06": {
+    "inning1": {
+      "Early": { "teamA": 2, "teamB": 1 },
+      "Mid": { "teamA": 4, "teamB": 3 },
+      "End": { "teamA": 3, "teamB": 2 }
+    },
+    "inning2": {
+      "Early": { "teamA": 3, "teamB": 2 },
+      "Mid": { "teamA": 5, "teamB": 4 },
+      "End": { "teamA": 4, "teamB": 3 }
+    }
+  },
+  "M07": {
+    "inning1": {
+      "Early": { "teamA": 1, "teamB": 2 },
+      "Mid": { "teamA": 3, "teamB": 4 },
+      "End": { "teamA": 2, "teamB": 3 }
+    },
+    "inning2": {
+      "Early": { "teamA": 2, "teamB": 3 },
+      "Mid": { "teamA": 4, "teamB": 5 },
+      "End": { "teamA": 3, "teamB": 4 }
+    }
+  },
+  "M08": {
+    "inning1": {
+      "Early": { "teamA": 2, "teamB": 1 },
+      "Mid": { "teamA": 3, "teamB": 2 },
+      "End": { "teamA": 2, "teamB": 1 }
+    },
+    "inning2": {
+      "Early": { "teamA": 3, "teamB": 2 },
+      "Mid": { "teamA": 4, "teamB": 3 },
+      "End": { "teamA": 3, "teamB": 2 }
+    }
+  },
+  "M09": {
+    "inning1": {
+      "Early": { "teamA": 3, "teamB": 2 },
+      "Mid": { "teamA": 4, "teamB": 3 },
+      "End": { "teamA": 2, "teamB": 3 }
+    },
+    "inning2": {
+      "Early": { "teamA": 2, "teamB": 3 },
+      "Mid": { "teamA": 5, "teamB": 4 },
+      "End": { "teamA": 4, "teamB": 3 }
+    }
+  },
+  "M10": {
+    "inning1": {
+      "Early": { "teamA": 2, "teamB": 2 },
+      "Mid": { "teamA": 3, "teamB": 4 },
+      "End": { "teamA": 1, "teamB": 3 }
+    },
+    "inning2": {
+      "Early": { "teamA": 3, "teamB": 1 },
+      "Mid": { "teamA": 4, "teamB": 2 },
+      "End": { "teamA": 2, "teamB": 3 }
+    }
+  }
+}
