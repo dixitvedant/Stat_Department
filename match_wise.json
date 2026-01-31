@@ -3,6 +3,9 @@
     {
       "id": "M01",
       "name": "Maharashtra vs Gujarat",
+      "date": "2026-01-12",
+      "score": "Maharashtra 34 – 28 Gujarat",
+      "winner": "Maharashtra",
       "attack": {
         "inning1": {
           "Early": { "teamA": 3, "teamB": 1 },
@@ -32,262 +35,91 @@
     {
       "id": "M02",
       "name": "Delhi vs Karnataka",
-      "attack": {
-        "inning1": {
-          "Early": { "teamA": 2, "teamB": 3 },
-          "Mid": { "teamA": 3, "teamB": 4 },
-          "End": { "teamA": 1, "teamB": 2 }
-        },
-        "inning2": {
-          "Early": { "teamA": 3, "teamB": 1 },
-          "Mid": { "teamA": 4, "teamB": 2 },
-          "End": { "teamA": 2, "teamB": 3 }
-        }
-      },
-      "defence": {
-        "inning1": {
-          "Early": { "teamA": 2, "teamB": 1 },
-          "Mid": { "teamA": 3, "teamB": 4 },
-          "End": { "teamA": 4, "teamB": 2 }
-        },
-        "inning2": {
-          "Early": { "teamA": 1, "teamB": 2 },
-          "Mid": { "teamA": 4, "teamB": 3 },
-          "End": { "teamA": 3, "teamB": 1 }
-        }
-      }
+      "date": "2026-01-13",
+      "score": "Delhi 30 – 30 Karnataka",
+      "winner": "Draw",
+      "attack": { },
+      "defence": { }
     },
 
     {
       "id": "M03",
       "name": "Pune vs Mumbai",
-      "attack": {
-        "inning1": {
-          "Early": { "teamA": 4, "teamB": 2 },
-          "Mid": { "teamA": 5, "teamB": 3 },
-          "End": { "teamA": 2, "teamB": 3 }
-        },
-        "inning2": {
-          "Early": { "teamA": 3, "teamB": 2 },
-          "Mid": { "teamA": 4, "teamB": 4 },
-          "End": { "teamA": 3, "teamB": 5 }
-        }
-      },
-      "defence": {
-        "inning1": {
-          "Early": { "teamA": 2, "teamB": 3 },
-          "Mid": { "teamA": 4, "teamB": 5 },
-          "End": { "teamA": 3, "teamB": 2 }
-        },
-        "inning2": {
-          "Early": { "teamA": 3, "teamB": 4 },
-          "Mid": { "teamA": 5, "teamB": 3 },
-          "End": { "teamA": 2, "teamB": 3 }
-        }
-      }
+      "date": "2026-01-14",
+      "score": "Mumbai 36 – 33 Pune",
+      "winner": "Mumbai",
+      "attack": { },
+      "defence": { }
     },
 
     {
       "id": "M04",
       "name": "Rajasthan vs Haryana",
-      "attack": {
-        "inning1": {
-          "Early": { "teamA": 1, "teamB": 3 },
-          "Mid": { "teamA": 2, "teamB": 4 },
-          "End": { "teamA": 2, "teamB": 3 }
-        },
-        "inning2": {
-          "Early": { "teamA": 2, "teamB": 1 },
-          "Mid": { "teamA": 3, "teamB": 2 },
-          "End": { "teamA": 4, "teamB": 2 }
-        }
-      },
-      "defence": {
-        "inning1": {
-          "Early": { "teamA": 3, "teamB": 2 },
-          "Mid": { "teamA": 5, "teamB": 4 },
-          "End": { "teamA": 4, "teamB": 3 }
-        },
-        "inning2": {
-          "Early": { "teamA": 2, "teamB": 3 },
-          "Mid": { "teamA": 4, "teamB": 5 },
-          "End": { "teamA": 3, "teamB": 4 }
-        }
-      }
+      "date": "2026-01-15",
+      "score": "Haryana 29 – 26 Rajasthan",
+      "winner": "Haryana",
+      "attack": { },
+      "defence": { }
     },
 
     {
       "id": "M05",
       "name": "Kerala vs Tamil Nadu",
-      "attack": {
-        "inning1": {
-          "Early": { "teamA": 3, "teamB": 3 },
-          "Mid": { "teamA": 4, "teamB": 5 },
-          "End": { "teamA": 2, "teamB": 4 }
-        },
-        "inning2": {
-          "Early": { "teamA": 2, "teamB": 2 },
-          "Mid": { "teamA": 5, "teamB": 4 },
-          "End": { "teamA": 3, "teamB": 3 }
-        }
-      },
-      "defence": {
-        "inning1": {
-          "Early": { "teamA": 4, "teamB": 3 },
-          "Mid": { "teamA": 5, "teamB": 4 },
-          "End": { "teamA": 3, "teamB": 2 }
-        },
-        "inning2": {
-          "Early": { "teamA": 3, "teamB": 4 },
-          "Mid": { "teamA": 4, "teamB": 5 },
-          "End": { "teamA": 2, "teamB": 3 }
-        }
-      }
+      "date": "2026-01-16",
+      "score": "Tamil Nadu 35 – 31 Kerala",
+      "winner": "Tamil Nadu",
+      "attack": { },
+      "defence": { }
     },
 
     {
       "id": "M06",
       "name": "Uttar Pradesh vs Bihar",
-      "attack": {
-        "inning1": {
-          "Early": { "teamA": 2, "teamB": 1 },
-          "Mid": { "teamA": 4, "teamB": 3 },
-          "End": { "teamA": 3, "teamB": 2 }
-        },
-        "inning2": {
-          "Early": { "teamA": 3, "teamB": 2 },
-          "Mid": { "teamA": 5, "teamB": 4 },
-          "End": { "teamA": 4, "teamB": 3 }
-        }
-      },
-      "defence": {
-        "inning1": {
-          "Early": { "teamA": 3, "teamB": 2 },
-          "Mid": { "teamA": 4, "teamB": 3 },
-          "End": { "teamA": 2, "teamB": 3 }
-        },
-        "inning2": {
-          "Early": { "teamA": 2, "teamB": 3 },
-          "Mid": { "teamA": 4, "teamB": 5 },
-          "End": { "teamA": 3, "teamB": 4 }
-        }
-      }
+      "date": "2026-01-17",
+      "score": "UP 33 – 27 Bihar",
+      "winner": "Uttar Pradesh",
+      "attack": { },
+      "defence": { }
     },
 
     {
       "id": "M07",
       "name": "West Bengal vs Odisha",
-      "attack": {
-        "inning1": {
-          "Early": { "teamA": 1, "teamB": 2 },
-          "Mid": { "teamA": 3, "teamB": 4 },
-          "End": { "teamA": 2, "teamB": 3 }
-        },
-        "inning2": {
-          "Early": { "teamA": 2, "teamB": 3 },
-          "Mid": { "teamA": 4, "teamB": 5 },
-          "End": { "teamA": 3, "teamB": 4 }
-        }
-      },
-      "defence": {
-        "inning1": {
-          "Early": { "teamA": 2, "teamB": 3 },
-          "Mid": { "teamA": 3, "teamB": 5 },
-          "End": { "teamA": 4, "teamB": 3 }
-        },
-        "inning2": {
-          "Early": { "teamA": 3, "teamB": 4 },
-          "Mid": { "teamA": 5, "teamB": 3 },
-          "End": { "teamA": 2, "teamB": 4 }
-        }
-      }
+      "date": "2026-01-18",
+      "score": "West Bengal 32 – 30 Odisha",
+      "winner": "West Bengal",
+      "attack": { },
+      "defence": { }
     },
 
     {
       "id": "M08",
       "name": "Assam vs Manipur",
-      "attack": {
-        "inning1": {
-          "Early": { "teamA": 2, "teamB": 1 },
-          "Mid": { "teamA": 3, "teamB": 2 },
-          "End": { "teamA": 2, "teamB": 1 }
-        },
-        "inning2": {
-          "Early": { "teamA": 3, "teamB": 2 },
-          "Mid": { "teamA": 4, "teamB": 3 },
-          "End": { "teamA": 3, "teamB": 2 }
-        }
-      },
-      "defence": {
-        "inning1": {
-          "Early": { "teamA": 3, "teamB": 1 },
-          "Mid": { "teamA": 4, "teamB": 2 },
-          "End": { "teamA": 3, "teamB": 2 }
-        },
-        "inning2": {
-          "Early": { "teamA": 2, "teamB": 3 },
-          "Mid": { "teamA": 4, "teamB": 5 },
-          "End": { "teamA": 3, "teamB": 4 }
-        }
-      }
+      "date": "2026-01-19",
+      "score": "Assam 28 – 24 Manipur",
+      "winner": "Assam",
+      "attack": { },
+      "defence": { }
     },
 
     {
       "id": "M09",
       "name": "Goa vs Chhattisgarh",
-      "attack": {
-        "inning1": {
-          "Early": { "teamA": 3, "teamB": 2 },
-          "Mid": { "teamA": 4, "teamB": 3 },
-          "End": { "teamA": 2, "teamB": 3 }
-        },
-        "inning2": {
-          "Early": { "teamA": 2, "teamB": 3 },
-          "Mid": { "teamA": 5, "teamB": 4 },
-          "End": { "teamA": 4, "teamB": 3 }
-        }
-      },
-      "defence": {
-        "inning1": {
-          "Early": { "teamA": 2, "teamB": 3 },
-          "Mid": { "teamA": 4, "teamB": 5 },
-          "End": { "teamA": 3, "teamB": 2 }
-        },
-        "inning2": {
-          "Early": { "teamA": 3, "teamB": 4 },
-          "Mid": { "teamA": 5, "teamB": 3 },
-          "End": { "teamA": 4, "teamB": 3 }
-        }
-      }
+      "date": "2026-01-20",
+      "score": "Goa 34 – 29 Chhattisgarh",
+      "winner": "Goa",
+      "attack": { },
+      "defence": { }
     },
 
     {
       "id": "M10",
       "name": "Telangana vs Andhra Pradesh",
-      "attack": {
-        "inning1": {
-          "Early": { "teamA": 2, "teamB": 2 },
-          "Mid": { "teamA": 3, "teamB": 4 },
-          "End": { "teamA": 1, "teamB": 3 }
-        },
-        "inning2": {
-          "Early": { "teamA": 3, "teamB": 1 },
-          "Mid": { "teamA": 4, "teamB": 2 },
-          "End": { "teamA": 2, "teamB": 3 }
-        }
-      },
-      "defence": {
-        "inning1": {
-          "Early": { "teamA": 3, "teamB": 2 },
-          "Mid": { "teamA": 5, "teamB": 4 },
-          "End": { "teamA": 4, "teamB": 3 }
-        },
-        "inning2": {
-          "Early": { "teamA": 2, "teamB": 3 },
-          "Mid": { "teamA": 4, "teamB": 5 },
-          "End": { "teamA": 3, "teamB": 4 }
-        }
-      }
+      "date": "2026-01-21",
+      "score": "Telangana 31 – 30 Andhra Pradesh",
+      "winner": "Telangana",
+      "attack": { },
+      "defence": { }
     }
   ]
 }

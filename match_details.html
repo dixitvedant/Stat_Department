@@ -212,34 +212,37 @@
     </section>
 
     <!-- MVP -->
-    <!-- MVP -->
-    <section id="mvp" class="section-content hidden">
+   <!-- MVP -->
+<section id="mvp" class="section-content hidden">
 
-        <!-- TOP MVP -->
-        <div class="info-card text-center mb-4 mvp-highlight">
-            <i class="bi bi-trophy-fill text-warning display-4"></i>
-            <h3 class="mt-2" id="topMvpName">–</h3>
-            <p class="text-muted" id="topMvpRole">–</p>
-            <span class="badge bg-warning text-dark fs-6" id="topMvpPoints">0 pts</span>
-        </div>
+    <!-- TOP MVP -->
+    <div class="info-card text-center mb-4 mvp-highlight">
+        <i class="bi bi-trophy-fill text-warning display-4"></i>
+        <h3 class="mt-2" id="topMvpName">–</h3>
+        <p class="text-muted" id="topMvpRole">–</p>
+        <span class="badge bg-warning text-dark fs-6" id="topMvpPoints">0 pts</span>
+    </div>
 
-        <!-- FILTER -->
-        <div class="d-flex justify-content-center mb-3">
-            <select id="mvpRoleFilter" class="form-select w-auto">
-                <option value="All">All Roles</option>
-                <option value="Attacker">Attacker</option>
-                <option value="Defender">Defender</option>
-                <option value="All-Rounder">All-Rounder</option>
-            </select>
-        </div>
+    <!-- FILTER -->
+    <div class="d-flex justify-content-center mb-3">
+        <select id="mvpRoleFilter" class="form-select w-auto">
+            <option value="All">All Roles</option>
+            <option value="Attacker">Attacker</option>
+            <option value="Defender">Defender</option>
+            <option value="All-Rounder">All-Rounder</option>
+        </select>
+    </div>
 
-        <!-- MVP LIST -->
-        <div class="info-card">
-            <h4 class="mb-3"><i class="bi bi-bar-chart-fill"></i> MVP Leaderboard</h4>
-            <div id="mvpList"></div>
-        </div>
+    <!-- MVP LIST -->
+    <div class="info-card">
+        <h4 class="mb-3">
+            <i class="bi bi-bar-chart-fill"></i> MVP Leaderboard (Top 3 per Role)
+        </h4>
+        <div id="mvpList"></div>
+    </div>
 
-    </section>
+</section>
+
 
     <script src="match_details.js"></script>
 

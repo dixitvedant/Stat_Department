@@ -1,8 +1,11 @@
 {
   "M01": [
     { "name": "Rohit Patil", "role": "Defender", "points": 94 },
-    { "name": "Sagar Pawar", "role": "Attacker", "points": 88 },
-    { "name": "Amit Kulkarni", "role": "All-Rounder", "points": 76 }
+    { "name": "Sagar Pawar", "role": "Attacker", "points": 97 },
+    { "name": "Amit Kulkarni", "role": "All-Rounder", "points": 76 },
+    { "name": "Rohit Patil", "role": "Defender", "points": 92 },
+    { "name": "Rohit Patil", "role": "Defender", "points": 91 },
+    { "name": "Rohit Patil", "role": "Defender", "points": 20 }
   ],
 
   "M02": [

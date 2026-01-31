@@ -72,7 +72,7 @@ Promise.all([
 
             const teamAWins = h2hMatches.filter(m => m.winner === teamAName).length;
             const teamBWins = h2hMatches.filter(m => m.winner === teamBName).length;
-            const draws = h2hMatches.length - (teamAWins + teamBWins);
+            const draws = h2hMatches.filter(m => m.winner === "Draw").length;
             const total = h2hMatches.length;
 
             const teamAPercent = (teamAWins / total) * 100;
@@ -89,13 +89,13 @@ Promise.all([
             const labelRow = document.createElement("div");
             labelRow.className = "d-flex justify-content-between mb-1 fw-semibold";
             labelRow.innerHTML = `
-          <span>${teamAName} (${teamAWins})</span>
-          <span>Draws (${draws})</span>
-          <span>${teamBName} (${teamBWins})</span>
-      `;
+            <span>${teamAName} (${teamAWins})</span>
+            <span>Draws (${draws})</span>
+            <span>${teamBName} (${teamBWins})</span>
+        `;
             h2hContent.appendChild(labelRow);
 
-            // Bar Container
+            // Bar
             const bar = document.createElement("div");
             bar.style.display = "flex";
             bar.style.height = "14px";
@@ -103,17 +103,14 @@ Promise.all([
             bar.style.overflow = "hidden";
             bar.style.background = "#e5e7eb";
 
-            // Team A Bar
             const barA = document.createElement("div");
             barA.style.width = `${teamAPercent}%`;
             barA.style.background = "#2563eb";
 
-            // Draw Bar
             const barDraw = document.createElement("div");
             barDraw.style.width = `${drawPercent}%`;
             barDraw.style.background = "#9ca3af";
 
-            // Team B Bar
             const barB = document.createElement("div");
             barB.style.width = `${teamBPercent}%`;
             barB.style.background = "#dc2626";
@@ -121,58 +118,96 @@ Promise.all([
             bar.appendChild(barA);
             bar.appendChild(barDraw);
             bar.appendChild(barB);
-
             h2hContent.appendChild(bar);
 
-            // Match List (keep your table)
+            // TABLE (UPDATED)
             const table = document.createElement("table");
             table.className = "table table-striped mt-4";
 
             table.innerHTML = `
-          <thead>
-              <tr>
-                  <th>Match</th>
-                  <th>Winner</th>
-                  <th>Team A</th>
-                  <th>Team B</th>
-                  <th>Total Wickets</th>
-              </tr>
-          </thead>
-          <tbody>
-              ${h2hMatches.map(m => `
-                  <tr>
-                      <td>${m.match}</td>
-                      <td>${m.winner}</td>
-                      <td>${m.teamA}</td>
-                      <td>${m.teamB}</td>
-                      <td>${m.totalWickets}</td>
-                  </tr>
-              `).join("")}
-          </tbody>
-      `;
+            <thead>
+                <tr>
+                    <th>Match</th>
+                    <th>Date</th>
+                    <th>Score</th>
+                    <th>Winner</th>
+                    <th>Total Wickets</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${h2hMatches.map(m => `
+                    <tr>
+                        <td>${m.match}</td>
+                        <td>${m.date || "–"}</td>
+                        <td>${m.score || "–"}</td>
+                        <td class="fw-semibold">${m.winner}</td>
+                        <td>${m.totalWickets}</td>
+                    </tr>
+                `).join("")}
+            </tbody>
+        `;
 
             h2hContent.appendChild(table);
         })
         .catch(err => console.error("H2H data error:", err));
 
+
 });
+// MVP SECTION
 fetch("mvp.json")
     .then(r => r.json())
     .then(mvpData => {
+
         const list = mvpData[matchId];
         if (!list || list.length === 0) return;
 
-        loadMvp(list);
+        // Sort by points DESC
+        list.sort((a, b) => b.points - a.points);
+
+        // TOP MVP
+        const top = list[0];
+        document.getElementById("topMvpName").textContent = top.name;
+        document.getElementById("topMvpRole").textContent = top.role;
+        document.getElementById("topMvpPoints").textContent = `${top.points} pts`;
+
+        renderMvpList(list);
 
         document.getElementById("mvpRoleFilter")
             .addEventListener("change", e => {
                 const role = e.target.value;
-                const filtered = role === "All"
-                    ? list
-                    : list.filter(p => p.role === role);
+
+                let filtered = list;
+                if (role !== "All") {
+                    filtered = list
+                        .filter(p => p.role === role)
+                        .slice(0, 3); // TOP 3 ONLY
+                } else {
+                    filtered = [
+                        ...list.filter(p => p.role === "Attacker").slice(0, 3),
+                        ...list.filter(p => p.role === "Defender").slice(0, 3),
+                        ...list.filter(p => p.role === "All-Rounder").slice(0, 3)
+                    ];
+                }
+
                 renderMvpList(filtered);
             });
     });
+
+function renderMvpList(players) {
+    const container = document.getElementById("mvpList");
+    container.innerHTML = "";
+
+    players.forEach((p, i) => {
+        container.innerHTML += `
+            <div class="d-flex justify-content-between align-items-center border-bottom py-2">
+                <strong>#${i + 1} ${p.name}</strong>
+                <span class="badge bg-secondary">${p.role}</span>
+                <span class="fw-bold">${p.points} pts</span>
+            </div>
+        `;
+    });
+}
+
 
 
 // TYPE CHANGE
