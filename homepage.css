@@ -1,0 +1,137 @@
+/* ========== GLOBAL ========== */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f8fafc;
+    color: #0f172a;
+}
+
+/* ========== NAVBAR ========== */
+/* ===== NAVBAR ===== */
+.navbar {
+    background: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    margin: 0;
+    font-size: 22px;
+    color: #2563eb;
+}
+
+/* LINKS */
+.nav-links a {
+    margin-left: 22px;
+    text-decoration: none;
+    color: #334155;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #2563eb;
+}
+
+/* Underline animation */
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background: #2563eb;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+
+/* ========== HERO ========== */
+.hero {
+    text-align: center;
+    padding: 70px 20px 50px;
+    background: linear-gradient(180deg, #ffffff, #f1f5f9);
+}
+
+.hero h1 {
+    font-size: 38px;
+    color: #0f172a;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    max-width: 700px;
+    margin: auto;
+    font-size: 15px;
+    color: #475569;
+}
+
+/* ========== MAIN GRID ========== */
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 30px;
+    padding: 50px 40px;
+}
+
+/* ========== CARDS ========== */
+.home-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 25px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.home-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 35px rgba(37, 99, 235, 0.15);
+}
+
+.home-card h3 {
+    color: #2563eb;
+    margin-bottom: 15px;
+}
+
+.home-card ul {
+    padding-left: 18px;
+}
+
+.home-card li {
+    margin-bottom: 8px;
+    color: #334155;
+    font-size: 14px;
+}
+
+/* Highlight Statistics Card */
+.highlight {
+    border: 2px solid #2563eb;
+}
+
+/* ========== FOOTER ========== */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background: #ffffff;
+    border-top: 1px solid #e2e8f0;
+    font-size: 13px;
+    color: #64748b;
+}
