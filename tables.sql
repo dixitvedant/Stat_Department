@@ -66,17 +66,19 @@ Create Table Match_details(
     team_b INT,
     match_date DATE,
     winning_team INT,
+	teamA_score INT,
+	teamB_score INT,
     FOREIGN KEY(team_a) REFERENCES Team(team_id),
     FOREIGN KEY(team_b) REFERENCES Team(team_id),
     FOREIGN KEY(winning_team) REFERENCES Team(team_id)
 );
-/*INSERT INTO Match_details (match_id, venue, team_a, team_b, match_date, winning_team)
+/*INSERT INTO Match_details (match_id, venue, team_a, team_b, match_date, winning_team,teamA_score,teamB_score)
 VALUES 
-(1, 'Pune', 1, 2, '2026-01-10', 2),
-(2, 'Mumbai', 3, 4, '2026-01-12', 3),
-(3, 'Nashik', 5, 6, '2026-01-15', 6),
-(4, 'Nagpur', 7, 8, '2026-01-18', 7),
-(5, 'Kolhapur', 2, 3, '2026-01-20', 2);*/
+(1, 'Pune', 1, 2, '2026-01-10', 2,18,15),
+(2, 'Mumbai', 3, 4, '2026-01-12', 3,20,25),
+(3, 'Nashik', 5, 6, '2026-01-15', 6,15,15),
+(4, 'Nagpur', 7, 8, '2026-01-18', 7,10,35),
+(5, 'Kolhapur', 2, 3, '2026-01-20', 2,28,15);*/
 
 
 Create Table Player_match_stat(
@@ -107,21 +109,21 @@ VALUES
 (13, 13, 1, 0, 0, 0, 0),
 (14, 14, 1, 0, 0, 0, 0),
 (15, 15, 1, 0, 0, 0, 0),
-(16, 16, 2, 4, 260, 0, 0),
-(17, 17, 2, 6, 135, 1, 0),
-(18, 18, 2, 0, 0, 0, 0),
-(19, 19, 2, 0, 100, 0, 0),
-(20, 20, 2, 0, 60, 0, 0),
-(21, 21, 2, 0, 0, 0, 0),
-(22, 22, 2, 0, 10, 0, 0),
-(23, 23, 2, 2, 60, 0, 0),
-(24, 24, 2, 0, 0, 1, 0),
-(25, 25, 2, 6, 0, 0, 0),
-(26, 26, 2, 0, 20, 0, 0),
-(27, 27, 2, 0, 0, 0, 0),
-(28, 28, 2, 0, 0, 0, 0),
-(29, 29, 2, 0, 0, 0, 0),
-(30, 30, 2, 2, 90, 0, 1);*/
+(16, 16, 1, 4, 260, 0, 0),
+(17, 17, 1, 6, 135, 1, 0),
+(18, 18, 1, 0, 0, 0, 0),
+(19, 19, 1, 0, 100, 0, 0),
+(20, 20, 1, 0, 60, 0, 0),
+(21, 21, 1, 0, 0, 0, 0),
+(22, 22, 1, 0, 10, 0, 0),
+(23, 23, 1, 2, 60, 0, 0),
+(24, 24, 1, 0, 0, 1, 0),
+(25, 25, 1, 6, 0, 0, 0),
+(26, 26, 1, 0, 20, 0, 0),
+(27, 27, 1, 0, 0, 0, 0),
+(28, 28, 1, 0, 0, 0, 0),
+(29, 29, 1, 0, 0, 0, 0),
+(30, 30, 1, 2, 90, 0, 1);*/
 
 Create Table team_stat(
 		team_id INT PRIMARY KEY,
@@ -173,5 +175,6 @@ Create Table team_stat(
 		total_points INT,
         FOREIGN KEY(team_id) REFERENCES Team(team_id)
 	);
+
 
 
