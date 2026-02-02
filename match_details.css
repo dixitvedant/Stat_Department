@@ -26,23 +26,31 @@ body {
     border-radius: 16px;
     padding: 18px;
     text-align: center;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
     transition: transform .25s ease;
 }
+
 .overview-card:hover {
-    transform: translateY(-4px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-15px);
+    border-color: #2563eb;
+
 }
+
 .overview-card i {
     font-size: 26px;
 }
+
 .overview-card h6 {
     margin: 6px 0 4px;
     color: #475569;
 }
+
 .overview-card p {
     margin: 0;
     font-weight: 600;
 }
+
 .overview-hint {
     animation: fadeUp .6s ease;
 }
@@ -62,11 +70,13 @@ body {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
     margin-bottom: 25px;
 }
+
 .controls {
     display: flex;
     justify-content: center;
     gap: 20px;
 }
+
 select {
     padding: 10px 16px;
     border-radius: 8px;
@@ -80,6 +90,7 @@ select {
     border-radius: 16px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
 }
+
 .info-card {
     background: white;
     padding: 30px;
@@ -93,9 +104,17 @@ select {
 }
 
 @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
+
 /* roster */
 .role-block {
     margin-bottom: 15px;
@@ -147,13 +166,27 @@ select {
 }
 
 @keyframes popIn {
-    from { transform: scale(0.9); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* FOOTER */

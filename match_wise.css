@@ -73,7 +73,7 @@ body {
 }
 
 .match-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-15px);
     box-shadow: 0 18px 35px rgba(37, 99, 235, 0.18);
     border-color: #2563eb;
 }

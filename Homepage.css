@@ -122,9 +122,9 @@ body {
 }
 
 /* Highlight Statistics Card */
-.highlight {
-    border: 2px solid #2563eb;
-}
+    .highlight:hover{
+        border: 2px solid #2563eb;
+    }
 
 /* ========== FOOTER ========== */
 .footer {
