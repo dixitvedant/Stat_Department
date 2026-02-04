@@ -1,3 +1,31 @@
+--DON'T ADD VALUES WHERE PRIMARY KEY IS AUTO-INCREMENTED LIKE GIVE BELOW
+/*
+CREATE  TABLE Team_Attack(
+    Attack_id INT PRIMARY KEY AUTO_INCREMENT,
+    match_id INT,
+    team_id INT NOT NULL,
+    points INT NOT NULL,
+    inning INT CHECK(inning IN (1,2)),
+    phase VARCHAR(10) CHECK(phase IN ('Early','Mid','End')),
+    FOREIGN KEY (match_id) REFERENCES Match_details(match_id),
+    FOREIGN KEY (team_id) REFERENCES Team(team_id)
+);
+
+INSERT INTO Team_Attack (match_id, team_id, points, inning, phase)
+VALUES
+-- Inning 1
+(1, 1, 3, 1, 'Early'),
+(1, 2, 1, 1, 'Early'),
+(1, 1, 4, 1, 'Mid'),
+(1, 2, 3, 1, 'Mid'),
+
+-- Inning 2
+(1, 1, 2, 2, 'Early'),
+(1, 2, 2, 2, 'Early'),
+(1, 1, 3, 2, 'Mid'),
+(1, 2, 5, 2, 'Mid');
+*/
+
 CREATE TABLE Player(
     player_id INT PRIMARY KEY AUTO_INCREMENT ,
     team_id INT NOT NULL,
@@ -200,7 +228,7 @@ CREATE TABLE Team_Defence(
 );
 
 CREATE TABLE Season(
-    season_id INT PRIMARY KEY,
+    season_id INT PRIMARY KEY AUTO_INCREMENT,
     season_name VARCHAR(30) NOT NULL,
     tournament_id INT,
     start_date DATE NOT NULL,
@@ -241,7 +269,7 @@ CREATE TABLE Player_season_stat (
 );
 
 CREATE TABLE Tournament(
-    tournament_id INT PRIMARY KEY,
+    tournament_id INT PRIMARY KEY AUTO_INCREMENT,
     tournament_name VARCHAR(30) NOT NULL,
     tournament_type VARCHAR(30) CHECK (tournament_type IN ('Round Robin','Knockout','Group + Knockout')),
     tournament_year INT,
@@ -257,3 +285,4 @@ CREATE TABLE Match_Awards (
     FOREIGN KEY (player_id) REFERENCES Player(player_id),
     FOREIGN KEY (tournament_id) REFERENCES Tournament(tournament_id)
 );
+
