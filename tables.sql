@@ -97,6 +97,8 @@ CREATE TABLE Match_details(
     team_b INT NOT NULL,
     match_date DATE NOT NULL,
     winning_team INT,
+	teamA_score INT,
+	teamB_score INT,
     result VARCHAR(40),   --updated
     FOREIGN KEY(team_a) REFERENCES Team(team_id),
     FOREIGN KEY(team_b) REFERENCES Team(team_id),
@@ -285,4 +287,5 @@ CREATE TABLE Match_Awards (
     FOREIGN KEY (player_id) REFERENCES Player(player_id),
     FOREIGN KEY (tournament_id) REFERENCES Tournament(tournament_id)
 );
+
 
