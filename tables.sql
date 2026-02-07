@@ -217,27 +217,74 @@ CREATE  TABLE Team_Attack(
     FOREIGN KEY (team_id) REFERENCES Team(team_id)
 );
 
-CREATE TABLE Team_Defence(
-    defence_id INT PRIMARY KEY AUTO_INCREMENT,
-    match_id INT,
-    inning_no INT CHECK(inning_no IN (1,2)),
-    team_id INT NOT NULL,
-    batch_no INT,
-    start_minute INT CHECK(start_minute>0),
-    duration INT CHECK(duration>0),
-    FOREIGN KEY (match_id) REFERENCES Match_details(match_id),
-    FOREIGN KEY (team_id) REFERENCES Team(team_id)
+INSERT INTO Team_Attack (match_id,team_id,points,inning,phase)
+VALUES
+(1, 1, 8,  1, 'Early'),
+(1, 1, 6,  1, 'Mid'),
+(1, 1, 5,  1, 'End'),
+(1, 1, 7,  2, 'Early'),
+(1, 1, 6,  2, 'Mid'),
+(1, 2, 9,  1, 'Early'),
+(1, 2, 7,  1, 'Mid'),
+(1, 2, 6,  2, 'Early'),
+(1, 2, 5,  2, 'Mid'),
+(1, 2, 4,  2, 'End');
+
+
+CREATE TABLE Team_Defence (
+defence_id INT PRIMARY KEY AUTO_INCREMENT,
+match_id INT NOT NULL,
+inning_no INT NOT NULL,
+team_id INT NOT NULL,
+batch_no INT NOT NULL,
+start_time FLOAT NOT NULL,
+end_time FLOAT NOT NULL,
+duration FLOAT NOT NULL,
+FOREIGN KEY (match_id)
+REFERENCES Match_details(match_id),
+FOREIGN KEY (team_id)
+   REFERENCES Team(team_id),
+-- TABLE-LEVEL CHECK constraints
+    CHECK (inning_no IN (1, 2)),
+    CHECK (batch_no > 0),
+    CHECK (start_time >= 0),
+    CHECK (end_time > start_time),
+    CHECK (duration > 0)
 );
 
-CREATE TABLE Season(
-    season_id INT PRIMARY KEY AUTO_INCREMENT,
-    season_name VARCHAR(30) NOT NULL,
-    tournament_id INT,
-    start_date DATE NOT NULL,
-    end_date DATE NOT NULL,
-    CHECK (start_date<end_date)
-    FOREIGN KEY (tournament_id) REFERENCES Tournament(tournament_id)
-);
+INSERT INTO Team_Defence (match_id,inning_no,team_id,batch_no,start_time,end_time,duration)
+VALUES
+(1, 1, 1, 1, 0,  3, 3),
+(1, 1, 1, 2, 3,  5.30,2.30),
+(1, 1, 1, 3, 5.30, 7,1.30),
+(1, 2, 1, 1, 0, 2.30,2.30),
+(1, 2, 1, 2, 2.30,  3.40,1.10),
+(1, 2, 1, 3, 3.40,  5,1.20),
+(1, 2, 1, 4, 5,  6.30,1.30),
+(1, 2, 1, 5, 6.30,  7,0.30),
+(1, 1, 2, 1, 0,  3.40,3.40),
+(1, 1, 2, 2, 3.40, 7,3.20),
+(1, 2, 2, 1, 0,  2.20,2.20),
+(1, 2, 2, 2, 2.20,4.40,2.20),
+(1, 2, 2, 3, 4.40, 7,2.20);
+
+CREATE TABLE Season (
+	season_id INT PRIMARY KEY AUTO_INCREMENT,
+	season_name VARCHAR(30) NOT NULL,
+	tournament_id INT NOT NULL,
+	start_date DATE NOT NULL,
+	end_date DATE NOT NULL,
+	FOREIGN KEY (tournament_id)
+	REFERENCES Tournament(tournament_id),
+	CHECK (start_date < end_date));
+
+INSERT INTO Season (season_name,tournament_id,start_date,end_date)
+VALUES
+('Season 2020', 1, '2020-01-05', '2020-03-20'),
+('Season 2021', 1, '2021-01-10', '2021-03-25'),
+('Season 2022', 1, '2022-01-08', '2022-03-30'),
+('Season 2023', 1, '2023-01-12', '2023-04-05'),
+('Season 2024', 1, '2024-01-15', '2024-04-10');
 
 CREATE TABLE Player_Role_History (
     player_id INT,
@@ -248,15 +295,19 @@ CREATE TABLE Player_Role_History (
     FOREIGN KEY (season_id) REFERENCES Season(season_id)
 );
 
-CREATE TABLE Injury_Report (
-    injury_id INT PRIMARY KEY AUTO_INCREMENT,
-    player_id INT,
-    match_id INT,
-    injury_type VARCHAR(50) NOT NULL,
-    recovery_days INT CHECK(recovery_days>0),
-    FOREIGN KEY (player_id) REFERENCES Player(player_id),
-    FOREIGN KEY (match_id) REFERENCES Match_details(match_id)
-);
+INSERT INTO Player_Role_History (player_id,season_id,role)
+VALUES
+(1, 1, 'Attacker'),
+(2, 1, 'Defender'),
+(3, 1, 'All-Rounder'),
+(4, 2, 'Attacker'),
+(5, 2, 'Defender'),
+(6, 2, 'All-Rounder'),
+(7, 3, 'All-Rounder'),
+(8, 3, 'Defender'),
+(9, 3, 'Attacker'),
+(10, 3, 'Attacker');
+
 
 CREATE TABLE Player_season_stat (
     player_id INT,
@@ -273,13 +324,29 @@ CREATE TABLE Player_season_stat (
 CREATE TABLE Tournament(
     tournament_id INT PRIMARY KEY AUTO_INCREMENT,
     tournament_name VARCHAR(30) NOT NULL,
-    tournament_type VARCHAR(30) CHECK (tournament_type IN ('Round Robin','Knockout','Group + Knockout')),
-    tournament_year INT,
+    tournament_type VARCHAR(30)
+        CHECK (tournament_type IN ('All to all','Knockout','Group + Knockout')),
+    tournament_year INT
 );
+
+INSERT INTO Tournament (tournament_name,tournament_type,tournament_year)
+VALUES
+('National Kho-Kho League', 'All to all', 2020),
+('Inter-University Championship', 'Knockout', 2020),
+('State Level Tournament', 'Group + Knockout', 2021),
+('Junior Nationals', 'All to all', 2021),
+('Senior Nationals', 'Knockout', 2022),
+('Inter-School League', 'Group + Knockout', 2022),
+('University Premier League', 'All to all', 2023),
+('Women National Championship', 'Group + Knockout', 2023),
+('Kho-Kho Pro League', 'Knockout', 2024),
+('National Games Kho-Kho', 'All to all', 2024);
+
+
 
 CREATE TABLE Match_Awards(
     match_id INT,
-    award_type VARCHAR(20) CHECK (award_type IN ('MVP','Best Attacker','Best Defender')),   
+    award_type VARCHAR(20) CHECK (award_type IN ('Best AllRounder','Best Attacker','Best Defender')),   
     player_id INT,
     tournament_id INT,
     PRIMARY KEY (match_id, award_type),
@@ -287,6 +354,21 @@ CREATE TABLE Match_Awards(
     FOREIGN KEY (player_id) REFERENCES Player(player_id),
     FOREIGN KEY (tournament_id) REFERENCES Tournament(tournament_id)
 );
+
+INSERT INTO Match_Awards (match_id,award_type,player_id,tournament_id)
+VALUES
+(1, 'Best AllRounder', 5, 1),
+(1, 'Best Attacker', 8, 1),
+(1, 'Best Defender', 3, 1),
+(2, 'Best Defender', 6, 1),
+(2, 'Best AllRounder', 9, 1),
+(3, 'Best Attacker', 4, 2),
+(4, 'Best Defender', 2, 2),
+(5, 'Best Defender', 10, 3),
+(5, 'Best AllRounder', 11, 3);
+
+
+
 
 -- Don't add values here
 CREATE TABLE raw_match_file_log(
@@ -311,5 +393,16 @@ CREATE TABLE raw_match_data(
 	raw_venue VARCHAR(100),
 	FOREIGN KEY (file_id) REFERENCES raw_match_file_log(file_id)
 );
+
+CREATE TABLE Injury_Report (
+    injury_id INT PRIMARY KEY AUTO_INCREMENT,
+    player_id INT,
+    match_id INT,
+    injury_type VARCHAR(50) NOT NULL,
+    recovery_days INT CHECK(recovery_days>0),
+    FOREIGN KEY (player_id) REFERENCES Player(player_id),
+    FOREIGN KEY (match_id) REFERENCES Match_details(match_id)
+);
+
 
 
