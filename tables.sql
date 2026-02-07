@@ -1,4 +1,4 @@
---DON'T ADD VALUES WHERE PRIMARY KEY IS AUTO-INCREMENTED LIKE GIVE BELOW
+--DON'T ADD VALUES WHERE PRIMARY KEY IS AUTO-INCREMENTED LIKE GIVE BELOW 
 /*
 CREATE  TABLE Team_Attack(
     Attack_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -277,7 +277,7 @@ CREATE TABLE Tournament(
     tournament_year INT,
 );
 
-CREATE TABLE Match_Awards (
+CREATE TABLE Match_Awards(
     match_id INT,
     award_type VARCHAR(20) CHECK (award_type IN ('MVP','Best Attacker','Best Defender')),   
     player_id INT,
@@ -288,4 +288,27 @@ CREATE TABLE Match_Awards (
     FOREIGN KEY (tournament_id) REFERENCES Tournament(tournament_id)
 );
 
+-- Don't add values here
+CREATE TABLE raw_match_file_log(
+	file_id INT PRIMARY KEY AUTO_INCREMENT,
+	file_name VARCHAR(200),
+	file_type VARCHAR(50),
+	uploaded_by VARCHAR(30),
+	uploaded_at DATETIME
+);
+
+CREATE TABLE raw_match_data(
+	raw_id INT PRIMARY KEY AUTO_INCREMENT,
+	file_id INT,
+	raw_match_id VARCHAR(50),
+	raw_match_date VARCHAR(50),
+	raw_team_a VARCHAR(30),
+	raw_team_b VARCHAR(30),
+	raw_team_a_score VARCHAR(50),
+	raw_team_b_score VARCHAR(50),
+	raw_result VARCHAR(50),
+	raw_winner VARCHAR(30),
+	raw_venue VARCHAR(100),
+	FOREIGN KEY (file_id) REFERENCES raw_match_file_log(file_id)
+);
 
