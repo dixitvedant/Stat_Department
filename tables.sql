@@ -220,7 +220,7 @@ CREATE  TABLE Team_Attack(
 CREATE TABLE Team_Defence(
     defence_id INT PRIMARY KEY AUTO_INCREMENT,
     match_id INT,
-    inning_no INT CHECK(inning IN (1,2)),
+    inning_no INT CHECK(inning_no IN (1,2)),
     team_id INT NOT NULL,
     batch_no INT,
     start_minute INT CHECK(start_minute>0),
@@ -311,4 +311,5 @@ CREATE TABLE raw_match_data(
 	raw_venue VARCHAR(100),
 	FOREIGN KEY (file_id) REFERENCES raw_match_file_log(file_id)
 );
+
 
