@@ -1,0 +1,25 @@
+{
+  "matches": [
+    {
+      "id": "M101",
+      "name": "Pune vs Mumbai",
+      "status": "LIVE",
+      "score": "Pune 14 - 12 Mumbai",
+      "info": "2nd Inning"
+    },
+    {
+      "id": "M102",
+      "name": "Chennai vs Delhi",
+      "status": "FINAL",
+      "score": "Chennai 18 - 14 Delhi",
+      "info": "Match Ended"
+    },
+    {
+      "id": "M103",
+      "name": "Kerala vs Punjab",
+      "status": "UPCOMING",
+      "score": "Kerala vs Punjab",
+      "info": "7:00 PM"
+    }
+  ]
+}
