@@ -14,6 +14,8 @@ EXPECTED_TABLES = [
     "Player_Match_Stat",
     "Player_Season_Stat",
     "Team_Stat",
+    "Team_Attack",
+    "Team_Defence"
 ]
 
 # -------------------------------
@@ -36,4 +38,5 @@ def fetch_tables(conn):
         except:
             dfs[table.lower()] = None
     return dfs
+
 
