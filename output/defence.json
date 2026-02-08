@@ -1,0 +1,162 @@
+[
+  {
+    "match_id": 1,
+    "team": "Satara Warriors",
+    "inning": 1,
+    "batch": "Batch 1",
+    "start": 1,
+    "duration": 2
+  },
+  {
+    "match_id": 1,
+    "team": "Satara Warriors",
+    "inning": 1,
+    "batch": "Batch 2",
+    "start": 3,
+    "duration": 2
+  },
+  {
+    "match_id": 1,
+    "team": "Satara Warriors",
+    "inning": 1,
+    "batch": "Batch 3",
+    "start": 5,
+    "duration": 1
+  },
+  {
+    "match_id": 1,
+    "team": "Pune Champions",
+    "inning": 1,
+    "batch": "Batch 1",
+    "start": 1,
+    "duration": 2
+  },
+  {
+    "match_id": 1,
+    "team": "Pune Champions",
+    "inning": 1,
+    "batch": "Batch 2",
+    "start": 3,
+    "duration": 2
+  },
+  {
+    "match_id": 1,
+    "team": "Pune Champions",
+    "inning": 1,
+    "batch": "Batch 3",
+    "start": 5,
+    "duration": 1
+  },
+  {
+    "match_id": 1,
+    "team": "Satara Warriors",
+    "inning": 2,
+    "batch": "Batch 1",
+    "start": 1,
+    "duration": 2
+  },
+  {
+    "match_id": 1,
+    "team": "Satara Warriors",
+    "inning": 2,
+    "batch": "Batch 2",
+    "start": 3,
+    "duration": 2
+  },
+  {
+    "match_id": 1,
+    "team": "Satara Warriors",
+    "inning": 2,
+    "batch": "Batch 3",
+    "start": 5,
+    "duration": 1
+  },
+  {
+    "match_id": 1,
+    "team": "Pune Champions",
+    "inning": 2,
+    "batch": "Batch 1",
+    "start": 1,
+    "duration": 3
+  },
+  {
+    "match_id": 1,
+    "team": "Pune Champions",
+    "inning": 2,
+    "batch": "Batch 2",
+    "start": 4,
+    "duration": 3
+  },
+  {
+    "match_id": 2,
+    "team": "Solapur Royals",
+    "inning": 1,
+    "batch": "Batch 1",
+    "start": 1,
+    "duration": 3
+  },
+  {
+    "match_id": 2,
+    "team": "Solapur Royals",
+    "inning": 1,
+    "batch": "Batch 2",
+    "start": 4,
+    "duration": 3
+  },
+  {
+    "match_id": 2,
+    "team": "Dharashiv Marshals",
+    "inning": 1,
+    "batch": "Batch 1",
+    "start": 1,
+    "duration": 3
+  },
+  {
+    "match_id": 2,
+    "team": "Dharashiv Marshals",
+    "inning": 1,
+    "batch": "Batch 2",
+    "start": 4,
+    "duration": 3
+  },
+  {
+    "match_id": 2,
+    "team": "Solapur Royals",
+    "inning": 2,
+    "batch": "Batch 1",
+    "start": 1,
+    "duration": 6
+  },
+  {
+    "match_id": 2,
+    "team": "Dharashiv Marshals",
+    "inning": 2,
+    "batch": "Batch 1",
+    "start": 1,
+    "duration": 3
+  },
+  {
+    "match_id": 2,
+    "team": "Dharashiv Marshals",
+    "inning": 2,
+    "batch": "Batch 2",
+    "start": 4,
+    "duration": 1
+  },
+  {
+    "match_id": 2,
+    "team": "Dharashiv Marshals",
+    "inning": 2,
+    "batch": "Batch 3",
+    "start": 5,
+    "duration": 1
+  },
+  {
+    "match_id": 2,
+    "team": "Dharashiv Marshals",
+    "inning": 2,
+    "batch": "Batch 1",
+    "start": 6,
+    "duration": 1
+  }
+]
