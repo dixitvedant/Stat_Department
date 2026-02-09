@@ -403,7 +403,7 @@ CREATE TABLE raw_attack_details(
     raw_inning INT ,
     raw_phase VARCHAR(10),
 	FOREIGN KEY (file_id) REFERENCES raw_match_file_log(file_id),
-	FOREIGN KEY (raw_match) REFERENCES raw_match_data(raw_match)
+	FOREIGN KEY (raw_match) REFERENCES raw_match_data(raw_id)
 ); 
 
 CREATE TABLE raw_defence_details(
@@ -415,7 +415,7 @@ CREATE TABLE raw_defence_details(
     raw_inning INT ,
     raw_duration INT,
 	FOREIGN KEY (file_id) REFERENCES raw_match_file_log(file_id),
-	FOREIGN KEY (raw_match) REFERENCES raw_match_data(raw_match)
+	FOREIGN KEY (raw_match) REFERENCES raw_match_data(raw_id)
 );
 
 CREATE TABLE raw_match_stats (
@@ -426,7 +426,7 @@ CREATE TABLE raw_match_stats (
 	raw_team_a_count INT DEFAULT 0,
 	raw_team_b_count INT DEFAULT 0,
 	FOREIGN KEY (file_id) REFERENCES raw_match_file_log(file_id),
-	FOREIGN KEY (raw_match) REFERENCES raw_match_data(raw_match)
+	FOREIGN KEY (raw_match) REFERENCES raw_match_data(raw_id)
 	);
 
 
@@ -439,6 +439,7 @@ CREATE TABLE Injury_Report (
     FOREIGN KEY (player_id) REFERENCES Player(player_id),
     FOREIGN KEY (match_id) REFERENCES Match_details(match_id)
 );
+
 
 
 
