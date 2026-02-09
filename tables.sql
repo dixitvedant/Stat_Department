@@ -422,9 +422,9 @@ CREATE TABLE raw_match_stats (
 	raw_stat_id INT PRIMARY KEY AUTO_INCREMENT,
 	file_id INT,
 	raw_match INT,
-	raw_particular VARCHAR(50) NOT NULL,
-	raw_team_a_count INT DEFAULT 0,
-	raw_team_b_count INT DEFAULT 0,
+	raw_particular VARCHAR(50),
+	raw_team_a_count INT,
+	raw_team_b_count INT,
 	FOREIGN KEY (file_id) REFERENCES raw_match_file_log(file_id),
 	FOREIGN KEY (raw_match) REFERENCES raw_match_data(raw_id)
 	);
@@ -439,6 +439,7 @@ CREATE TABLE Injury_Report (
     FOREIGN KEY (player_id) REFERENCES Player(player_id),
     FOREIGN KEY (match_id) REFERENCES Match_details(match_id)
 );
+
 
 
 
