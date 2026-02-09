@@ -188,12 +188,12 @@ CREATE TABLE Match_Stats (
 	stat_id INT PRIMARY KEY AUTO_INCREMENT,
 	match_id INT,
 	category VARCHAR(50) NOT NULL,
-	particular VARCHAR(50) NOT NULL,
+	stat_type VARCHAR(50) NOT NULL,--changed
 	team_a_count INT DEFAULT 0,
 	team_b_count INT DEFAULT 0,
 	FOREIGN KEY (match_id) REFERENCES Match_details(match_id));
 
-INSERT INTO Match_Stats (stat_id, match_id, category, particular, team_a_count, team_b_count)
+INSERT INTO Match_Stats (stat_id, match_id, category, stat_type, team_a_count, team_b_count)
 VALUES 
 (1, 1, 'Attacker Skill', 'Simple Touch', 7, 7),
 (2, 1, 'Attacker Skill', 'Dive', 0, 2),
@@ -422,7 +422,7 @@ CREATE TABLE raw_match_stats (
 	raw_stat_id INT PRIMARY KEY AUTO_INCREMENT,
 	file_id INT,
 	raw_match INT,
-	raw_particular VARCHAR(50),
+	raw_stat_type VARCHAR(50),
 	raw_team_a_count INT,
 	raw_team_b_count INT,
 	FOREIGN KEY (file_id) REFERENCES raw_match_file_log(file_id),
@@ -439,6 +439,7 @@ CREATE TABLE Injury_Report (
     FOREIGN KEY (player_id) REFERENCES Player(player_id),
     FOREIGN KEY (match_id) REFERENCES Match_details(match_id)
 );
+
 
 
 
