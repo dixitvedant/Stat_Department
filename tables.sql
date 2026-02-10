@@ -93,20 +93,20 @@ CREATE TABLE Match_details(
     match_id INT PRIMARY KEY AUTO_INCREMENT,
     season_id INT,
     venue VARCHAR(30) NOT NULL,
-    team_a INT NOT NULL,
-    team_b INT NOT NULL,
+    home_team INT NOT NULL,
+    away_team INT NOT NULL,
     match_date DATE NOT NULL,
     winning_team INT,
-	teamA_score INT, --updated
-	teamB_score INT, --updated
+	home_team_score INT, --updated
+	away_team_score INT, --updated
     result VARCHAR(40),   --updated
-    FOREIGN KEY(team_a) REFERENCES Team(team_id),
-    FOREIGN KEY(team_b) REFERENCES Team(team_id),
+    FOREIGN KEY(home_team) REFERENCES Team(team_id),
+    FOREIGN KEY(away_team) REFERENCES Team(team_id),
     FOREIGN KEY(winning_team) REFERENCES Team(team_id),
     FOREIGN KEY(season_id) REFERENCES Season(season_id) 
 );
 
-INSERT INTO Match_details (match_id, venue, team_a, team_b, match_date, winning_team)
+INSERT INTO Match_details (match_id, venue, home_team, away_team, match_date, winning_team)
 VALUES 
 (1, 'Pune', 1, 2, '2026-01-10', 2),
 (2, 'Mumbai', 3, 4, '2026-01-12', 3),
@@ -189,11 +189,11 @@ CREATE TABLE Match_Stats (
 	match_id INT,
 	category VARCHAR(50) NOT NULL,
 	stat_type VARCHAR(50) NOT NULL,--changed
-	team_a_count INT DEFAULT 0,
-	team_b_count INT DEFAULT 0,
+	home_team_count INT DEFAULT 0,
+	away_team_count INT DEFAULT 0,
 	FOREIGN KEY (match_id) REFERENCES Match_details(match_id));
 
-INSERT INTO Match_Stats (stat_id, match_id, category, stat_type, team_a_count, team_b_count)
+INSERT INTO Match_Stats (stat_id, match_id, category, stat_type, home_team_count, away_team_count)
 VALUES 
 (1, 1, 'Attacker Skill', 'Simple Touch', 7, 7),
 (2, 1, 'Attacker Skill', 'Dive', 0, 2),
@@ -232,18 +232,18 @@ VALUES
 
 
 CREATE TABLE Team_Defence (
-defence_id INT PRIMARY KEY AUTO_INCREMENT,
-match_id INT NOT NULL,
-inning_no INT NOT NULL,
-team_id INT NOT NULL,
-batch_no INT NOT NULL,
-start_time FLOAT NOT NULL,
-end_time FLOAT NOT NULL,
-duration FLOAT NOT NULL,
-FOREIGN KEY (match_id)
-REFERENCES Match_details(match_id),
-FOREIGN KEY (team_id)
-   REFERENCES Team(team_id),
+	defence_id INT PRIMARY KEY AUTO_INCREMENT,
+	match_id INT NOT NULL,
+	inning_no INT NOT NULL,
+	team_id INT NOT NULL,
+	batch_no INT NOT NULL,
+	start_time FLOAT NOT NULL,
+	end_time FLOAT NOT NULL,
+	duration FLOAT NOT NULL,
+	FOREIGN KEY (match_id)
+	REFERENCES Match_details(match_id),
+	FOREIGN KEY (team_id)
+	REFERENCES Team(team_id),
 -- TABLE-LEVEL CHECK constraints
     CHECK (inning_no IN (1, 2,-1)),
     CHECK (batch_no > 0),
@@ -384,10 +384,10 @@ CREATE TABLE raw_match_data(
 	file_id INT,
 	raw_match_id VARCHAR(50),
 	raw_match_date VARCHAR(50),
-	raw_team_a VARCHAR(30),
-	raw_team_b VARCHAR(30),
-	raw_team_a_score VARCHAR(50),
-	raw_team_b_score VARCHAR(50),
+	raw_home_team VARCHAR(30),
+	raw_away_team VARCHAR(30),
+	raw_home_team_score VARCHAR(50),
+	raw_away_team_score VARCHAR(50),
 	raw_result VARCHAR(50),
 	raw_winner VARCHAR(30),
 	raw_venue VARCHAR(100),
@@ -425,8 +425,8 @@ CREATE TABLE raw_match_stats (
 	raw_match INT,
 	raw_category VARCHAR(50),
 	raw_stat_type VARCHAR(50),
-	raw_team_a_count INT,
-	raw_team_b_count INT,
+	raw_home_team_count INT,
+	raw_away_team_count INT,
 	FOREIGN KEY (file_id) REFERENCES raw_match_file_log(file_id),
 	FOREIGN KEY (raw_match) REFERENCES raw_match_data(raw_id)
 	);
@@ -441,6 +441,7 @@ CREATE TABLE Injury_Report (
     FOREIGN KEY (player_id) REFERENCES Player(player_id),
     FOREIGN KEY (match_id) REFERENCES Match_details(match_id)
 );
+
 
 
 
