@@ -90,7 +90,7 @@ VALUES
 (8, 'Hyderabad Spartans', 4, 5, 6, 'hyderabad', 'Coach kalyankar');
 
 CREATE TABLE Match_details(
-    match_id INT PRIMARY KEY AUTO_INCREMENT,
+    match_id INT PRIMARY KEY,
     season_id INT,
     venue VARCHAR(30) NOT NULL,
     home_team INT NOT NULL,
@@ -441,6 +441,7 @@ CREATE TABLE Injury_Report (
     FOREIGN KEY (player_id) REFERENCES Player(player_id),
     FOREIGN KEY (match_id) REFERENCES Match_details(match_id)
 );
+
 
 
 
