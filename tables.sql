@@ -31,7 +31,7 @@ CREATE TABLE Player(
     team_id INT NOT NULL,
     player_name VARCHAR(50) NOT NULL,
     player_age INT CHECK(player_age>0),
-    role VARCHAR(20) CHECK (role IN ('Attacker','Defender','All-Rounder')),
+    role VARCHAR(20) CHECK (role IN ('Attacker','Defender','All-Rounder','Unknown')),
     FOREIGN KEY(team_id) REFERENCES Team(team_id) 
 );
 
@@ -97,8 +97,8 @@ CREATE TABLE Match_details(
     team_b INT NOT NULL,
     match_date DATE NOT NULL,
     winning_team INT,
-	teamA_score INT,
-	teamB_score INT,
+	teamA_score INT, --updated
+	teamB_score INT, --updated
     result VARCHAR(40),   --updated
     FOREIGN KEY(team_a) REFERENCES Team(team_id),
     FOREIGN KEY(team_b) REFERENCES Team(team_id),
@@ -211,8 +211,8 @@ CREATE  TABLE Team_Attack(
     match_id INT,
     team_id INT NOT NULL,
     points INT NOT NULL,
-    inning INT CHECK(inning IN (1,2)),
-    phase VARCHAR(10) CHECK(phase IN ('Early','Mid','End')),
+    inning INT CHECK(inning IN (1,2,-1)),
+    phase VARCHAR(10) CHECK(phase IN ('Early','Mid','End','Unknown')),
     FOREIGN KEY (match_id) REFERENCES Match_details(match_id),
     FOREIGN KEY (team_id) REFERENCES Team(team_id)
 );
@@ -245,7 +245,7 @@ REFERENCES Match_details(match_id),
 FOREIGN KEY (team_id)
    REFERENCES Team(team_id),
 -- TABLE-LEVEL CHECK constraints
-    CHECK (inning_no IN (1, 2)),
+    CHECK (inning_no IN (1, 2,-1)),
     CHECK (batch_no > 0),
     CHECK (start_time >= 0),
     CHECK (end_time > start_time),
@@ -289,7 +289,7 @@ VALUES
 CREATE TABLE Player_Role_History (
     player_id INT,
     season_id INT,
-    role VARCHAR(20) CHECK (role IN ('Attacker','Defender','All-Rounder')),
+    role VARCHAR(20) CHECK (role IN ('Attacker','Defender','All-Rounder','Unknown')),
     PRIMARY KEY (player_id, season_id),
     FOREIGN KEY (player_id) REFERENCES Player(player_id),
     FOREIGN KEY (season_id) REFERENCES Season(season_id)
@@ -325,7 +325,7 @@ CREATE TABLE Tournament(
     tournament_id INT PRIMARY KEY AUTO_INCREMENT,
     tournament_name VARCHAR(30) NOT NULL,
     tournament_type VARCHAR(30)
-        CHECK (tournament_type IN ('All to all','Knockout','Group + Knockout')),
+        CHECK (tournament_type IN ('All to all','Knockout','Group + Knockout','Unknown')),
     tournament_year INT
 );
 
@@ -439,6 +439,7 @@ CREATE TABLE Injury_Report (
     FOREIGN KEY (player_id) REFERENCES Player(player_id),
     FOREIGN KEY (match_id) REFERENCES Match_details(match_id)
 );
+
 
 
 
