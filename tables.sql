@@ -413,7 +413,8 @@ CREATE TABLE raw_defence_details(
     raw_team_name VARCHAR(50),
     raw_batch INT,
     raw_inning INT ,
-    raw_duration INT,
+	raw_start_time FLOAT,
+    raw_end_time FLOAT,
 	FOREIGN KEY (file_id) REFERENCES raw_match_file_log(file_id),
 	FOREIGN KEY (raw_match) REFERENCES raw_match_data(raw_id)
 );
@@ -439,6 +440,7 @@ CREATE TABLE Injury_Report (
     FOREIGN KEY (player_id) REFERENCES Player(player_id),
     FOREIGN KEY (match_id) REFERENCES Match_details(match_id)
 );
+
 
 
 
