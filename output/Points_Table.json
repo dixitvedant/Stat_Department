@@ -1,0 +1,66 @@
+[
+  {
+    "Team name": "Pune Champions",
+    "Total Matches Played": 7,
+    "Total Wins": 7,
+    "Total Lost": 0,
+    "Total Draws": 0,
+    "Total Points": 14
+  },
+  {
+    "Team name": "Delhi Deredevils",
+    "Total Matches Played": 7,
+    "Total Wins": 6,
+    "Total Lost": 1,
+    "Total Draws": 0,
+    "Total Points": 12
+  },
+  {
+    "Team name": "Solapur Royals",
+    "Total Matches Played": 7,
+    "Total Wins": 5,
+    "Total Lost": 1,
+    "Total Draws": 1,
+    "Total Points": 11
+  },
+  {
+    "Team name": "Hyderabad Spartans",
+    "Total Matches Played": 7,
+    "Total Wins": 5,
+    "Total Lost": 1,
+    "Total Draws": 1,
+    "Total Points": 11
+  },
+  {
+    "Team name": "Satara Warriors",
+    "Total Matches Played": 7,
+    "Total Wins": 4,
+    "Total Lost": 3,
+    "Total Draws": 0,
+    "Total Points": 8
+  },
+  {
+    "Team name": "Chennai Guns",
+    "Total Matches Played": 7,
+    "Total Wins": 3,
+    "Total Lost": 4,
+    "Total Draws": 0,
+    "Total Points": 6
+  },
+  {
+    "Team name": "Dharashiv Marshals",
+    "Total Matches Played": 7,
+    "Total Wins": 1,
+    "Total Lost": 6,
+    "Total Draws": 0,
+    "Total Points": 2
+  },
+  {
+    "Team name": "Mumbai Khiladi",
+    "Total Matches Played": 7,
+    "Total Wins": 0,
+    "Total Lost": 5,
+    "Total Draws": 2,
+    "Total Points": 2
+  }
+]
