@@ -63,11 +63,12 @@ def insert_clean_data_in_match_stat(dfs_raw,dfs):
         m_id=s.get("raw_match")
         category=s.get("raw_category")
         stat=s.get("raw_stat_type")
-        home_team_count=s.get("team_a_count")
-        away_team_count=s.get("team_b_count")
-        query="Insert into Match_Stats(match_id,category,stat_type,team_a_count,team_b_count) VALUES (%s,%s,%s,%s,%s)"
+        home_team_count=s.get("raw_home_team_count")
+        away_team_count=s.get("raw_away_team_count")
+        query="Insert into Match_Stats(match_id,category,stat_type,home_team_count,away_team_count) VALUES (%s,%s,%s,%s,%s)"
         data=(m_id,category,stat,home_team_count,away_team_count)
         cursor.execute(query,data)
     conn.commit()
     
     
+
