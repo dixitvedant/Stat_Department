@@ -19,7 +19,7 @@ def insert_match_detail(file_id):
     match_details=file_csv[["match_id","match_date","home_team","away_team","home_team_points","away_team_points","result","winner","venue"]].drop_duplicates()
     match_id_map={}
     for _,m in match_details.iterrows():
-        query="Insert into raw_match_data(file_id,raw_match_id,raw_match_date,raw_team_a,raw_team_b,raw_team_a_score,raw_team_b_score,raw_result,raw_winner,raw_venue) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
+        query="Insert into raw_match_data(file_id,raw_match_id,raw_match_date,raw_home_team,raw_away_team,raw_home_team_score,raw_away_team_score,raw_result,raw_winner,raw_venue) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)"
         data=(file_id,m.match_id,m.match_date,m.home_team,m.away_team,m.home_team_points,m.away_team_points,m.result,m.winner,m.venue)
         cursor.execute(query,data)
         raw_match_id = cursor.lastrowid   
@@ -99,10 +99,11 @@ def insert_match_stat(file_id,match_id_map):
     stat["raw_match"]=stat["match_id"].map(match_id_map)
     stat = stat.dropna(subset=["raw_match"])
     for _,s in stat.iterrows():
-        query="Insert into raw_match_stats(file_id,raw_match,raw_stat_type,raw_team_a_count,raw_team_b_count) VALUES (%s,%s,%s,%s,%s)"
+        query="Insert into raw_match_stats(file_id,raw_match,raw_stat_type,raw_home_team_count,raw_away_team_count) VALUES (%s,%s,%s,%s,%s)"
         data=(file_id,s.raw_match,s.stat_type,s.home_team_count,s.away_team_count)
         cursor.execute(query,data)
     conn.commit()
         
         
+
     
