@@ -1,5 +1,6 @@
+import pandas as pd
+
 def build_roaster_json(dfs):
-    """
     matches = dfs.get("match_details")
     players = dfs.get("player")
     pms = dfs.get("player_match_stat")
@@ -17,10 +18,10 @@ def build_roaster_json(dfs):
         match_id = m.get("match_id")
         match_date = m.get("match_date")
         team_cols = []
-        if "team_a" in m and pd.notna(m["team_a"]):
-            team_cols.append(m["team_a"])
-        if "team_b" in m and pd.notna(m["team_b"]):
-            team_cols.append(m["team_b"])
+        if "home_team" in m and pd.notna(m["home_team"]):
+            team_cols.append(m["home_team"])
+        if "away_team" in m and pd.notna(m["away_team"]):
+            team_cols.append(m["away_team"])
         teams_info = []
         for tid in team_cols:
             attackers, defenders, all_rounders = [], [], []
@@ -52,22 +53,4 @@ def build_roaster_json(dfs):
             "teams": teams_info
         })
 
-    return roster_list"""
-    player=dfs.get("player")
-    teams = dfs.get("team")
-    result = []
-
-    team_name_map = ({row.team_id: row.team_name for _, row in teams.iterrows()}if teams is not None else {})
-    if player is None:
-        return result
-
-    for _, p in player.iterrows():
-        team_name = team_name_map.get(p["team_id"], "UNKNOWN")
-        result.append({
-            "team name":team_name,
-            "player_id":int(p["player_id"]),
-            "player_name":str(p["player_name"]),
-            "role":str(p["role"])
-        })
-
-    return result
+    return roster_list
