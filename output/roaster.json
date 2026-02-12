@@ -1,0 +1,228 @@
+[
+  {
+    "match_id": 1,
+    "match_date": "2026-01-10",
+    "teams": [
+      {
+        "team_id": 1,
+        "team_name": "Satara Warriors",
+        "attackers": [
+          {
+            "player_id": 3,
+            "player_name": "varad pol"
+          },
+          {
+            "player_id": 4,
+            "player_name": "vaibhav jadhav"
+          },
+          {
+            "player_id": 6,
+            "player_name": "swaraj ghadhave"
+          },
+          {
+            "player_id": 8,
+            "player_name": "raj pawar"
+          },
+          {
+            "player_id": 11,
+            "player_name": "vighnesh girme"
+          },
+          {
+            "player_id": 13,
+            "player_name": "soham bhamare"
+          },
+          {
+            "player_id": 14,
+            "player_name": "Tej Shinde"
+          }
+        ],
+        "defenders": [
+          {
+            "player_id": 1,
+            "player_name": "aayush yadav"
+          },
+          {
+            "player_id": 7,
+            "player_name": "pratik aadhav"
+          },
+          {
+            "player_id": 10,
+            "player_name": "mayureshwar gosavi"
+          }
+        ],
+        "all_rounders": [
+          {
+            "player_id": 2,
+            "player_name": "dhaygude atharva"
+          },
+          {
+            "player_id": 5,
+            "player_name": "aayush panghare"
+          },
+          {
+            "player_id": 9,
+            "player_name": "swaraj uttekar"
+          },
+          {
+            "player_id": 12,
+            "player_name": "soham hipparkar"
+          },
+          {
+            "player_id": 15,
+            "player_name": "Sarthak Mahadik"
+          }
+        ]
+      },
+      {
+        "team_id": 2,
+        "team_name": "Pune Champions",
+        "attackers": [
+          {
+            "player_id": 17,
+            "player_name": "soham deshmukh"
+          },
+          {
+            "player_id": 19,
+            "player_name": "shreeyash maharugade"
+          },
+          {
+            "player_id": 21,
+            "player_name": "sangam thakur"
+          },
+          {
+            "player_id": 25,
+            "player_name": "satyam sakat"
+          },
+          {
+            "player_id": 27,
+            "player_name": "umesh dongare"
+          },
+          {
+            "player_id": 29,
+            "player_name": "arjun gorade"
+          }
+        ],
+        "defenders": [
+          {
+            "player_id": 16,
+            "player_name": "kartavya gandekr"
+          },
+          {
+            "player_id": 20,
+            "player_name": "om wagh"
+          },
+          {
+            "player_id": 23,
+            "player_name": "pranav mane"
+          },
+          {
+            "player_id": 24,
+            "player_name": "shreeraj tangade"
+          },
+          {
+            "player_id": 28,
+            "player_name": "pallav sarade"
+          }
+        ],
+        "all_rounders": [
+          {
+            "player_id": 18,
+            "player_name": "atul parde"
+          },
+          {
+            "player_id": 22,
+            "player_name": "krushna mahanvar"
+          },
+          {
+            "player_id": 26,
+            "player_name": "tanmay nigudkar"
+          },
+          {
+            "player_id": 30,
+            "player_name": "vedant gaikwad"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "match_id": 2,
+    "match_date": "2026-01-12",
+    "teams": [
+      {
+        "team_id": 3,
+        "team_name": "Solapur Royals",
+        "attackers": [],
+        "defenders": [],
+        "all_rounders": []
+      },
+      {
+        "team_id": 4,
+        "team_name": "Dharashiv Marshals",
+        "attackers": [],
+        "defenders": [],
+        "all_rounders": []
+      }
+    ]
+  },
+  {
+    "match_id": 3,
+    "match_date": "2026-01-15",
+    "teams": [
+      {
+        "team_id": 5,
+        "team_name": "Chennai Guns",
+        "attackers": [],
+        "defenders": [],
+        "all_rounders": []
+      },
+      {
+        "team_id": 6,
+        "team_name": "Mumbai Khiladi",
+        "attackers": [],
+        "defenders": [],
+        "all_rounders": []
+      }
+    ]
+  },
+  {
+    "match_id": 4,
+    "match_date": "2026-01-18",
+    "teams": [
+      {
+        "team_id": 7,
+        "team_name": "Delhi Deredevils",
+        "attackers": [],
+        "defenders": [],
+        "all_rounders": []
+      },
+      {
+        "team_id": 8,
+        "team_name": "Hyderabad Spartans",
+        "attackers": [],
+        "defenders": [],
+        "all_rounders": []
+      }
+    ]
+  },
+  {
+    "match_id": 5,
+    "match_date": "2026-01-20",
+    "teams": [
+      {
+        "team_id": 2,
+        "team_name": "Pune Champions",
+        "attackers": [],
+        "defenders": [],
+        "all_rounders": []
+      },
+      {
+        "team_id": 3,
+        "team_name": "Solapur Royals",
+        "attackers": [],
+        "defenders": [],
+        "all_rounders": []
+      }
+    ]
+  }
+]

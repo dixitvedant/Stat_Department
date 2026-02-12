@@ -1,0 +1,143 @@
+[
+  {
+    "1": {
+      "1": {
+        "Satara Warriors": [
+          {
+            "batch": 1,
+            "start_time": 1,
+            "duration": 2
+          },
+          {
+            "batch": 2,
+            "start_time": 3,
+            "duration": 2
+          },
+          {
+            "batch": 3,
+            "start_time": 5,
+            "duration": 1
+          }
+        ],
+        "Pune Champions": [
+          {
+            "batch": 1,
+            "start_time": 1,
+            "duration": 2
+          },
+          {
+            "batch": 2,
+            "start_time": 3,
+            "duration": 2
+          },
+          {
+            "batch": 3,
+            "start_time": 5,
+            "duration": 1
+          }
+        ]
+      },
+      "2": {
+        "Satara Warriors": [
+          {
+            "batch": 1,
+            "start_time": 1,
+            "duration": 2
+          },
+          {
+            "batch": 2,
+            "start_time": 3,
+            "duration": 2
+          },
+          {
+            "batch": 3,
+            "start_time": 5,
+            "duration": 1
+          }
+        ],
+        "Pune Champions": [
+          {
+            "batch": 1,
+            "start_time": 1,
+            "duration": 3
+          },
+          {
+            "batch": 2,
+            "start_time": 4,
+            "duration": 3
+          }
+        ]
+      }
+    }
+  },
+  {
+    "2": {
+      "1": {
+        "Solapur Royals": [
+          {
+            "batch": 1,
+            "start_time": 1,
+            "duration": 3
+          },
+          {
+            "batch": 2,
+            "start_time": 4,
+            "duration": 3
+          }
+        ],
+        "Dharashiv Marshals": [
+          {
+            "batch": 1,
+            "start_time": 1,
+            "duration": 3
+          },
+          {
+            "batch": 2,
+            "start_time": 4,
+            "duration": 3
+          }
+        ]
+      },
+      "2": {
+        "Solapur Royals": [
+          {
+            "batch": 1,
+            "start_time": 1,
+            "duration": 6
+          }
+        ],
+        "Dharashiv Marshals": [
+          {
+            "batch": 1,
+            "start_time": 1,
+            "duration": 3
+          },
+          {
+            "batch": 2,
+            "start_time": 4,
+            "duration": 1
+          },
+          {
+            "batch": 3,
+            "start_time": 5,
+            "duration": 1
+          },
+          {
+            "batch": 1,
+            "start_time": 6,
+            "duration": 1
+          }
+        ]
+      }
+    }
+  },
+  {
+    "3": {}
+  },
+  {
+    "4": {}
+  },
+  {
+    "5": {}
+  }
+]

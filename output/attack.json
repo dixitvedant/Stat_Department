@@ -1,0 +1,67 @@
+[
+  {
+    "1": {
+      "1": {
+        "Early": {
+          "Satara Warriors": 3,
+          "Pune Champions": 1
+        },
+        "Mid": {
+          "Satara Warriors": 4,
+          "Pune Champions": 3
+        }
+      },
+      "2": {
+        "Early": {
+          "Satara Warriors": 2,
+          "Pune Champions": 2
+        },
+        "Mid": {
+          "Satara Warriors": 3,
+          "Pune Champions": 5
+        }
+      }
+    }
+  },
+  {
+    "2": {
+      "1": {
+        "Early": {
+          "Solapur Royals": 4,
+          "Dharashiv Marshals": 2
+        },
+        "Mid": {
+          "Solapur Royals": 5,
+          "Dharashiv Marshals": 3
+        },
+        "End": {
+          "Solapur Royals": 3,
+          "Dharashiv Marshals": 4
+        }
+      },
+      "2": {
+        "Early": {
+          "Solapur Royals": 2,
+          "Dharashiv Marshals": 3
+        },
+        "Mid": {
+          "Solapur Royals": 4,
+          "Dharashiv Marshals": 5
+        },
+        "End": {
+          "Solapur Royals": 3,
+          "Dharashiv Marshals": 2
+        }
+      }
+    }
+  },
+  {
+    "3": {}
+  },
+  {
+    "4": {}
+  },
+  {
+    "5": {}
+  }
+]
