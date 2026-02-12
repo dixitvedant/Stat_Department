@@ -1,0 +1,786 @@
+{
+  "players": [
+    {
+      "id": "MAH_SP",
+      "name": "Sagar Pawar",
+      "team": "Maharashtra",
+      "role": "Attacker",
+      "stats": { "matches": 12, "points": 95 }
+    },
+    {
+      "id": "MAH_AJ",
+      "name": "Akash Jadhav",
+      "team": "Maharashtra",
+      "role": "Attacker",
+      "stats": { "matches": 10, "points": 72 }
+    },
+    {
+      "id": "MAH_RD",
+      "name": "Rahul Deshmukh",
+      "team": "Maharashtra",
+      "role": "Attacker",
+      "stats": { "matches": 11, "points": 88 }
+    },
+    {
+      "id": "MAH_RM",
+      "name": "Rohan More",
+      "team": "Maharashtra",
+      "role": "Attacker",
+      "stats": { "matches": 9, "points": 65 }
+    },
+    {
+      "id": "MAH_VD",
+      "name": "Vedant Dixit",
+      "team": "Maharashtra",
+      "role": "Attacker",
+      "stats": { "matches": 14, "points": 102 }
+    },
+    {
+      "id": "MAH_RP",
+      "name": "Rohit Patil",
+      "team": "Maharashtra",
+      "role": "Defender",
+      "stats": { "matches": 12, "points": 45 }
+    },
+    {
+      "id": "MAH_NK",
+      "name": "Nitin Kale",
+      "team": "Maharashtra",
+      "role": "Defender",
+      "stats": { "matches": 10, "points": 38 }
+    },
+    {
+      "id": "MAH_SUJ_P",
+      "name": "Sujit Patil",
+      "team": "Maharashtra",
+      "role": "Defender",
+      "stats": { "matches": 8, "points": 30 }
+    },
+    {
+      "id": "MAH_AS",
+      "name": "Amit Shinde",
+      "team": "Maharashtra",
+      "role": "All-Rounder",
+      "stats": { "matches": 15, "points": 120 }
+    },
+    {
+      "id": "MAH_SJ",
+      "name": "Sameer Joshi",
+      "team": "Maharashtra",
+      "role": "All-Rounder",
+      "stats": { "matches": 13, "points": 98 }
+    },
+    {
+      "id": "MAH_KS",
+      "name": "Kunal Sathe",
+      "team": "Maharashtra",
+      "role": "All-Rounder",
+      "stats": { "matches": 11, "points": 85 }
+    },
+    {
+      "id": "GUJ_RS",
+      "name": "Rahul Solanki",
+      "team": "Gujarat",
+      "role": "Attacker",
+      "stats": { "matches": 12, "points": 110 }
+    },
+    {
+      "id": "GUJ_PD",
+      "name": "Parth Desai",
+      "team": "Gujarat",
+      "role": "Attacker",
+      "stats": { "matches": 10, "points": 76 }
+    },
+    {
+      "id": "GUJ_NP",
+      "name": "Nikhil Patel",
+      "team": "Gujarat",
+      "role": "Attacker",
+      "stats": { "matches": 11, "points": 82 }
+    },
+    {
+      "id": "GUJ_DM",
+      "name": "Dhruv Mehta",
+      "team": "Gujarat",
+      "role": "Attacker",
+      "stats": { "matches": 9, "points": 64 }
+    },
+    {
+      "id": "GUJ_KP",
+      "name": "Ketan Patel",
+      "team": "Gujarat",
+      "role": "Defender",
+      "stats": { "matches": 12, "points": 50 }
+    },
+    {
+      "id": "GUJ_HS",
+      "name": "Hardik Shah",
+      "team": "Gujarat",
+      "role": "Defender",
+      "stats": { "matches": 11, "points": 44 }
+    },
+    {
+      "id": "GUJ_MD",
+      "name": "Manish Desai",
+      "team": "Gujarat",
+      "role": "Defender",
+      "stats": { "matches": 10, "points": 42 }
+    },
+    {
+      "id": "GUJ_YM",
+      "name": "Yash Mehta",
+      "team": "Gujarat",
+      "role": "All-Rounder",
+      "stats": { "matches": 14, "points": 115 }
+    },
+    {
+      "id": "GUJ_RT",
+      "name": "Ravi Trivedi",
+      "team": "Gujarat",
+      "role": "All-Rounder",
+      "stats": { "matches": 13, "points": 90 }
+    },
+    {
+      "id": "GUJ_JS",
+      "name": "Jay Shah",
+      "team": "Gujarat",
+      "role": "All-Rounder",
+      "stats": { "matches": 12, "points": 88 }
+    },
+
+    {
+      "id": "DEL_AS",
+      "name": "Amit Singh",
+      "team": "Delhi",
+      "role": "Attacker",
+      "stats": { "matches": 10, "points": 85 }
+    },
+    {
+      "id": "DEL_RS",
+      "name": "Rohit Sharma",
+      "team": "Delhi",
+      "role": "Attacker",
+      "stats": { "matches": 15, "points": 130 }
+    },
+    {
+      "id": "DEL_SG",
+      "name": "Sahil Gupta",
+      "team": "Delhi",
+      "role": "Attacker",
+      "stats": { "matches": 11, "points": 74 }
+    },
+    {
+      "id": "DEL_VY",
+      "name": "Vikas Yadav",
+      "team": "Delhi",
+      "role": "Attacker",
+      "stats": { "matches": 9, "points": 60 }
+    },
+    {
+      "id": "DEL_RK",
+      "name": "Ravi Kumar",
+      "team": "Delhi",
+      "role": "Defender",
+      "stats": { "matches": 12, "points": 55 }
+    },
+    {
+      "id": "DEL_AV",
+      "name": "Aman Verma",
+      "team": "Delhi",
+      "role": "Defender",
+      "stats": { "matches": 11, "points": 48 }
+    },
+    {
+      "id": "DEL_SS",
+      "name": "Sandeep Singh",
+      "team": "Delhi",
+      "role": "Defender",
+      "stats": { "matches": 13, "points": 52 }
+    },
+    {
+      "id": "DEL_MV",
+      "name": "Mohit Verma",
+      "team": "Delhi",
+      "role": "All-Rounder",
+      "stats": { "matches": 14, "points": 112 }
+    },
+    {
+      "id": "DEL_AJ_K",
+      "name": "Ajay Kumar",
+      "team": "Delhi",
+      "role": "All-Rounder",
+      "stats": { "matches": 12, "points": 94 }
+    },
+    {
+      "id": "DEL_RC",
+      "name": "Rahul Choudhary",
+      "team": "Delhi",
+      "role": "All-Rounder",
+      "stats": { "matches": 13, "points": 105 }
+    },
+    {
+      "id": "KAR_SR",
+      "name": "Suresh Rao",
+      "team": "Karnataka",
+      "role": "Attacker",
+      "stats": { "matches": 11, "points": 80 }
+    },
+    {
+      "id": "KAR_VK",
+      "name": "Vijay Kumar",
+      "team": "Karnataka",
+      "role": "Attacker",
+      "stats": { "matches": 12, "points": 92 }
+    },
+    {
+      "id": "KAR_AS",
+      "name": "Arjun Shetty",
+      "team": "Karnataka",
+      "role": "Attacker",
+      "stats": { "matches": 10, "points": 78 }
+    },
+    {
+      "id": "KAR_PR",
+      "name": "Prakash Rao",
+      "team": "Karnataka",
+      "role": "Attacker",
+      "stats": { "matches": 9, "points": 65 }
+    },
+    {
+      "id": "KAR_VR",
+      "name": "Vikas Rao",
+      "team": "Karnataka",
+      "role": "Defender",
+      "stats": { "matches": 11, "points": 47 }
+    },
+    {
+      "id": "KAR_RS_D",
+      "name": "Raghav Singh",
+      "team": "Karnataka",
+      "role": "Defender",
+      "stats": { "matches": 13, "points": 54 }
+    },
+    {
+      "id": "KAR_AK",
+      "name": "Anand Kumar",
+      "team": "Karnataka",
+      "role": "Defender",
+      "stats": { "matches": 10, "points": 39 }
+    },
+    {
+      "id": "KAR_ANIL_K",
+      "name": "Anil Kumar",
+      "team": "Karnataka",
+      "role": "All-Rounder",
+      "stats": { "matches": 12, "points": 88 }
+    },
+    {
+      "id": "KAR_NP",
+      "name": "Naveen Patil",
+      "team": "Karnataka",
+      "role": "All-Rounder",
+      "stats": { "matches": 11, "points": 79 }
+    },
+    {
+      "id": "KAR_RR",
+      "name": "Rohit Rao",
+      "team": "Karnataka",
+      "role": "All-Rounder",
+      "stats": { "matches": 13, "points": 101 }
+    },
+
+    {
+      "id": "PUN_KP",
+      "name": "Karan Patil",
+      "team": "Pune",
+      "role": "Attacker",
+      "stats": { "matches": 13, "points": 108 }
+    },
+    {
+      "id": "PUN_SM",
+      "name": "Siddharth More",
+      "team": "Pune",
+      "role": "Attacker",
+      "stats": { "matches": 11, "points": 84 }
+    },
+    {
+      "id": "PUN_RJ",
+      "name": "Rohan Joshi",
+      "team": "Pune",
+      "role": "Attacker",
+      "stats": { "matches": 10, "points": 76 }
+    },
+    {
+      "id": "PUN_VD",
+      "name": "Vivek Deshmukh",
+      "team": "Pune",
+      "role": "Attacker",
+      "stats": { "matches": 9, "points": 62 }
+    },
+    {
+      "id": "PUN_AP",
+      "name": "Ajay Pawar",
+      "team": "Pune",
+      "role": "Defender",
+      "stats": { "matches": 12, "points": 51 }
+    },
+    {
+      "id": "PUN_SP",
+      "name": "Suresh Patil",
+      "team": "Pune",
+      "role": "Defender",
+      "stats": { "matches": 11, "points": 45 }
+    },
+    {
+      "id": "PUN_RM",
+      "name": "Rahul More",
+      "team": "Pune",
+      "role": "Defender",
+      "stats": { "matches": 13, "points": 49 }
+    },
+    {
+      "id": "PUN_MJ",
+      "name": "Manoj Joshi",
+      "team": "Pune",
+      "role": "All-Rounder",
+      "stats": { "matches": 14, "points": 110 }
+    },
+    {
+      "id": "PUN_ND",
+      "name": "Nikhil Deshmukh",
+      "team": "Pune",
+      "role": "All-Rounder",
+      "stats": { "matches": 12, "points": 92 }
+    },
+    {
+      "id": "PUN_SP_A",
+      "name": "Sameer Patil",
+      "team": "Pune",
+      "role": "All-Rounder",
+      "stats": { "matches": 13, "points": 104 }
+    },
+    {
+      "id": "MUM_RS",
+      "name": "Rohit Sharma",
+      "team": "Mumbai",
+      "role": "Attacker",
+      "stats": { "matches": 16, "points": 145 }
+    },
+    {
+      "id": "MUM_AJ",
+      "name": "Akshay Jadhav",
+      "team": "Mumbai",
+      "role": "Attacker",
+      "stats": { "matches": 12, "points": 88 }
+    },
+    {
+      "id": "MUM_AM",
+      "name": "Aditya Mehta",
+      "team": "Mumbai",
+      "role": "Attacker",
+      "stats": { "matches": 11, "points": 82 }
+    },
+    {
+      "id": "MUM_VS",
+      "name": "Vikram Singh",
+      "team": "Mumbai",
+      "role": "Attacker",
+      "stats": { "matches": 9, "points": 67 }
+    },
+    {
+      "id": "MUM_KS",
+      "name": "Kunal Sharma",
+      "team": "Mumbai",
+      "role": "Defender",
+      "stats": { "matches": 12, "points": 58 }
+    },
+    {
+      "id": "MUM_HR",
+      "name": "Harish Reddy",
+      "team": "Mumbai",
+      "role": "Defender",
+      "stats": { "matches": 11, "points": 44 }
+    },
+    {
+      "id": "MUM_SK",
+      "name": "Siddharth K",
+      "team": "Mumbai",
+      "role": "Defender",
+      "stats": { "matches": 10, "points": 39 }
+    },
+    {
+      "id": "MUM_PS",
+      "name": "Pratik Shah",
+      "team": "Mumbai",
+      "role": "All-Rounder",
+      "stats": { "matches": 14, "points": 122 }
+    },
+    {
+      "id": "MUM_RM_A",
+      "name": "Rakesh Mehta",
+      "team": "Mumbai",
+      "role": "All-Rounder",
+      "stats": { "matches": 13, "points": 102 }
+    },
+    {
+      "id": "MUM_SD",
+      "name": "Saurabh Desai",
+      "team": "Mumbai",
+      "role": "All-Rounder",
+      "stats": { "matches": 12, "points": 95 }
+    },
+
+    {
+      "id": "RAJ_AB",
+      "name": "Amit Bansal",
+      "team": "Rajasthan",
+      "role": "Attacker",
+      "stats": { "matches": 10, "points": 72 }
+    },
+    {
+      "id": "RAJ_RM",
+      "name": "Rohit Meena",
+      "team": "Rajasthan",
+      "role": "Attacker",
+      "stats": { "matches": 12, "points": 89 }
+    },
+    {
+      "id": "RAJ_SS",
+      "name": "Saurabh Sharma",
+      "team": "Rajasthan",
+      "role": "Attacker",
+      "stats": { "matches": 11, "points": 81 }
+    },
+    {
+      "id": "RAJ_MR",
+      "name": "Manish Rathore",
+      "team": "Rajasthan",
+      "role": "Attacker",
+      "stats": { "matches": 9, "points": 64 }
+    },
+    {
+      "id": "RAJ_VS",
+      "name": "Vikas Sharma",
+      "team": "Rajasthan",
+      "role": "Defender",
+      "stats": { "matches": 12, "points": 52 }
+    },
+    {
+      "id": "RAJ_SM",
+      "name": "Sandeep Meena",
+      "team": "Rajasthan",
+      "role": "Defender",
+      "stats": { "matches": 11, "points": 46 }
+    },
+    {
+      "id": "RAJ_AR",
+      "name": "Ajay Rathore",
+      "team": "Rajasthan",
+      "role": "Defender",
+      "stats": { "matches": 10, "points": 40 }
+    },
+    {
+      "id": "RAJ_RK",
+      "name": "Rajesh Kumar",
+      "team": "Rajasthan",
+      "role": "All-Rounder",
+      "stats": { "matches": 14, "points": 118 }
+    },
+    {
+      "id": "RAJ_RS_A",
+      "name": "Rohit Singh",
+      "team": "Rajasthan",
+      "role": "All-Rounder",
+      "stats": { "matches": 13, "points": 106 }
+    },
+    {
+      "id": "RAJ_AM",
+      "name": "Aman Meena",
+      "team": "Rajasthan",
+      "role": "All-Rounder",
+      "stats": { "matches": 12, "points": 91 }
+    },
+    {
+      "id": "HAR_RS",
+      "name": "Rajesh Singh",
+      "team": "Haryana",
+      "role": "Attacker",
+      "stats": { "matches": 11, "points": 94 }
+    },
+    {
+      "id": "HAR_HK",
+      "name": "Harpreet Kaur",
+      "team": "Haryana",
+      "role": "Attacker",
+      "stats": { "matches": 10, "points": 82 }
+    },
+    {
+      "id": "HAR_GS",
+      "name": "Gurpreet S",
+      "team": "Haryana",
+      "role": "Attacker",
+      "stats": { "matches": 12, "points": 98 }
+    },
+    {
+      "id": "HAR_NS",
+      "name": "Navjot S",
+      "team": "Haryana",
+      "role": "Attacker",
+      "stats": { "matches": 9, "points": 67 }
+    },
+    {
+      "id": "HAR_JB",
+      "name": "Jaspreet B",
+      "team": "Haryana",
+      "role": "Defender",
+      "stats": { "matches": 12, "points": 60 }
+    },
+    {
+      "id": "HAR_MS",
+      "name": "Manpreet S",
+      "team": "Haryana",
+      "role": "Defender",
+      "stats": { "matches": 11, "points": 54 }
+    },
+    {
+      "id": "HAR_KR",
+      "name": "Kuldeep R",
+      "team": "Haryana",
+      "role": "Defender",
+      "stats": { "matches": 13, "points": 58 }
+    },
+    {
+      "id": "HAR_RD_S",
+      "name": "Rajdeep S",
+      "team": "Haryana",
+      "role": "All-Rounder",
+      "stats": { "matches": 14, "points": 125 }
+    },
+    {
+      "id": "HAR_HM_K",
+      "name": "Harman K",
+      "team": "Haryana",
+      "role": "All-Rounder",
+      "stats": { "matches": 13, "points": 112 }
+    },
+    {
+      "id": "HAR_RV_S",
+      "name": "Ravinder S",
+      "team": "Haryana",
+      "role": "All-Rounder",
+      "stats": { "matches": 12, "points": 99 }
+    },
+
+    {
+      "id": "KER_AP",
+      "name": "Anand P",
+      "team": "Kerala",
+      "role": "Attacker",
+      "stats": { "matches": 10, "points": 76 }
+    },
+    {
+      "id": "KER_VS",
+      "name": "Vishnu S",
+      "team": "Kerala",
+      "role": "Attacker",
+      "stats": { "matches": 11, "points": 82 }
+    },
+    {
+      "id": "KER_RK",
+      "name": "Rohit K",
+      "team": "Kerala",
+      "role": "Attacker",
+      "stats": { "matches": 12, "points": 90 }
+    },
+    {
+      "id": "KER_AT",
+      "name": "Ajay T",
+      "team": "Kerala",
+      "role": "Attacker",
+      "stats": { "matches": 9, "points": 64 }
+    },
+    {
+      "id": "KER_SP",
+      "name": "Suresh P",
+      "team": "Kerala",
+      "role": "Defender",
+      "stats": { "matches": 12, "points": 53 }
+    },
+    {
+      "id": "KER_RK_D",
+      "name": "Ramesh K",
+      "team": "Kerala",
+      "role": "Defender",
+      "stats": { "matches": 11, "points": 47 }
+    },
+    {
+      "id": "KER_PM",
+      "name": "Pradeep M",
+      "team": "Kerala",
+      "role": "Defender",
+      "stats": { "matches": 10, "points": 41 }
+    },
+    {
+      "id": "KER_HS",
+      "name": "Harish S",
+      "team": "Kerala",
+      "role": "All-Rounder",
+      "stats": { "matches": 14, "points": 114 }
+    },
+    {
+      "id": "KER_RP",
+      "name": "Rakesh P",
+      "team": "Kerala",
+      "role": "All-Rounder",
+      "stats": { "matches": 13, "points": 101 }
+    },
+    {
+      "id": "KER_MT",
+      "name": "Manoj T",
+      "team": "Kerala",
+      "role": "All-Rounder",
+      "stats": { "matches": 12, "points": 94 }
+    },
+    {
+      "id": "TN_KR",
+      "name": "Karthik Raja",
+      "team": "Tamil Nadu",
+      "role": "Attacker",
+      "stats": { "matches": 11, "points": 88 }
+    },
+    {
+      "id": "TN_AK",
+      "name": "Arun Kumar",
+      "team": "Tamil Nadu",
+      "role": "Attacker",
+      "stats": { "matches": 12, "points": 95 }
+    },
+    {
+      "id": "TN_VI",
+      "name": "Vikram Iyer",
+      "team": "Tamil Nadu",
+      "role": "Attacker",
+      "stats": { "matches": 10, "points": 79 }
+    },
+    {
+      "id": "TN_MN",
+      "name": "Manoj Nair",
+      "team": "Tamil Nadu",
+      "role": "Attacker",
+      "stats": { "matches": 9, "points": 68 }
+    },
+    {
+      "id": "TN_RK",
+      "name": "Ramesh Kumar",
+      "team": "Tamil Nadu",
+      "role": "Defender",
+      "stats": { "matches": 12, "points": 56 }
+    },
+    {
+      "id": "TN_SR",
+      "name": "Suresh Reddy",
+      "team": "Tamil Nadu",
+      "role": "Defender",
+      "stats": { "matches": 11, "points": 49 }
+    },
+    {
+      "id": "TN_HP",
+      "name": "Hari Prasad",
+      "team": "Tamil Nadu",
+      "role": "Defender",
+      "stats": { "matches": 13, "points": 52 }
+    },
+    {
+      "id": "TN_AJ_K",
+      "name": "Ajith Kumar",
+      "team": "Tamil Nadu",
+      "role": "All-Rounder",
+      "stats": { "matches": 14, "points": 120 }
+    },
+    {
+      "id": "TN_KIR_R",
+      "name": "Kiran R",
+      "team": "Tamil Nadu",
+      "role": "All-Rounder",
+      "stats": { "matches": 13, "points": 106 }
+    },
+    {
+      "id": "TN_PR_S",
+      "name": "Praveen S",
+      "team": "Tamil Nadu",
+      "role": "All-Rounder",
+      "stats": { "matches": 12, "points": 98 }
+    },
+
+    {
+      "id": "UP_SY",
+      "name": "Saurabh Y",
+      "team": "Uttar Pradesh",
+      "role": "Attacker",
+      "stats": { "matches": 11, "points": 94 }
+    },
+    {
+      "id": "BIH_RS",
+      "name": "Rakesh S",
+      "team": "Bihar",
+      "role": "Attacker",
+      "stats": { "matches": 10, "points": 78 }
+    },
+    {
+      "id": "WB_SR",
+      "name": "Subham Roy",
+      "team": "West Bengal",
+      "role": "Attacker",
+      "stats": { "matches": 14, "points": 112 }
+    },
+    {
+      "id": "ODI_SP",
+      "name": "Siddharth P",
+      "team": "Odisha",
+      "role": "Attacker",
+      "stats": { "matches": 11, "points": 86 }
+    },
+    {
+      "id": "ASM_RB",
+      "name": "Rupam B",
+      "team": "Assam",
+      "role": "Attacker",
+      "stats": { "matches": 12, "points": 90 }
+    },
+    {
+      "id": "MAN_RP",
+      "name": "Rohit P",
+      "team": "Manipur",
+      "role": "Attacker",
+      "stats": { "matches": 10, "points": 74 }
+    },
+    {
+      "id": "GOA_SP",
+      "name": "Sunil P",
+      "team": "Goa",
+      "role": "Attacker",
+      "stats": { "matches": 13, "points": 102 }
+    },
+    {
+      "id": "CHT_PK",
+      "name": "Pradeep K",
+      "team": "Chhattisgarh",
+      "role": "Attacker",
+      "stats": { "matches": 11, "points": 82 }
+    },
+    {
+      "id": "TEL_AR",
+      "name": "Akhil R",
+      "team": "Telangana",
+      "role": "Attacker",
+      "stats": { "matches": 12, "points": 96 }
+    },
+    {
+      "id": "AP_RP",
+      "name": "Rohit P",
+      "team": "Andhra Pradesh",
+      "role": "Attacker",
+      "stats": { "matches": 11, "points": 88 }
+    }
+  ]
+}

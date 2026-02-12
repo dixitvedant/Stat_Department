@@ -4,36 +4,32 @@
       "match": "M45",
       "date": "2024-02-01",
       "score": "Maharashtra 34–30 Gujarat",
-      "winner": "Maharashtra",
-      "totalWickets": 22
+      "winner": "Maharashtra"
+    
     },
     {
       "match": "M38",
       "date": "2024-01-18",
       "score": "Gujarat 32–29 Maharashtra",
-      "winner": "Gujarat",
-      "totalWickets": 20
+      "winner": "Gujarat"
     },
     {
       "match": "M29",
       "date": "2023-12-10",
       "score": "Match Drawn",
-      "winner": "Draw",
-      "totalWickets": 19
+      "winner": "Draw"
     },
     {
       "match": "M21",
       "date": "2023-11-25",
       "score": "Maharashtra 31–27 Gujarat",
-      "winner": "Maharashtra",
-      "totalWickets": 21
+      "winner": "Maharashtra"
     },
     {
       "match": "M14",
       "date": "2023-10-30",
       "score": "Gujarat 30–28 Maharashtra",
-      "winner": "Gujarat",
-      "totalWickets": 18
+      "winner": "Gujarat"
     }
   ],
 
@@ -42,36 +38,32 @@
       "match": "M41",
       "date": "2024-02-03",
       "score": "Delhi 33–28 Karnataka",
-      "winner": "Delhi",
-      "totalWickets": 23
+      "winner": "Delhi"
     },
     {
       "match": "M36",
       "date": "2024-01-12",
       "score": "Karnataka 31–29 Delhi",
-      "winner": "Karnataka",
-      "totalWickets": 21
+      "winner": "Karnataka"
     },
     {
       "match": "M27",
       "date": "2023-12-01",
       "score": "Delhi 30–30 Karnataka",
-      "winner": "Draw",
-      "totalWickets": 20
+      "winner": "Draw"
     },
     {
       "match": "M18",
       "date": "2023-11-10",
       "score": "Delhi 29–26 Karnataka",
-      "winner": "Delhi",
-      "totalWickets": 19
+      "winner": "Delhi"
     },
     {
       "match": "M09",
       "date": "2023-10-20",
       "score": "Karnataka 32–27 Delhi",
-      "winner": "Karnataka",
-      "totalWickets": 22
+      "winner": "Karnataka"
+
     }
   ],
 
@@ -80,36 +72,31 @@
       "match": "M40",
       "date": "2024-02-05",
       "score": "Pune 31–29 Mumbai",
-      "winner": "Pune",
-      "totalWickets": 20
+      "winner": "Pune"
     },
     {
       "match": "M34",
       "date": "2024-01-15",
       "score": "Mumbai 33–30 Pune",
-      "winner": "Mumbai",
-      "totalWickets": 22
+      "winner": "Mumbai"
     },
     {
       "match": "M26",
       "date": "2023-12-05",
       "score": "Pune 30–28 Mumbai",
-      "winner": "Pune",
-      "totalWickets": 19
+      "winner": "Pune"
     },
     {
       "match": "M17",
       "date": "2023-11-12",
       "score": "Mumbai 29–27 Pune",
-      "winner": "Mumbai",
-      "totalWickets": 18
+      "winner": "Mumbai"
     },
     {
       "match": "M08",
       "date": "2023-10-18",
       "score": "Match Drawn",
-      "winner": "Draw",
-      "totalWickets": 17
+      "winner": "Draw"
     }
   ],
 
@@ -118,22 +105,19 @@
       "match": "M39",
       "date": "2024-02-02",
       "score": "Rajasthan 28–26 Haryana",
-      "winner": "Rajasthan",
-      "totalWickets": 18
+      "winner": "Rajasthan"
     },
     {
       "match": "M31",
       "date": "2024-01-08",
       "score": "Haryana 30–27 Rajasthan",
-      "winner": "Haryana",
-      "totalWickets": 20
+      "winner": "Haryana"
     },
     {
       "match": "M24",
       "date": "2023-12-12",
       "score": "Rajasthan 29–25 Haryana",
-      "winner": "Rajasthan",
-      "totalWickets": 19
+      "winner": "Rajasthan"
     },
     {
       "match": "M16",

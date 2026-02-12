@@ -267,3 +267,85 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.style.overflow = 'auto';
     }
 });
+/**
+ * REFINED SMART PARSER
+ * Fixes "Not Available" by being more flexible with raw text patterns
+ */
+document.getElementById('analyzeBtn')?.addEventListener('click', () => {
+    const fileInput = document.getElementById('matchUpload');
+    const resultArea = document.getElementById('uploadResult');
+    const content = document.getElementById('quickStatsContent');
+
+    if (!fileInput || fileInput.files.length === 0) {
+        alert("Please select a file first.");
+        return;
+    }
+
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+        const rawText = e.target.result;
+        let processedData = { winner: 'Not Available', score: 'Not Available', bestAttacker: 'Not Available' };
+
+        try {
+            if (file.name.endsWith('.json')) {
+                const json = JSON.parse(rawText);
+                const m = json.match || (json.matches ? json.matches[0] : json);
+                processedData = { 
+                    winner: m.winner || 'Not Available', 
+                    score: m.score || 'Not Available', 
+                    bestAttacker: m.bestAttacker || 'Not Available' 
+                };
+            } else {
+                // SMART EXTRACTION FOR RAW TXT/CSV
+                const lines = rawText.split(/\r?\n/);
+                
+                lines.forEach(line => {
+                    const cleanLine = line.replace(/[*_#]/g, '').trim(); // Remove markdown/junk chars
+                    const lowerLine = cleanLine.toLowerCase();
+
+                    // Look for Winner
+                    if (lowerLine.includes('winner') || lowerLine.includes('won by')) {
+                        processedData.winner = cleanLine.split(/[:=-]/)[1]?.trim() || processedData.winner;
+                    }
+                    // Look for Score
+                    if (lowerLine.includes('score') || lowerLine.includes('result')) {
+                        processedData.score = cleanLine.split(/[:=-]/)[1]?.trim() || processedData.score;
+                    }
+                    // Look for Player/Attacker
+                    if (lowerLine.includes('attacker') || lowerLine.includes('player') || lowerLine.includes('performer')) {
+                        processedData.bestAttacker = cleanLine.split(/[:=-]/)[1]?.trim() || processedData.bestAttacker;
+                    }
+                });
+            }
+
+            // Injected Updated UI
+            if (resultArea && content) {
+                resultArea.classList.remove('d-none');
+                content.innerHTML = `
+                    <div class="col-md-3 border-end">
+                        <div class="small text-muted">Winner</div>
+                        <div class="h5 fw-bold text-primary">${processedData.winner}</div>
+                    </div>
+                    <div class="col-md-3 border-end">
+                        <div class="small text-muted">Match Score</div>
+                        <div class="h5 fw-bold">${processedData.score}</div>
+                    </div>
+                    <div class="col-md-3 border-end">
+                        <div class="small text-muted">Best Performer</div>
+                        <div class="h5 fw-bold text-success">${processedData.bestAttacker}</div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="badge bg-success-subtle text-success p-2">Analysis Complete</div>
+                    </div>
+                `;
+            }
+        } catch (err) {
+            alert("Error reading file.");
+            console.error(err);
+        }
+    };
+
+    reader.readAsText(file);
+});

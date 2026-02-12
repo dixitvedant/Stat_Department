@@ -12,14 +12,14 @@
 
 <body>
     <div id="splash-screen">
-    <div class="video-container">
-        <video id="welcomeVideo" autoplay muted playsinline>
-            <source src="welcome.mp4" type="video/mp4">
-        </video>
-        <h1 class="reveal-text">Welcome to KhoKhoStats</h1>
-        <p class="sub-reveal-text">Powered by Final Whistle</p>
+        <div class="video-container">
+            <video id="welcomeVideo" autoplay muted playsinline>
+                <source src="welcome.mp4" type="video/mp4">
+            </video>
+            <h1 class="reveal-text">Welcome to KhoKhoStats</h1>
+            <p class="sub-reveal-text">Powered by Final Whistle</p>
+        </div>
     </div>
-</div>
 
     <div id="navbar"></div>
     <script>
@@ -27,6 +27,7 @@
             .then(res => res.text())
             .then(data => document.getElementById("navbar").innerHTML = data);
     </script>
+
     <div class="score-ticker">
         <div class="ticker-content" id="liveTickerContent">
             Loading live scores...
@@ -40,8 +41,9 @@
 
             <div class="search-box-container mt-4 position-relative">
                 <div class="input-group input-group-lg shadow-sm">
-                    <span class="input-group-text bg-white border-end-0"><i
-                            class="bi bi-search text-primary"></i></span>
+                    <span class="input-group-text bg-white border-end-0">
+                        <i class="bi bi-search text-primary"></i>
+                    </span>
                     <input type="text" id="mainSearch" class="form-control border-start-0"
                         placeholder="Search for a match (e.g., Pune, Mumbai)..." autocomplete="off">
                 </div>
@@ -50,12 +52,28 @@
         </div>
     </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="search.js"></script>
-
     <main class="container my-5">
-        <div class="row g-4">
+        <section class="upload-section mb-5">
+            <div class="card shadow-sm border-0 rounded-4 overflow-hidden">
+                <div class="card-body p-4 text-center bg-light">
+                    <h4 class="fw-bold">
+                        <i class="bi bi-cloud-arrow-up-fill text-primary me-2"></i>Smart Match Analyzer
+                    </h4>
+                    <p class="text-muted small">Upload a raw file (JSON, CSV, or TXT) and the machine will extract the stats for you.</p>
+                    
+                    <div class="d-flex flex-wrap justify-content-center align-items-center gap-3 mt-3">
+                        <input type="file" id="matchUpload" class="form-control form-control-sm w-auto" accept=".json,.csv,.txt">
+                        <button id="analyzeBtn" class="btn btn-primary btn-sm px-4 shadow-sm">Analyze File</button>
+                    </div>
+                </div>
+                <div id="uploadResult" class="card-footer bg-white border-top-0 d-none p-4">
+                    <div class="row text-center g-3" id="quickStatsContent">
+                        </div>
+                </div>
+            </div>
+        </section>
 
+        <div class="row g-4">
             <div class="col-lg-3 col-md-6">
                 <div class="home-card">
                     <div class="card-icon"><i class="bi bi-calendar3"></i></div>
@@ -75,7 +93,7 @@
                     <ul class="action-list">
                         <li><a href="stats.html">Overview <i class="bi bi-chevron-right"></i></a></li>
                         <li><a href="match_wise.html">Match-wise Stats <i class="bi bi-chevron-right"></i></a></li>
-                        <li><a href="#">Player Stats <i class="bi bi-chevron-right"></i></a></li>
+                        <li><a href="playerstep1.html">Player Stats <i class="bi bi-chevron-right"></i></a></li>
                         <li><a href="#">Team Stats <i class="bi bi-chevron-right"></i></a></li>
                     </ul>
                 </div>
@@ -86,8 +104,8 @@
                     <div class="card-icon"><i class="bi bi-people-fill"></i></div>
                     <h3>Players</h3>
                     <ul class="action-list">
-                        <li><a href="#">Player Profile <i class="bi bi-chevron-right"></i></a></li>
-                        <li><a href="#">Comparison <i class="bi bi-chevron-right"></i></a></li>
+                        <li><a href="player_profile.html">Player Profile <i class="bi bi-chevron-right"></i></a></li>
+                        <!-- <li><a href="#"><i class="bi bi-chevron-right"></i></a></li> -->
                     </ul>
                 </div>
             </div>
@@ -97,19 +115,17 @@
                     <div class="card-icon"><i class="bi bi-shield-shaded"></i></div>
                     <h3>Teams</h3>
                     <ul class="action-list">
-                        <li><a href="#">Team Profile <i class="bi bi-chevron-right"></i></a></li>
-                        <li><a href="#">Head-to-Head <i class="bi bi-chevron-right"></i></a></li>
+                        <li><a href="pointstable.html">Team Profile <i class="bi bi-chevron-right"></i></a></li>
+                        <li><a href="pointstable.html">Head-to-Head <i class="bi bi-chevron-right"></i></a></li>
                     </ul>
                 </div>
             </div>
-
         </div>
     </main>
 
     <footer class="main-footer">
         <div class="container">
             <div class="row gy-4">
-
                 <div class="col-lg-4 col-md-12">
                     <h2 class="footer-logo">KhoKhoStats</h2>
                     <p class="footer-description">
@@ -152,7 +168,6 @@
                         <button class="btn btn-primary btn-sm" type="button">Join</button>
                     </div>
                 </div>
-
             </div>
 
             <hr class="my-4 text-muted">
@@ -162,13 +177,13 @@
                     <div class="col-md-6 text-center text-md-start">
                         <p>© 2026 KhoKhoStats | Department of Statistics</p>
                     </div>
-                    <div class="col-md-6 text-center text-md-end">
-                        <!-- <p>Designed by <i class="bi bi-heart-fill text-danger"></i>Stat Team</p> -->
-                    </div>
                 </div>
             </div>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="search.js"></script>
     <script src="Homepage.js"></script>
 </body>
 

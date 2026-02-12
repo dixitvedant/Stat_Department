@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Player Profile | KhoKhoStats</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="cmn_navbar.css">
+    <link rel="stylesheet" href="player_profile.css">
+</head>
+
+<body>
+    <div id="navbar"></div>
+
+    <section class="player-hero">
+        <div class="container">
+            <a href="playerstep1.html" class="btn-back mb-4">
+                <i class="bi bi-arrow-left"></i> Back to Players
+            </a>
+            <div class="player-identity-card">
+                <div class="row align-items-center">
+                    <div class="col-md-3 text-center">
+                        <div class="profile-avatar-wrapper">
+                            <img id="playerImg" src="https://placehold.co/200x200?text=Athlete" alt="Player">
+                            <div id="playerRoleBadge" class="role-ribbon">Attacker</div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <h1 id="playerName" class="display-4 fw-bold mb-1">Loading...</h1>
+                        <p id="playerTeam" class="fs-5 text-white-50 mb-3">Team Name</p>
+                        <div class="quick-stats-row">
+                            <div class="q-stat">
+                                <span class="label">Total Points</span>
+                                <span id="heroTotalPoints" class="value">0</span>
+                            </div>
+                            <div class="q-stat">
+                                <span class="label">Matches</span>
+                                <span id="heroMatches" class="value">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container my-5">
+        <h3 class="section-title">Point Breakdown</h3>
+        <div class="row g-4 mb-5 text-center">
+            <div class="col-md-3">
+                <div class="stat-card pink">
+                    <h5>As Attacker</h5>
+                    <p id="ptsAttacker">0</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card cyan">
+                    <h5>As Defender</h5>
+                    <p id="ptsDefender">0</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card grey">
+                    <h5>Total Points</h5>
+                    <p id="ptsTotal">0</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card green">
+                    <h5>Team Total</h5>
+                    <p id="ptsTeamTotal">0</p>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="section-title">Career Highlights</h3>
+        <div class="row g-4 mb-5">
+            <div class="col-md-6">
+                <div class="stat-card yellow horizontal"><span>Highest Attacker Score</span>
+                    <h4 id="highScore">0</h4>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="stat-card blue horizontal"><span>Longest Defender Time</span>
+                    <h4 id="defTime">0m</h4>
+                </div>
+            </div>
+        </div>
+
+        <div id="attackerSection">
+            <h3 class="section-title">Attacker Statistics</h3>
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-3 mb-5 text-center">
+                <div class="col">
+                    <div class="stat-mini-card"><span>Pole Dives</span><b id="poleDives">0</b></div>
+                </div>
+                <div class="col">
+                    <div class="stat-mini-card"><span>Sky Dives</span><b id="skyDives">0</b></div>
+                </div>
+                <div class="col">
+                    <div class="stat-mini-card"><span>Assists</span><b id="assists">0</b></div>
+                </div>
+                <div class="col">
+                    <div class="stat-mini-card"><span>Avg Pts/M</span><b id="avgPoints">0</b></div>
+                </div>
+                <div class="col">
+                    <div class="stat-mini-card"><span>Success Rate</span><b id="successRate">0%</b></div>
+                </div>
+                <div class="col">
+                    <div class="stat-mini-card"><span>Total Touches</span><b id="totalTouches">0</b></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="defenderSection" style="display: none;">
+            <h3 class="section-title">Defender Statistics</h3>
+            <div class="row row-cols-2 row-cols-md-4 g-3 mb-5 text-center">
+                <div class="col">
+                    <div class="stat-mini-card"><span>Best Defense</span><b id="defDetailTime">0s</b></div>
+                </div>
+                <div class="col">
+                    <div class="stat-mini-card"><span>Not-Out %</span><b id="notOutRate">0%</b></div>
+                </div>
+                <div class="col">
+                    <div class="stat-mini-card"><span>Dream Runs</span><b id="dreamRuns">0</b></div>
+                </div>
+                <div class="col">
+                    <div class="stat-mini-card"><span>Avg Def Time</span><b id="avgDefTime">0s</b></div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="section-title">Performance Metrics</h3>
+        <div class="row g-4 mb-5">
+            <div class="col-md-6 col-lg-3">
+                <div class="metric-card">
+                    <div class="metric-header"><i class="bi bi-calendar-check text-primary"></i> Matches Played</div>
+                    <div class="metric-body">
+                        <h2 id="metricMatches" class="fw-bold mb-1">0</h2>
+                        <div class="progress">
+                            <div id="barMatches" class="progress-bar bg-primary" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="metric-card">
+                    <div class="metric-header"><i class="bi bi-hand-index-thumb text-warning"></i> Total Touches</div>
+                    <div class="metric-body">
+                        <h2 id="metricTouches" class="fw-bold mb-1">0</h2>
+                        <div class="progress">
+                            <div id="barTouches" class="progress-bar bg-warning" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="metric-card">
+                    <div class="metric-header"><i class="bi bi-graph-up-arrow text-success"></i> Avg Points</div>
+                    <div class="metric-body">
+                        <h2 id="metricAvgPts" class="fw-bold mb-1">0.0</h2>
+                        <div class="progress">
+                            <div id="barAvgPts" class="progress-bar bg-success" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="metric-card">
+                    <div class="metric-header"><i class="bi bi-percent text-danger"></i> Success Rate</div>
+                    <div class="metric-body">
+                        <h2 id="metricSuccess" class="fw-bold mb-1">0%</h2>
+                        <div class="progress">
+                            <div id="barSuccess" class="progress-bar bg-danger" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="section-title">Team Impact</h3>
+        <div class="row g-4 mb-5">
+            <div class="col-md-6">
+                <div class="impact-card success-with">
+                    <div class="d-flex align-items-center">
+                        <div class="impact-icon with-icon"><i class="bi bi-person-check-fill"></i></div>
+                        <div class="ms-3">
+                            <h5 class="mb-0">Success Rate (With Player)</h5>
+                            <small class="text-muted">Team win % when this athlete plays</small>
+                        </div>
+                        <div class="ms-auto h2 mb-0 fw-bold text-success" id="rateWithPlayer">0%</div>
+                    </div>
+                    <div class="progress mt-3" style="height: 6px;">
+                        <div id="rateWithBar" class="progress-bar bg-success" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="impact-card success-without">
+                    <div class="d-flex align-items-center">
+                        <div class="impact-icon without-icon"><i class="bi bi-person-dash-fill"></i></div>
+                        <div class="ms-3">
+                            <h5 class="mb-0">Success Rate (Without Player)</h5>
+                            <small class="text-muted">Team win % when this athlete is absent</small>
+                        </div>
+                        <div class="ms-auto h2 mb-0 fw-bold text-secondary" id="rateWithoutPlayer">0%</div>
+                    </div>
+                    <div class="progress mt-3" style="height: 6px;">
+                        <div id="rateWithoutBar" class="progress-bar bg-secondary" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="player_profile.js"></script>
+    <footer class="main-footer">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-12">
+                    <h2 class="footer-logo">KhoKhoStats</h2>
+                    <p class="footer-description">
+                        The ultimate destination for Kho Kho enthusiasts. Providing deep-dive analytics,
+                        live scores, and historical data for every level of the game.
+                    </p>
+                    <div class="social-links">
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-6">
+                    <h6 class="footer-title">Platform</h6>
+                    <ul class="footer-links">
+                        <li><a href="Homepage.html">Home</a></li>
+                        <li><a href="match_wise.html">Matches</a></li>
+                        <li><a href="stats.html">Statistics</a></li>
+                        <li><a href="#">Rankings</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-2 col-md-4 col-6">
+                    <h6 class="footer-title">Resources</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Official Rules</a></li>
+                        <li><a href="#">API Access</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Use</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 col-md-4">
+                    <h6 class="footer-title">Stay Updated</h6>
+                    <p class="small text-muted">Get the latest match insights directly in your inbox.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control form-control-sm" placeholder="Email address">
+                        <button class="btn btn-primary btn-sm" type="button">Join</button>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="my-4 text-muted">
+
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start">
+                        <p>© 2026 KhoKhoStats | Department of Statistics</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

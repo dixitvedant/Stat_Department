@@ -1,6 +1,5 @@
 // URL PARAM
 const params = new URLSearchParams(window.location.search);
-// Check both possible keys
 const matchId = params.get("matchId") || params.get("id");
 
 // DOM
@@ -16,12 +15,13 @@ let chart = null;
 let matchData = null;
 let defenceData = {};
 let rosterData = {};
+let masterPlayersList = []; // Global variable to store IDs and Names
 
 // LOADER FUNCTIONS
 function showLoader() {
     const loader = document.getElementById("chartLoader");
     if (loader) loader.classList.remove("d-none");
-    if (canvas) canvas.classList.add("d-none");
+    if (canvas) canvas.classList.add("d-none"); 
 }
 
 function hideLoader() {
@@ -35,10 +35,13 @@ Promise.all([
     fetch("matches_data.json").then(r => r.json()),
     fetch("attack.json").then(r => r.json()),
     fetch("defence.json").then(r => r.json()),
-    fetch("players.json").then(r => r.json()),
-    fetch("roster.json").then(r => r.json())
+    fetch("playerstep1.json").then(r => r.json()), // Master table for ID-to-Name lookup
+    fetch("roster.json").then(r => r.json())       // Roster containing IDs
 ]).then(([matches, attack, defence, players, roster]) => {
-    // Robust ID matching
+    
+    // Store master players for lookup logic
+    masterPlayersList = players.players;
+
     const matchInfo = matches.matches.find(x => String(x.id) === String(matchId));
 
     if (!matchInfo) {
@@ -51,20 +54,17 @@ Promise.all([
     defenceData = defence[matchId]?.defence || {};
     rosterData = roster[matchId] || null;
 
-    // UPDATE HEADER
     document.getElementById("matchTitle").textContent = matchInfo.name;
     document.getElementById("matchId").textContent = `Match ID: ${matchId}`;
 
-    // UPDATE OVERVIEW
     document.getElementById("ovWinner").textContent = matchInfo.winner || "–";
     document.getElementById("ovWickets").textContent = matchInfo.totalWickets || "–";
     document.getElementById("ovAttacker").textContent = matchInfo.bestAttacker || "–";
     document.getElementById("ovDefender").textContent = matchInfo.bestDefender || "–";
 
-    // LOAD ROSTER SECTION
     if (rosterData) loadRoster();
 
-    // -------------------- H2H SECTION --------------------
+    // H2H SECTION
     fetch("h2h.json")
         .then(res => res.json())
         .then(h2hData => {
@@ -102,12 +102,7 @@ Promise.all([
                 </div>
                 <table class="table table-striped mt-4 small">
                     <thead>
-                        <tr>
-                            <th>Match</th>
-                            <th>Date</th>
-                            <th>Score</th>
-                            <th>Winner</th>
-                        </tr>
+                        <tr><th>Match</th><th>Date</th><th>Score</th><th>Winner</th></tr>
                     </thead>
                     <tbody>
                         ${h2hMatches.map(m => `
@@ -120,9 +115,8 @@ Promise.all([
                         `).join("")}
                     </tbody>
                 </table>`;
-        })
-        .catch(err => console.error("H2H data error:", err));
-}).catch(err => console.error("Initialization Error:", err));
+        });
+});
 
 // MVP SECTION
 fetch("mvp.json")
@@ -130,14 +124,11 @@ fetch("mvp.json")
     .then(mvpData => {
         const list = mvpData[matchId];
         if (!list || list.length === 0) return;
-
         list.sort((a, b) => b.points - a.points);
-
         const top = list[0];
         document.getElementById("topMvpName").textContent = top.name;
         document.getElementById("topMvpRole").textContent = top.role;
         document.getElementById("topMvpPoints").textContent = `${top.points} pts`;
-
         renderMvpList(list);
 
         document.getElementById("mvpRoleFilter").addEventListener("change", e => {
@@ -160,7 +151,7 @@ function renderMvpList(players) {
     });
 }
 
-// TYPE CHANGE
+// Chart Logic
 typeSelect.addEventListener("change", () => {
     inningSelect.value = "";
     inningSelect.disabled = !typeSelect.value;
@@ -168,7 +159,6 @@ typeSelect.addEventListener("change", () => {
     if (chart) chart.destroy();
 });
 
-// INNING CHANGE
 inningSelect.addEventListener("change", () => {
     if (!typeSelect.value || !inningSelect.value) return;
     chartSection.classList.remove("hidden");
@@ -180,11 +170,9 @@ inningSelect.addEventListener("change", () => {
 function drawAttack(inning) {
     const data = matchData.attack?.[inning];
     if (!data) { hideLoader(); return alert("Attack data not found"); }
-
     const labels = Object.keys(data);
     const teamA = labels.map(p => -data[p].teamA);
     const teamB = labels.map(p => data[p].teamB);
-
     if (chart) chart.destroy();
     chart = new Chart(canvas, {
         type: "bar",
@@ -209,23 +197,19 @@ function drawAttack(inning) {
 function drawDefence(inning) {
     const timeline = defenceData[inning];
     if (!timeline) { hideLoader(); return alert("Defence data not found"); }
-
     if (chart) chart.destroy();
     chart = new Chart(canvas, {
         type: "bar",
         data: {
             labels: timeline.map(d => d.batch),
-            datasets: [{
-                label: "Duration",
-                data: timeline.map(d => d.duration),
-                backgroundColor: "#22c55e"
-            }]
+            datasets: [{ label: "Duration", data: timeline.map(d => d.duration), backgroundColor: "#22c55e" }]
         },
         options: { indexAxis: "y" }
     });
     hideLoader();
 }
 
+// ROSTER LOADING
 function loadRoster() {
     if (!rosterData) return;
     document.getElementById("teamAName").innerHTML = `<i class="bi bi-shield-fill-check text-primary me-2"></i> ${rosterData.teamA.name}`;
@@ -243,22 +227,35 @@ function loadRoster() {
     fillListWithStats("teamBAll", rosterData.teamB.allRounders || [], "teamBStats");
 }
 
-function fillListWithStats(listId, items, statsContainerId) {
+/**
+ * UPDATED FUNCTION: 
+ * Instead of linking to playerstep1.html, it links to the players list page
+ * with a search parameter. Change "players.html" to your actual search page name.
+ */
+function fillListWithStats(listId, idArray, statsContainerId) {
     const ul = document.getElementById(listId);
     if (!ul) return;
     ul.innerHTML = "";
-    items.forEach(name => {
+
+    idArray.forEach(playerId => {
+        const playerInfo = masterPlayersList.find(p => p.id === playerId);
+        const displayName = playerInfo ? playerInfo.name : playerId;
+
         const li = document.createElement("li");
-        li.textContent = name;
+        li.className = "player-item-link";
+        
+        // CHANGED: Link now points to search results rather than a direct profile page
+        // Use 'players.html' or 'index.html' depending on where your search bar is.
+        li.innerHTML = `<a href="playerstep1.html?search=${encodeURIComponent(playerId)}" class="roster-link">${displayName}</a>`;
         ul.appendChild(li);
     });
 
     const statsContainer = document.getElementById(statsContainerId);
     const totalPlayers = getTotalPlayers(statsContainerId);
 
-    if (totalPlayers > 0 && items.length > 0) {
+    if (totalPlayers > 0 && idArray.length > 0) {
         const roleName = listId.includes("Attackers") ? "Attackers" : listId.includes("Defenders") ? "Defenders" : "All-Rounders";
-        const count = items.length;
+        const count = idArray.length;
         const percent = ((count / totalPlayers) * 100).toFixed(1);
 
         const statCard = document.createElement("div");
@@ -276,7 +273,7 @@ function getTotalPlayers(statsContainerId) {
     return (team.attackers?.length || 0) + (team.defenders?.length || 0) + (team.allRounders?.length || 0);
 }
 
-// SECTION NAV
+// Section Switching
 document.querySelectorAll(".section-content").forEach(s => s.classList.add("hidden"));
 const rosterSection = document.getElementById("roster");
 if (rosterSection) rosterSection.classList.remove("hidden");

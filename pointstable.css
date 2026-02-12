@@ -1,0 +1,237 @@
+/* points-table.css */
+body {
+    background-color: #f8fafc;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.points-hero {
+    background: radial-gradient(circle at top right, #1e293b, #0f172a);
+    padding: 80px 0 120px;
+    border-radius: 0 0 50px 50px;
+    position: relative;
+    z-index: 1;
+}
+
+/* --- Season Dropdown --- */
+.season-dropdown {
+    width: auto;
+    min-width: 140px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 10px 18px;
+    backdrop-filter: blur(10px);
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.season-dropdown:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: none;
+    color: white;
+    border-color: #2563eb;
+}
+
+.season-dropdown option {
+    color: #0f172a;
+    background-color: white;
+}
+
+/* --- Table Wrapper --- */
+.table-card-wrapper {
+    background: white;
+    border-radius: 24px;
+    margin-top: -60px; 
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+    border: 1px solid #eef2f6;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+}
+
+.custom-table {
+    width: 100%;
+    background: white; 
+}
+
+.custom-table thead th {
+    background-color: #f8fafc;
+    color: #64748b;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 22px;
+    font-weight: 700;
+    border-bottom: 2px solid #f1f5f9;
+}
+
+.clickable-row {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.clickable-row:hover {
+    background-color: #f0f7ff !important;
+}
+
+.pos-badge {
+    display: inline-flex;
+    width: 32px; height: 32px;
+    align-items: center; justify-content: center;
+    background: #f1f5f9;
+    color: #1e293b;
+    border-radius: 10px;
+    font-weight: 800;
+}
+
+.pts-badge {
+    background: #eef2ff;
+    color: #2563eb;
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 1rem;
+}
+
+.team-logo-placeholder {
+    width: 40px; height: 40px;
+    background: #f8fafc;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem;
+}
+
+/* --- Form Circles (Updated) --- */
+.form-container {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+}
+
+.form-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: white;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.form-w { background-color: #22c55e; border: 1px solid #16a34a; }
+.form-l { background-color: #ef4444; border: 1px solid #dc2626; }
+.form-d { background-color: #94a3b8; border: 1px solid #64748b; }
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .points-hero { padding: 60px 0 100px; }
+    .table-card-wrapper { margin-top: -40px; }
+    .custom-table thead th:nth-child(4),
+    .custom-table thead th:nth-child(5),
+    .custom-table thead th:nth-child(6) { display: none; }
+    .custom-table tbody td:nth-child(4),
+    .custom-table tbody td:nth-child(5),
+    .custom-table tbody td:nth-child(6) { display: none; }
+}
+
+/* FOOTER */
+main-footer {
+    background-color: #ffffff;
+    padding: 60px 0 20px;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 80px;
+}
+
+.footer-logo {
+    color: #2563eb;
+    font-weight: 800;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.footer-description {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.footer-title {
+    color: #0f172a;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links li a {
+    text-decoration: none;
+    color: #64748b;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.footer-links li a:hover {
+    color: #2563eb;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: #f1f5f9;
+    color: #475569;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background: #2563eb;
+    color: white;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+/* responsive adjustment */
+@media (max-width: 768px) {
+    .main-footer {
+        text-align: center;
+    }
+
+    .social-links {
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+}

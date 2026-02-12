@@ -1,0 +1,85 @@
+{
+  "players": [
+    {
+      "id": "MAH_SP",
+      "name": "Sagar Pawar",
+      "team": "Maharashtra",
+      "role": "Attacker",
+      "image": "https://placehold.co/200x200?text=Sagar+Pawar",
+      "stats": {
+        "matches": 12,
+        "total_pts": 95,
+        "attacker_pts": 82,
+        "defender_pts": 13,
+        "team_total": 456,
+        "highest_score": 19,
+        "longest_def_time": "1m 42s",
+        "pole_dives": 13,
+        "sky_dives": 6,
+        "assists": 15,
+        "avg_pts": 7.9,
+        "success_rate": 84,
+        "total_touches": 118,
+        "win_rate_with": 72,
+        "win_rate_without": 41,
+        "not_out_rate": 28,
+        "dream_runs": 1,
+        "avg_def_time": "1m 15s"
+      }
+    },
+    {
+      "id": "MAH_RP",
+      "name": "Rohit Patil",
+      "team": "Maharashtra",
+      "role": "Defender",
+      "image": "https://placehold.co/200x200?text=Rohit+Patil",
+      "stats": {
+        "matches": 12,
+        "total_pts": 45,
+        "attacker_pts": 5,
+        "defender_pts": 40,
+        "team_total": 512,
+        "highest_score": 8,
+        "longest_def_time": "5m 22s",
+        "pole_dives": 1,
+        "sky_dives": 0,
+        "assists": 4,
+        "avg_pts": 3.7,
+        "success_rate": 89,
+        "total_touches": 7,
+        "win_rate_with": 65,
+        "win_rate_without": 48,
+        "not_out_rate": 88,
+        "dream_runs": 7,
+        "avg_def_time": "4m 10s"
+      }
+    },
+    {
+      "id": "MAH_AS",
+      "name": "Amit Shinde",
+      "team": "Maharashtra",
+      "role": "All-Rounder",
+      "image": "https://placehold.co/200x200?text=Amit+Shinde",
+      "stats": {
+        "matches": 15,
+        "total_pts": 120,
+        "attacker_pts": 68,
+        "defender_pts": 52,
+        "team_total": 480,
+        "highest_score": 22,
+        "longest_def_time": "3m 45s",
+        "pole_dives": 8,
+        "sky_dives": 4,
+        "assists": 11,
+        "avg_pts": 8.0,
+        "success_rate": 78,
+        "total_touches": 92,
+        "win_rate_with": 81,
+        "win_rate_without": 45,
+        "not_out_rate": 55,
+        "dream_runs": 4,
+        "avg_def_time": "2m 30s"
+      }
+    }
+  ]
+}

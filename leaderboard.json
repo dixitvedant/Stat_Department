@@ -1,0 +1,63 @@
+{
+  "metadata": {
+    "season": "Season 2025-26",
+    "tournament": "National Championship",
+    "last_updated": "2026-02-11T23:50:00Z"
+  },
+  "leaderboards": {
+    "mvp": [
+      {
+        "rank": 1,
+        "name": "Pawan Sehrawat",
+        "team": "Karnataka Kings",
+        "value": 158.4,
+        "label": "Rating",
+        "image": "pawan.png"
+      },
+      {
+        "rank": 2,
+        "name": "Naveen Kumar",
+        "team": "Delhi Dynamos",
+        "value": 146.0,
+        "label": "Rating",
+        "image": "naveen.png"
+      }
+    ],
+    "attackers": [
+      {
+        "rank": 1,
+        "name": "Sagar Pawar",
+        "team": "Maharashtra Tycoons",
+        "value": 115,
+        "label": "Pts",
+        "image": "sagar.png"
+      },
+      {
+        "rank": 2,
+        "name": "Amit Verma",
+        "team": "Mumbai Aces",
+        "value": 102,
+        "label": "Pts",
+        "image": "amit.png"
+      }
+    ],
+    "defenders": [
+      {
+        "rank": 1,
+        "name": "Deepak Hooda",
+        "team": "Haryana Steelers",
+        "value": 225,
+        "label": "sec",
+        "image": "deepak.png"
+      },
+      {
+        "rank": 2,
+        "name": "Vikram Singh",
+        "team": "Rajasthan Warriors",
+        "value": 210,
+        "label": "sec",
+        "image": "vikram.png"
+      }
+    ]
+  }
+}

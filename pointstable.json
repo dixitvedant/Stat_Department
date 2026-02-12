@@ -1,0 +1,143 @@
+{
+  "seasons": ["2026", "2025", "2024","2023"],
+  "tables": {
+    "2026": [
+      {
+        "pos": 1,
+        "name": "Maharashtra",
+        "played": 12,
+        "win": 9,
+        "loss": 2,
+        "nr": 1,
+        "pts": 19,
+        "form": ["W", "W", "W", "L", "W"],
+        "id": "warriors"
+      },
+      {
+        "pos": 2,
+        "name": "Gujarat",
+        "played": 12,
+        "win": 8,
+        "loss": 3,
+        "nr": 1,
+        "pts": 17,
+        "form": ["W", "W", "L", "W", "L"],
+        "id": "giants"
+      },
+      {
+        "pos": 3,
+        "name": "Karnataka",
+        "played": 11,
+        "win": 7,
+        "loss": 4,
+        "nr": 0,
+        "pts": 14,
+        "form": ["L", "W", "W", "L", "W"],
+        "id": "chasers"
+      },
+      {
+        "pos": 4,
+        "name": "Delhi",
+        "played": 12,
+        "win": 6,
+        "loss": 6,
+        "nr": 0,
+        "pts": 12,
+        "form": ["W", "L", "L", "W", "L"],
+        "id": "dynamos"
+      },
+      {
+        "pos": 5,
+        "name": "Odisha",
+        "played": 12,
+        "win": 5,
+        "loss": 5,
+        "nr": 2,
+        "pts": 12,
+        "form": ["L", "W", "L", "D", "W"],
+        "id": "juggernauts"
+      },
+      {
+        "pos": 6,
+        "name": "Rajasthan",
+        "played": 12,
+        "win": 5,
+        "loss": 6,
+        "nr": 1,
+        "pts": 11,
+        "form": ["W", "L", "W", "L", "L"],
+        "id": "royals"
+      },
+      {
+        "pos": 7,
+        "name": "Telangana",
+        "played": 12,
+        "win": 4,
+        "loss": 7,
+        "nr": 1,
+        "pts": 9,
+        "form": ["L", "L", "W", "W", "L"],
+        "id": "strikers"
+      },
+      {
+        "pos": 8,
+        "name": "Tamil Nadu",
+        "played": 12,
+        "win": 3,
+        "loss": 8,
+        "nr": 1,
+        "pts": 7,
+        "form": ["L", "L", "L", "W", "W"],
+        "id": "titans"
+      },
+      {
+        "pos": 9,
+        "name": "West Bengal",
+        "played": 12,
+        "win": 2,
+        "loss": 9,
+        "nr": 1,
+        "pts": 5,
+        "form": ["L", "L", "L", "L", "W"],
+        "id": "tigers"
+      }
+    ],
+    "2025": [
+      {
+        "pos": 1,
+        "name": "Delhi",
+        "played": 14,
+        "win": 10,
+        "loss": 4,
+        "nr": 0,
+        "pts": 20,
+        "form": ["W", "L", "W", "W", "W"],
+        "id": "dynamos"
+      },
+      {
+        "pos": 2,
+        "name": "Mumbai",
+        "played": 14,
+        "win": 8,
+        "loss": 5,
+        "nr": 1,
+        "pts": 17,
+        "form": ["L", "W", "W", "L", "W"],
+        "id": "warriors"
+      }
+    ],
+    "2024": [
+      {
+        "pos": 1,
+        "name": "Odisha",
+        "played": 10,
+        "win": 8,
+        "loss": 2,
+        "nr": 0,
+        "pts": 16,
+        "form": ["W", "W", "W", "W", "L"],
+        "id": "chasers"
+      }
+    ]
+  }
+}
