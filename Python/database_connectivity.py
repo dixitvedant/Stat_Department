@@ -14,13 +14,11 @@ EXPECTED_TABLES = [
     "Player_Match_Stat",
     "Player_Season_Stat",
     "Team_Stat",
+    "Team_Attack",
+    "Team_Defence"
 ]
 
-# -------------------------------
-# Connect to MySQL
-# -------------------------------
 def connect_db():
-    """Return MySQL connection"""
     return mysql.connector.connect(
         host=DB_HOST,
         user=DB_USER,
@@ -28,7 +26,6 @@ def connect_db():
         database=DB_NAME
     )
 def fetch_tables(conn):
-    """Fetch all expected tables as pandas DataFrames"""
     dfs = {}
     for table in EXPECTED_TABLES:
         try:

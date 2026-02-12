@@ -1,0 +1,182 @@
+[
+  {
+    "team name": "Satara Warriors",
+    "player_id": 1,
+    "player_name": "aayush yadav",
+    "role": "Defender"
+  },
+  {
+    "team name": "Satara Warriors",
+    "player_id": 2,
+    "player_name": "dhaygude atharva",
+    "role": "All-Rounder"
+  },
+  {
+    "team name": "Satara Warriors",
+    "player_id": 3,
+    "player_name": "varad pol",
+    "role": "Attacker"
+  },
+  {
+    "team name": "Satara Warriors",
+    "player_id": 4,
+    "player_name": "vaibhav jadhav",
+    "role": "Attacker"
+  },
+  {
+    "team name": "Satara Warriors",
+    "player_id": 5,
+    "player_name": "aayush panghare",
+    "role": "All-Rounder"
+  },
+  {
+    "team name": "Satara Warriors",
+    "player_id": 6,
+    "player_name": "swaraj ghadhave",
+    "role": "Attacker"
+  },
+  {
+    "team name": "Satara Warriors",
+    "player_id": 7,
+    "player_name": "pratik aadhav",
+    "role": "Defender"
+  },
+  {
+    "team name": "Satara Warriors",
+    "player_id": 8,
+    "player_name": "raj pawar",
+    "role": "Attacker"
+  },
+  {
+    "team name": "Satara Warriors",
+    "player_id": 9,
+    "player_name": "swaraj uttekar",
+    "role": "All-Rounder"
+  },
+  {
+    "team name": "Satara Warriors",
+    "player_id": 10,
+    "player_name": "mayureshwar gosavi",
+    "role": "Defender"
+  },
+  {
+    "team name": "Satara Warriors",
+    "player_id": 11,
+    "player_name": "vighnesh girme",
+    "role": "Attacker"
+  },
+  {
+    "team name": "Satara Warriors",
+    "player_id": 12,
+    "player_name": "soham hipparkar",
+    "role": "All-Rounder"
+  },
+  {
+    "team name": "Satara Warriors",
+    "player_id": 13,
+    "player_name": "soham bhamare",
+    "role": "Attacker"
+  },
+  {
+    "team name": "Satara Warriors",
+    "player_id": 14,
+    "player_name": "Tej Shinde",
+    "role": "Attacker"
+  },
+  {
+    "team name": "Satara Warriors",
+    "player_id": 15,
+    "player_name": "Sarthak Mahadik",
+    "role": "All-Rounder"
+  },
+  {
+    "team name": "Pune Champions",
+    "player_id": 16,
+    "player_name": "kartavya gandekr",
+    "role": "Defender"
+  },
+  {
+    "team name": "Pune Champions",
+    "player_id": 17,
+    "player_name": "soham deshmukh",
+    "role": "Attacker"
+  },
+  {
+    "team name": "Pune Champions",
+    "player_id": 18,
+    "player_name": "atul parde",
+    "role": "All-Rounder"
+  },
+  {
+    "team name": "Pune Champions",
+    "player_id": 19,
+    "player_name": "shreeyash maharugade",
+    "role": "Attacker"
+  },
+  {
+    "team name": "Pune Champions",
+    "player_id": 20,
+    "player_name": "om wagh",
+    "role": "Defender"
+  },
+  {
+    "team name": "Pune Champions",
+    "player_id": 21,
+    "player_name": "sangam thakur",
+    "role": "Attacker"
+  },
+  {
+    "team name": "Pune Champions",
+    "player_id": 22,
+    "player_name": "krushna mahanvar",
+    "role": "All-Rounder"
+  },
+  {
+    "team name": "Pune Champions",
+    "player_id": 23,
+    "player_name": "pranav mane",
+    "role": "Defender"
+  },
+  {
+    "team name": "Pune Champions",
+    "player_id": 24,
+    "player_name": "shreeraj tangade",
+    "role": "Defender"
+  },
+  {
+    "team name": "Pune Champions",
+    "player_id": 25,
+    "player_name": "satyam sakat",
+    "role": "Attacker"
+  },
+  {
+    "team name": "Pune Champions",
+    "player_id": 26,
+    "player_name": "tanmay nigudkar",
+    "role": "All-Rounder"
+  },
+  {
+    "team name": "Pune Champions",
+    "player_id": 27,
+    "player_name": "umesh dongare",
+    "role": "Attacker"
+  },
+  {
+    "team name": "Pune Champions",
+    "player_id": 28,
+    "player_name": "pallav sarade",
+    "role": "Defender"
+  },
+  {
+    "team name": "Pune Champions",
+    "player_id": 29,
+    "player_name": "arjun gorade",
+    "role": "Attacker"
+  },
+  {
+    "team name": "Pune Champions",
+    "player_id": 30,
+    "player_name": "vedant gaikwad",
+    "role": "All-Rounder"
+  }
+]
