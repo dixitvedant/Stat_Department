@@ -1,4 +1,5 @@
-"""
+import pandas as pd
+
 def build_attack_json(dfs):
     matches=dfs.get("match_details")
     teams=dfs.get("team")
@@ -35,32 +36,3 @@ def build_attack_json(dfs):
         #print(team_cols)            
         attack_list.append({m_id:phase_dic})
     return attack_list
-"""
-def build_attack_json(dfs):
-    matches = dfs.get("match_details")
-    teams = dfs.get("team")
-    attack = dfs.get("team_attack")
-
-    result = []
-
-    team_name_map = (
-        {row.team_id: row.team_name for _, row in teams.iterrows()}
-        if teams is not None else {}
-    )
-
-    if matches is None or attack is None:
-        return result
-
-    for _, a in attack.iterrows():
-        match_id = a["match_id"]
-        team_name = team_name_map.get(a["team_id"], "UNKNOWN")
-
-        result.append({
-            "match_id": int(match_id),
-            "inning": int(a["inning"]),
-            "team": str(team_name),
-            "phase":str(a["phase"]),
-            "points":int(a["points"])
-        })
-
-    return result                  
