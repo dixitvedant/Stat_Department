@@ -1,44 +1,77 @@
-from attack_json import build_attack_json
-from defence_json import build_defence_json
-
+import pandas as pd
 def build_match_wise(dfs):
-    matches=dfs.get("match_details")
-    teams=dfs.get("team")
-    match_list=[]
+
+    matches = dfs.get("match_details")
+    teams = dfs.get("team")
+    season_df = dfs.get("season")
+    tournament_df = dfs.get("tournament")
+
     if matches is None:
-        return match_list
-    attack=build_attack_json(dfs)
-    defence=build_defence_json(dfs)
-    team_name_map= {row.team_id: row.team_name for _, row in teams.iterrows()} if teams is not None else {}
-    for _,m in matches.iterrows():
-        m_id=int(m.get("match_id"))
-        m_date=str(m.get("match_date"))
-        home_team_id=int(m.get("home_team"))
-        away_team_id=int(m.get("away_team"))
-        winner_id=int(m.get("winning_team"))
-        home_team_name=str(team_name_map.get(home_team_id,"Unknown"))
-        away_team_name=str(team_name_map.get(away_team_id,"Unknown"))
-        winner_name=str(team_name_map.get(winner_id,"Unknown"))
-        attack_details=None
-        defence_details=None
-        for a in attack:
-            for k,val in a.items():
-                match_id=k
-                if m_id == int(match_id):
-                    attack_details=val
-                    break
-        for d in defence:
-            for key,value in d.items():
-                match_ID=key
-                if m_id == int(match_ID):
-                    defence_details=value
-                    break
+        return {"matches": []}
+
+    
+    team_name_map = {
+        row.team_id: row.team_name
+        for _, row in teams.iterrows()
+    } if teams is not None else {}
+
+    
+    season_name_map = {}
+    season_tournament_map = {}
+
+    if season_df is not None:
+        for _, row in season_df.iterrows():
+            season_name_map[row.season_id] = row.season_name
+            season_tournament_map[row.season_id] = row.tournament_id
+
+    
+    tournament_name_map = {
+        row.tournament_id: row.tournament_name
+        for _, row in tournament_df.iterrows()
+    } if tournament_df is not None else {}
+
+    match_list = []
+
+    for _, m in matches.iterrows():
+
+        m_id = int(m.get("match_id"))
+        m_date = str(m.get("match_date"))
+        season_id = int(m.get("season_id"))
+
+        home_team_id = int(m.get("home_team"))
+        away_team_id = int(m.get("away_team"))
+
+        home_team_name = team_name_map.get(home_team_id, "Unknown")
+        away_team_name = team_name_map.get(away_team_id, "Unknown")
+
+        
+        winner_raw = m.get("winning_team")
+
+        if pd.isna(winner_raw):
+            winner_name = "Draw"
+        else:
+            winner_id = int(winner_raw)
+            winner_name = team_name_map.get(winner_id, "Draw")
+
+        season_name = season_name_map.get(season_id, "Unknown")
+
+        tournament_id = season_tournament_map.get(season_id)
+        tournament_name = tournament_name_map.get(tournament_id, "Unknown")
+
+        home_score = m.get("home_team_score", "")
+        away_score = m.get("away_team_score", "")
+
+        score_text = f"{home_team_name} {home_score} - {away_score} {away_team_name}"
+
         match_list.append({
-            "Match ID":m_id,
-            "Match Date":m_date,
-            "Score":f"{home_team_name} vs {away_team_name}",
-            "Winner Team":winner_name,
-            "Attack":attack_details,
-            "defence":defence_details
+            "id": m_id,
+            "name": f"{home_team_name} vs {away_team_name}",
+            "date": m_date,
+            "season": season_name,
+            "tournament": tournament_name,
+            "score": score_text,
+            "winner": winner_name
         })
-    return match_list
+
+
+    return {"matches": match_list}
