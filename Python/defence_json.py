@@ -6,10 +6,10 @@ def build_defence_json(dfs):
     teams = dfs.get("team")
     defence = dfs.get("team_defence")
 
-    defence_list = []
+    defence_dict = {}
 
     if matches is None or defence is None:
-        return defence_list
+        return defence_dict
 
     team_name_map = {
         row.team_id: row.team_name
@@ -19,8 +19,14 @@ def build_defence_json(dfs):
     for _, m in matches.iterrows():
 
         m_id = int(m.get("match_id"))
-        match_dict = {}
         match_defence = defence[defence["match_id"] == m_id]
+
+        match_structure = {
+            "defence": {
+                "inning1": {},
+                "inning2": {}
+            }
+        }
 
         for _, d in match_defence.iterrows():
 
@@ -28,21 +34,21 @@ def build_defence_json(dfs):
             team_id = int(d.get("team_id"))
             team_name = team_name_map.get(team_id, "Unknown")
 
-            if inning not in match_dict:
-                match_dict[inning] = {}
-
-            if team_name not in match_dict[inning]:
-                match_dict[inning][team_name] = []
-
             batch_data = {
-                "batch": int(d.get("batch_no")),
-                "start_time": int(d.get("start_minute")),
+                "batch": f"Batch {int(d.get('batch_no'))}",
+                "start": int(d.get("start_minute")),
                 "duration": int(d.get("duration"))
             }
 
-            match_dict[inning][team_name].append(batch_data)
+            inning_key = f"inning{inning}"
 
-        defence_list.append({m_id: match_dict})
+            if team_name not in match_structure["defence"][inning_key]:
+                match_structure["defence"][inning_key][team_name] = []
 
-    return defence_list
-"""
+            match_structure["defence"][inning_key][team_name].append(batch_data)
+
+        defence_dict[str(m_id)] = match_structure
+
+    return defence_dict
+
+
