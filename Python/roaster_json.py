@@ -1,6 +1,6 @@
 import pandas as pd
 
-def build_roaster_json(dfs):
+def build_roaster_json(dfs,filters=None):
     matches = dfs.get("match_details")
     players = dfs.get("player")
     pms = dfs.get("player_match_stat")
@@ -8,8 +8,22 @@ def build_roaster_json(dfs):
 
     roster_dict = {}
 
-    if matches is None or players is None or pms is None:
+    if matches is None :
         return roster_dict
+    
+    if filters:
+        if filters.get("match_id") is not None:
+            matches = matches[matches["match_id"] == filters["match_id"]]
+            pms = pms[pms["match_id"] == filters["match_id"]]
+
+        if filters.get("team_id") is not None:
+            players = players[players["team_id"] == filters["team_id"]]
+
+        if filters.get("role") is not None:
+            players = players[
+                players["role"].str.lower() == filters["role"].lower()
+            ]
+
 
     team_name_map = {row.team_id: row.team_name for _, row in teams.iterrows()} if teams is not None else {}
     player_name_map = {row.player_id: row.player_name for _, row in players.iterrows()}
@@ -57,4 +71,3 @@ def build_roaster_json(dfs):
         }
 
     return roster_dict
-
