@@ -1,24 +1,32 @@
 import json
 import pandas as pd
 
-def Point_Table(dfs):
+def Point_Table(dfs,filters=None):
 
     ts = dfs.get("team_stat")
-    season_df = dfs.get("season")
-    teams_df = dfs.get("team")
+    season = dfs.get("season")
+    teams = dfs.get("team")
 
     if ts is None:
         return {"seasons": [], "tables": {}}
+    
+    if filters:
+        if filters.get("tournament_id") is not None:
+            ts = ts[ts["tournament_id"] == int(filters["tournament_id"])]
+
+        if filters.get("season_id") is not None:
+            ts = ts[ts["season_id"] == int(filters["season_id"])]
+
 
     team_name_map = {
         row.team_id: row.team_name
-        for _, row in teams_df.iterrows()
-    } if teams_df is not None else {}
+        for _, row in teams.iterrows()
+    } if teams is not None else {}
 
     season_name_map = {
         row.season_id: row.season_name
-        for _, row in season_df.iterrows()
-    } if season_df is not None else {}
+        for _, row in season.iterrows()
+    } if season is not None else {}
 
     final_output = {
         "seasons": [],
