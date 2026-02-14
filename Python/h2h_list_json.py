@@ -1,10 +1,11 @@
 import pandas as pd
 
-def build_h2h_json(dfs):
+def build_h2h_json(dfs,filters=None):
     matches = dfs.get("match_details")
     teams = dfs.get("team")
     pms = dfs.get("player_match_stat")
     players = dfs.get("player")
+    seasons=dfs.get("season")
 
     h2h_dict = {"match": []}
 
@@ -13,6 +14,32 @@ def build_h2h_json(dfs):
 
     if matches is None:
         return h2h_dict
+
+    if filters:
+
+        if filters.get("tournament_id") is not None:
+            matches = matches[
+                matches["season_id"].isin(
+                    seasons.loc[
+                    seasons["tournament_id"] == filters["tournament_id"],
+                    "season_id"
+                ])]
+
+        if filters.get("season_id") is not None:
+            matches = matches[
+                matches["season_id"] == filters["season_id"]
+            ]
+
+        if filters.get("match_id") is not None:
+            matches = matches[
+                matches["match_id"] == filters["match_id"]
+            ]
+
+        if filters.get("team_id") is not None:
+            matches = matches[
+                (matches["home_team"] == filters["team_id"]) |
+                (matches["away_team"] == filters["team_id"])
+            ]
 
     for _, m in matches.iterrows():
         match_id = m.get("match_id")
@@ -41,12 +68,10 @@ def build_h2h_json(dfs):
         score_string = f"{team_name_map.get(teamA_id)} {teamA_score}-{teamB_score} {team_name_map.get(teamB_id)}"
 
         h2h_dict["match"].append({
-            "match": f"M{int(match_id)}",
+            "match": f"{int(match_id)}",
             "date": str(m.get("match_date")) if pd.notna(m.get("match_date")) else None,
             "score": score_string,
             "winner": winner_name
         })
 
     return h2h_dict
-
-
