@@ -1,15 +1,42 @@
 import pandas as pd
-def build_match_wise(dfs):
+def build_match_wise(dfs,filters=None):
 
     matches = dfs.get("match_details")
     teams = dfs.get("team")
-    season_df = dfs.get("season")
-    tournament_df = dfs.get("tournament")
+    season = dfs.get("season")
+    tournament = dfs.get("tournament")
 
     if matches is None:
         return {"matches": []}
 
-    
+    if filters:
+
+        if filters.get("tournament_id") is not None and season is not None:
+            matches = matches[
+                matches["season_id"].isin(
+                    season.loc[
+                        season["tournament_id"] == filters["tournament_id"],
+                        "season_id"
+                    ]
+                )
+            ]
+
+        if filters.get("season_id") is not None:
+            matches = matches[
+                matches["season_id"] == filters["season_id"]
+            ]
+
+        if filters.get("match_id") is not None:
+            matches = matches[
+                matches["match_id"] == filters["match_id"]
+            ]
+
+        if filters.get("team_id") is not None:
+            matches = matches[
+                (matches["home_team"] == filters["team_id"]) |
+                (matches["away_team"] == filters["team_id"])
+            ]
+        
     team_name_map = {
         row.team_id: row.team_name
         for _, row in teams.iterrows()
@@ -19,16 +46,16 @@ def build_match_wise(dfs):
     season_name_map = {}
     season_tournament_map = {}
 
-    if season_df is not None:
-        for _, row in season_df.iterrows():
+    if season is not None:
+        for _, row in season.iterrows():
             season_name_map[row.season_id] = row.season_name
             season_tournament_map[row.season_id] = row.tournament_id
 
     
     tournament_name_map = {
         row.tournament_id: row.tournament_name
-        for _, row in tournament_df.iterrows()
-    } if tournament_df is not None else {}
+        for _, row in tournament.iterrows()
+    } if tournament is not None else {}
 
     match_list = []
 
