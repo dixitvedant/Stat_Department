@@ -69,8 +69,9 @@ def build_defence_json(dfs,filters=None):
 
             batch_data = {
                 "batch": f"Batch {int(d.get('batch_no'))}",
-                "start": int(d.get("start_minute")),
-                "duration": int(d.get("duration"))
+                "start": float(d.get("start_time")),
+                "end_time": float(d.get("end_time")),
+                "duration": float(d.get("duration"))
             }
 
             inning_key = f"inning{inning}"
