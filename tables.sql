@@ -26,47 +26,58 @@ VALUES
 (1, 2, 5, 2, 'Mid');
 */
 
-CREATE TABLE Player(
-    player_id INT PRIMARY KEY AUTO_INCREMENT ,
+CREATE TABLE Player (
+    player_id INT PRIMARY KEY AUTO_INCREMENT,
     team_id INT NOT NULL,
     player_name VARCHAR(50) NOT NULL,
-    player_age INT CHECK(player_age>0),
-    role VARCHAR(20) CHECK (role IN ('Attacker','Defender','All-Rounder','Unknown')),
-    FOREIGN KEY(team_id) REFERENCES Team(team_id) 
+    player_age INT CHECK (player_age > 0),
+    role VARCHAR(20) 
+        CHECK (role IN ('Attacker','Defender','All-Rounder','Unknown')),
+
+    jersey_no INT NOT NULL,
+    
+    CONSTRAINT chk_jersey_range 
+        CHECK (jersey_no BETWEEN 1 AND 15),
+
+    CONSTRAINT unique_team_jersey 
+        UNIQUE (team_id, jersey_no),
+
+    FOREIGN KEY (team_id) 
+        REFERENCES Team(team_id)
 );
 
-INSERT INTO Player (player_id, team_id, player_name, player_age, role)
+INSERT INTO Player (player_id, team_id, player_name, player_age, role,jersey_no)
 VALUES 
-(1, 1, 'aayush yadav', 22, 'Defender'),
-(2, 1, 'dhaygude atharva', 16, 'All-Rounder'),
-(3, 1, 'varad pol', 14, 'Attacker'),
-(4, 1, 'vaibhav jadhav', 16, 'Attacker'),
-(5, 1, 'aayush panghare', 21, 'All-Rounder'),
-(6, 1, 'swaraj ghadhave', 15, 'Attacker'),
-(7, 1, 'pratik aadhav', 14, 'Defender'),
-(8, 1, 'raj pawar', 16, 'Attacker'),
-(9, 1, 'swaraj uttekar', 16, 'All-Rounder'),
-(10, 1, 'mayureshwar gosavi', 14, 'Defender'),
-(11, 1, 'vighnesh girme', 16, 'Attacker'),
-(12, 1, 'soham hipparkar', 16, 'All-Rounder'),
-(13, 1, 'soham bhamare', 15, 'Attacker'),
-(14, 1, 'Tej Shinde', 14, 'Attacker'),
-(15, 1, 'Sarthak Mahadik', 15, 'All-Rounder'),
-(16, 2, 'kartavya gandekr', 14, 'Defender'),
-(17, 2, 'soham deshmukh', 16, 'Attacker'),
-(18, 2, 'atul parde', 16, 'All-Rounder'),
-(19, 2, 'shreeyash maharugade', 15, 'Attacker'),
-(20, 2, 'om wagh', 14, 'Defender'),
-(21, 2, 'sangam thakur', 14, 'Attacker'),
-(22, 2, 'krushna mahanvar', 16, 'All-Rounder'),
-(23, 2, 'pranav mane', 15, 'Defender'),
-(24, 2, 'shreeraj tangade', 14, 'Defender'),
-(25, 2, 'satyam sakat', 16, 'Attacker'),
-(26, 2, 'tanmay nigudkar', 16, 'All-Rounder'),
-(27, 2, 'umesh dongare', 15, 'Attacker'),
-(28, 2, 'pallav sarade', 14, 'Defender'),
-(29, 2, 'arjun gorade', 16, 'Attacker'),
-(30, 2, 'vedant gaikwad', 16, 'All-Rounder');
+(1, 1, 'aayush yadav', 22, 'Defender',1),
+(2, 1, 'dhaygude atharva', 16, 'All-Rounder',2),
+(3, 1, 'varad pol', 14, 'Attacker',3),
+(4, 1, 'vaibhav jadhav', 16, 'Attacker',4),
+(5, 1, 'aayush panghare', 21, 'All-Rounder',5),
+(6, 1, 'swaraj ghadhave', 15, 'Attacker',6),
+(7, 1, 'pratik aadhav', 14, 'Defender',7),
+(8, 1, 'raj pawar', 16, 'Attacker',8),
+(9, 1, 'swaraj uttekar', 16, 'All-Rounder',9),
+(10, 1, 'mayureshwar gosavi', 14, 'Defender',10),
+(11, 1, 'vighnesh girme', 16, 'Attacker',11),
+(12, 1, 'soham hipparkar', 16, 'All-Rounder',12),
+(13, 1, 'soham bhamare', 15, 'Attacker',13),
+(14, 1, 'Tej Shinde', 14, 'Attacker',14),
+(15, 1, 'Sarthak Mahadik', 15, 'All-Rounder',15),
+(16, 2, 'kartavya gandekr', 14, 'Defender',1),
+(17, 2, 'soham deshmukh', 16, 'Attacker',2),
+(18, 2, 'atul parde', 16, 'All-Rounder',3),
+(19, 2, 'shreeyash maharugade', 15, 'Attacker',4),
+(20, 2, 'om wagh', 14, 'Defender',5),
+(21, 2, 'sangam thakur', 14, 'Attacker',6),
+(22, 2, 'krushna mahanvar', 16, 'All-Rounder',7),
+(23, 2, 'pranav mane', 15, 'Defender',8),
+(24, 2, 'shreeraj tangade', 14, 'Defender',9),
+(25, 2, 'satyam sakat', 16, 'Attacker',10),
+(26, 2, 'tanmay nigudkar', 16, 'All-Rounder',11),
+(27, 2, 'umesh dongare', 15, 'Attacker',12),
+(28, 2, 'pallav sarade', 14, 'Defender',13),
+(29, 2, 'arjun gorade', 16, 'Attacker',14),
+(30, 2, 'vedant gaikwad', 16, 'All-Rounder',15);
 
 CREATE TABLE Team(
     team_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -99,20 +110,20 @@ CREATE TABLE Match_details(
     winning_team INT,
 	home_team_score INT, --updated
 	away_team_score INT, --updated
-    result VARCHAR(40),   --updated
+    result VARCHAR(40), --updated
     FOREIGN KEY(home_team) REFERENCES Team(team_id),
     FOREIGN KEY(away_team) REFERENCES Team(team_id),
     FOREIGN KEY(winning_team) REFERENCES Team(team_id),
     FOREIGN KEY(season_id) REFERENCES Season(season_id) 
 );
 
-INSERT INTO Match_details (match_id, venue, home_team, away_team, match_date, winning_team)
+INSERT INTO Match_details (match_id, season_id,venue, home_team, away_team, match_date, winning_team, home_team_score, away_team_score, result)
 VALUES 
-(1, 'Pune', 1, 2, '2026-01-10', 2),
-(2, 'Mumbai', 3, 4, '2026-01-12', 3),
-(3, 'Nashik', 5, 6, '2026-01-15', 6),
-(4, 'Nagpur', 7, 8, '2026-01-18', 7),
-(5, 'Kolhapur', 2, 3, '2026-01-20', 2);
+(1, 1, 'Pune', 1, 2, '2026-01-10', 1, 18, 15, NULL),
+(2, 1, 'Mumbai', 3, 4, '2026-01-12', 4, 20, 25, NULL),
+(3, 1, 'Nashik', 5, 6, '2026-01-15', NULL, 15, 15, NULL),
+(4, 1, 'Nagpur', 7, 8, '2026-01-18', 8, 10, 35, NULL),
+(5, 1,' Kolhapur', 2, 3, '2026-01-20', 2, 28, 15, NULL);
 
 
 CREATE TABLE Player_match_stat(
@@ -161,28 +172,28 @@ VALUES
 (30, 30, 2, 2, 90, 0, 1);
 
 CREATE  TABLE team_stat(
-	team_id INT ,
+	team_id INT PRIMARY KEY,
 	matches_played INT,
 	matches_wins INT,
 	matches_lost INT,
 	matches_draws INT,
 	total_points INT,
-    tournament_id INT, --updated
-    PRIMARY KEY (team_id,tournament_id),
+	recent_form JSON,
+    season_id INT, --updated
     FOREIGN KEY(team_id) REFERENCES Team(team_id),
-    FOREIGN KEY(tournament_id) REFERENCES Tournament(tournament_id)
+    FOREIGN KEY(season_id) REFERENCES Season(season_id)
 );
 
-INSERT INTO team_stat (team_id, matches_played, matches_wins, matches_lost, matches_draws, total_points)
+INSERT INTO team_stat (team_id, matches_played, matches_wins, matches_lost, matches_draws, total_points,recent_form,season_id)
 VALUES 
-(1, 7, 4, 3, 0, 8),
-(2, 7, 7, 0, 0, 14),
-(3, 7, 5, 1, 1, 11),
-(4, 7, 1, 6, 0, 2),
-(5, 7, 3, 4, 0, 6),
-(6, 7, 0, 5, 2, 2),
-(7, 7, 6, 1, 0, 12),
-(8, 7, 5, 1, 1, 11);
+(1, 7, 4, 3, 0, 8, ["W", "W", "W", "L", "W"], 1),
+(2, 7, 7, 0, 0, 14, ["W", "W", "W", "W", "W"], 1),
+(3, 7, 5, 1, 1, 11, ["D", "W", "W", "L", "W"], 1),
+(4, 7, 1, 6, 0, 2, ["L", "L", "W", "L", "L"], 1),
+(5, 7, 3, 4, 0, 6, ["L", "W", "W", "L", "W"], 1),
+(6, 7, 0, 5, 2, 2, ["D", "L", "D", "L", "L"], 1),
+(7, 7, 6, 1, 0, 12, ["L", "W", "W", "W", "W"], 1),
+(8, 7, 5, 1, 1, 11, ["W", "D", "W", "L", "W"], 1);
 
 CREATE TABLE Match_Stats (
 	stat_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -321,6 +332,17 @@ CREATE TABLE Player_season_stat (
     FOREIGN KEY (season_id) REFERENCES Season(season_id)
 );
 
+INSERT INTO Player_season_stat (player_id,season_id,total_attack_points,total_dives,matches_played) 
+VALUES
+	(1, 1, 120, 30, 12, 10),
+	(2, 1, 85, 95, 20, 10),
+	(3, 1, 150, 40, 10, 10),
+	(4, 1, 60, 110, 25, 10),
+	(5, 1, 100, 80, 18, 10),
+	(6, 1, 45, 130, 30, 10),
+	(7, 1, 90, 60, 15, 10),
+	(8, 1, 70, 75, 16, 10);
+
 CREATE TABLE Tournament(
     tournament_id INT PRIMARY KEY AUTO_INCREMENT,
     tournament_name VARCHAR(30) NOT NULL,
@@ -341,8 +363,6 @@ VALUES
 ('Women National Championship', 'Group + Knockout', 2023),
 ('Kho-Kho Pro League', 'Knockout', 2024),
 ('National Games Kho-Kho', 'All to all', 2024);
-
-
 
 CREATE TABLE Match_Awards(
     match_id INT,
@@ -366,9 +386,6 @@ VALUES
 (4, 'Best Defender', 2, 2),
 (5, 'Best Defender', 10, 3),
 (5, 'Best AllRounder', 11, 3);
-
-
-
 
 -- Don't add values here
 CREATE TABLE raw_match_file_log(
@@ -441,6 +458,7 @@ CREATE TABLE Injury_Report (
     FOREIGN KEY (player_id) REFERENCES Player(player_id),
     FOREIGN KEY (match_id) REFERENCES Match_details(match_id)
 );
+
 
 
 
