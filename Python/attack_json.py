@@ -1,30 +1,61 @@
-"""
-def build_attack_json(dfs):
+import pandas as pd
+def build_attack_json(dfs,filters=None):
     matches=dfs.get("match_details")
     teams=dfs.get("team")
     attack=dfs.get("team_attack")
-    attack_list=[]
+    attack_dic={}
     team_name_map = {row.team_id: row.team_name for _, row in teams.iterrows()} if teams is not None else {}
     if matches is None:
-        return attack_list
+        return attack_dic
+    if filters:
+
+        seasons = dfs.get("season")
+
+        if filters.get("tournament_id") is not None and seasons is not None:
+            matches = matches[
+                matches["season_id"].isin(
+                    seasons.loc[
+                        seasons["tournament_id"] == filters["tournament_id"],
+                        "season_id"
+                    ]
+                )
+            ]
+
+        if filters.get("season_id") is not None:
+            matches = matches[
+                matches["season_id"] == filters["season_id"]
+            ]
+
+        if filters.get("match_id") is not None:
+            matches = matches[
+                matches["match_id"] == filters["match_id"]
+            ]
+
+        if filters.get("team_id") is not None:
+            matches = matches[
+                (matches["home_team"] == filters["team_id"]) |
+                (matches["away_team"] == filters["team_id"])
+            ]
+
+        attack = attack[
+            attack["match_id"].isin(matches["match_id"])]
+
+            
     for _,m in matches.iterrows():
-        #print("in match")
         m_id=m.get("match_id")
         team_cols = []
         phase_dic={}
-        if "team_a" in m and pd.notna(m["team_a"]):
-            team_cols.append(m["team_a"])
-        if "team_b" in m and pd.notna(m["team_b"]):
-            team_cols.append(m["team_b"])
+        if "home_team" in m and pd.notna(m["home_team"]):
+            team_cols.append(m["home_team"])
+        if "away_team" in m and pd.notna(m["away_team"]):
+            team_cols.append(m["away_team"])
         for tid in team_cols:
             for _,a in attack.iterrows():
                 t_id=a.get("team_id")
-                #print("match_id: ",m_id,"attack_match_id: ",a["match_id"])
-                #print("team_id: ",tid,"attack team_id: ",a["team_id"])
                 if int(a["match_id"]) == int(m_id) and int(a["team_id"]) == int(tid):
-                    #print("in if") 
                     team_name=team_name_map.get(t_id,-1)
-                    innings=a.get("inning")
+                    inning=a.get("inning")
+                    innings="inning"+str(inning)
                     points=a.get("points")
                     phase=a.get("phase")
                     if innings not in phase_dic:
@@ -32,35 +63,5 @@ def build_attack_json(dfs):
                     if phase not in phase_dic[innings]:
                         phase_dic[innings][phase] = {}
                     phase_dic[innings][phase][team_name] = points
-        #print(team_cols)            
-        attack_list.append({m_id:phase_dic})
-    return attack_list
-"""
-def build_attack_json(dfs):
-    matches = dfs.get("match_details")
-    teams = dfs.get("team")
-    attack = dfs.get("team_attack")
-
-    result = []
-
-    team_name_map = (
-        {row.team_id: row.team_name for _, row in teams.iterrows()}
-        if teams is not None else {}
-    )
-
-    if matches is None or attack is None:
-        return result
-
-    for _, a in attack.iterrows():
-        match_id = a["match_id"]
-        team_name = team_name_map.get(a["team_id"], "UNKNOWN")
-
-        result.append({
-            "match_id": int(match_id),
-            "inning": int(a["inning"]),
-            "team": str(team_name),
-            "phase":str(a["phase"]),
-            "points":int(a["points"])
-        })
-
-    return result                  
+        attack_dic[m_id]=phase_dic
+    return attack_dic           

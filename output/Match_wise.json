@@ -1,6 +1,32 @@
 [
   {
-    "1": {
+    "Match ID": 1,
+    "Match Date": "2026-01-10",
+    "Score": "Satara Warriors vs Pune Champions",
+    "Winner Team": "Pune Champions",
+    "Attack": {
+      "1": {
+        "Early": {
+          "Satara Warriors": 3,
+          "Pune Champions": 1
+        },
+        "Mid": {
+          "Satara Warriors": 4,
+          "Pune Champions": 3
+        }
+      },
+      "2": {
+        "Early": {
+          "Satara Warriors": 2,
+          "Pune Champions": 2
+        },
+        "Mid": {
+          "Satara Warriors": 3,
+          "Pune Champions": 5
+        }
+      }
+    },
+    "defence": {
       "1": {
         "Satara Warriors": [
           {
@@ -71,7 +97,41 @@
     }
   },
   {
-    "2": {
+    "Match ID": 2,
+    "Match Date": "2026-01-12",
+    "Score": "Solapur Royals vs Dharashiv Marshals",
+    "Winner Team": "Solapur Royals",
+    "Attack": {
+      "1": {
+        "Early": {
+          "Solapur Royals": 4,
+          "Dharashiv Marshals": 2
+        },
+        "Mid": {
+          "Solapur Royals": 5,
+          "Dharashiv Marshals": 3
+        },
+        "End": {
+          "Solapur Royals": 3,
+          "Dharashiv Marshals": 4
+        }
+      },
+      "2": {
+        "Early": {
+          "Solapur Royals": 2,
+          "Dharashiv Marshals": 3
+        },
+        "Mid": {
+          "Solapur Royals": 4,
+          "Dharashiv Marshals": 5
+        },
+        "End": {
+          "Solapur Royals": 3,
+          "Dharashiv Marshals": 2
+        }
+      }
+    },
+    "defence": {
       "1": {
         "Solapur Royals": [
           {
@@ -132,12 +192,27 @@
     }
   },
   {
-    "3": {}
+    "Match ID": 3,
+    "Match Date": "2026-01-15",
+    "Score": "Chennai Guns vs Mumbai Khiladi",
+    "Winner Team": "Mumbai Khiladi",
+    "Attack": {},
+    "defence": {}
   },
   {
-    "4": {}
+    "Match ID": 4,
+    "Match Date": "2026-01-18",
+    "Score": "Delhi Deredevils vs Hyderabad Spartans",
+    "Winner Team": "Delhi Deredevils",
+    "Attack": {},
+    "defence": {}
   },
   {
-    "5": {}
+    "Match ID": 5,
+    "Match Date": "2026-01-20",
+    "Score": "Pune Champions vs Solapur Royals",
+    "Winner Team": "Pune Champions",
+    "Attack": {},
+    "defence": {}
   }
 ]

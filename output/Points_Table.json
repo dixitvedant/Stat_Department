@@ -1,66 +1,138 @@
 [
   {
+    "Season name": "Season 2020",
+    "Position": 1,
     "Team name": "Pune Champions",
     "Total Matches Played": 7,
     "Total Wins": 7,
     "Total Lost": 0,
     "Total Draws": 0,
-    "Total Points": 14
+    "Total Points": 14,
+    "Recent Form": [
+      "W",
+      "W",
+      "W",
+      "W",
+      "W"
+    ]
   },
   {
+    "Season name": "Season 2020",
+    "Position": 2,
     "Team name": "Delhi Deredevils",
     "Total Matches Played": 7,
     "Total Wins": 6,
     "Total Lost": 1,
     "Total Draws": 0,
-    "Total Points": 12
+    "Total Points": 12,
+    "Recent Form": [
+      "L",
+      "W",
+      "W",
+      "W",
+      "W"
+    ]
   },
   {
+    "Season name": "Season 2020",
+    "Position": 3,
     "Team name": "Solapur Royals",
     "Total Matches Played": 7,
     "Total Wins": 5,
     "Total Lost": 1,
     "Total Draws": 1,
-    "Total Points": 11
+    "Total Points": 11,
+    "Recent Form": [
+      "D",
+      "W",
+      "W",
+      "L",
+      "W"
+    ]
   },
   {
+    "Season name": "Season 2020",
+    "Position": 4,
     "Team name": "Hyderabad Spartans",
     "Total Matches Played": 7,
     "Total Wins": 5,
     "Total Lost": 1,
     "Total Draws": 1,
-    "Total Points": 11
+    "Total Points": 11,
+    "Recent Form": [
+      "W",
+      "D",
+      "W",
+      "L",
+      "W"
+    ]
   },
   {
+    "Season name": "Season 2020",
+    "Position": 5,
     "Team name": "Satara Warriors",
     "Total Matches Played": 7,
     "Total Wins": 4,
     "Total Lost": 3,
     "Total Draws": 0,
-    "Total Points": 8
+    "Total Points": 8,
+    "Recent Form": [
+      "W",
+      "W",
+      "W",
+      "L",
+      "W"
+    ]
   },
   {
+    "Season name": "Season 2020",
+    "Position": 6,
     "Team name": "Chennai Guns",
     "Total Matches Played": 7,
     "Total Wins": 3,
     "Total Lost": 4,
     "Total Draws": 0,
-    "Total Points": 6
+    "Total Points": 6,
+    "Recent Form": [
+      "L",
+      "W",
+      "W",
+      "L",
+      "W"
+    ]
   },
   {
+    "Season name": "Season 2020",
+    "Position": 7,
     "Team name": "Dharashiv Marshals",
     "Total Matches Played": 7,
     "Total Wins": 1,
     "Total Lost": 6,
     "Total Draws": 0,
-    "Total Points": 2
+    "Total Points": 2,
+    "Recent Form": [
+      "L",
+      "L",
+      "W",
+      "L",
+      "L"
+    ]
   },
   {
+    "Season name": "Season 2020",
+    "Position": 8,
     "Team name": "Mumbai Khiladi",
     "Total Matches Played": 7,
     "Total Wins": 0,
     "Total Lost": 5,
     "Total Draws": 2,
-    "Total Points": 2
+    "Total Points": 2,
+    "Recent Form": [
+      "D",
+      "L",
+      "D",
+      "L",
+      "L"
+    ]
   }
 ]

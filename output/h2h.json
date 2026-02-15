@@ -2,51 +2,86 @@
   {
     "match_id": 1,
     "match_date": "2026-01-10",
-    "Home Team": "Satara Warriors",
-    "Home_Team_Score": 18,
-    "Away Team": "Pune Champions",
-    "Away_Team_Score": 15,
-    "Winning Team": "Pune Champions",
-    "Result": "None"
+    "home_team": {
+      "team_id": 1,
+      "team_name": "Satara Warriors",
+      "score": 18
+    },
+    "away_team": {
+      "team_id": 2,
+      "team_name": "Pune Champions",
+      "score": 15
+    },
+    "Result": null,
+    "winner_team_id": 1,
+    "winner_name": "Satara Warriors"
   },
   {
     "match_id": 2,
     "match_date": "2026-01-12",
-    "Home Team": "Solapur Royals",
-    "Home_Team_Score": 20,
-    "Away Team": "Dharashiv Marshals",
-    "Away_Team_Score": 25,
-    "Winning Team": "Solapur Royals",
-    "Result": "None"
+    "home_team": {
+      "team_id": 3,
+      "team_name": "Solapur Royals",
+      "score": 20
+    },
+    "away_team": {
+      "team_id": 4,
+      "team_name": "Dharashiv Marshals",
+      "score": 25
+    },
+    "Result": null,
+    "winner_team_id": 4,
+    "winner_name": "Dharashiv Marshals"
   },
   {
     "match_id": 3,
     "match_date": "2026-01-15",
-    "Home Team": "Chennai Guns",
-    "Home_Team_Score": 15,
-    "Away Team": "Mumbai Khiladi",
-    "Away_Team_Score": 15,
-    "Winning Team": "Mumbai Khiladi",
-    "Result": "None"
+    "home_team": {
+      "team_id": 5,
+      "team_name": "Chennai Guns",
+      "score": 15
+    },
+    "away_team": {
+      "team_id": 6,
+      "team_name": "Mumbai Khiladi",
+      "score": 15
+    },
+    "Result": null,
+    "winner_team_id": null,
+    "winner_name": null
   },
   {
     "match_id": 4,
     "match_date": "2026-01-18",
-    "Home Team": "Delhi Deredevils",
-    "Home_Team_Score": 10,
-    "Away Team": "Hyderabad Spartans",
-    "Away_Team_Score": 35,
-    "Winning Team": "Delhi Deredevils",
-    "Result": "None"
+    "home_team": {
+      "team_id": 7,
+      "team_name": "Delhi Deredevils",
+      "score": 10
+    },
+    "away_team": {
+      "team_id": 8,
+      "team_name": "Hyderabad Spartans",
+      "score": 35
+    },
+    "Result": null,
+    "winner_team_id": 8,
+    "winner_name": "Hyderabad Spartans"
   },
   {
     "match_id": 5,
     "match_date": "2026-01-20",
-    "Home Team": "Pune Champions",
-    "Home_Team_Score": 28,
-    "Away Team": "Solapur Royals",
-    "Away_Team_Score": 15,
-    "Winning Team": "Pune Champions",
-    "Result": "None"
+    "home_team": {
+      "team_id": 2,
+      "team_name": "Pune Champions",
+      "score": 28
+    },
+    "away_team": {
+      "team_id": 3,
+      "team_name": "Solapur Royals",
+      "score": 15
+    },
+    "Result": null,
+    "winner_team_id": 2,
+    "winner_name": "Pune Champions"
   }
 ]

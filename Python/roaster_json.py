@@ -1,73 +1,73 @@
-def build_roaster_json(dfs):
-    """
+import pandas as pd
+
+def build_roaster_json(dfs,filters=None):
     matches = dfs.get("match_details")
     players = dfs.get("player")
     pms = dfs.get("player_match_stat")
     teams = dfs.get("team")
-    roster_list = []
+
+    roster_dict = {}
+
+    if matches is None :
+        return roster_dict
+    
+    if filters:
+        if filters.get("match_id") is not None:
+            matches = matches[matches["match_id"] == filters["match_id"]]
+            pms = pms[pms["match_id"] == filters["match_id"]]
+
+        if filters.get("team_id") is not None:
+            players = players[players["team_id"] == filters["team_id"]]
+
+        if filters.get("role") is not None:
+            players = players[
+                players["role"].str.lower() == filters["role"].lower()
+            ]
+
 
     team_name_map = {row.team_id: row.team_name for _, row in teams.iterrows()} if teams is not None else {}
-    player_name_map = {row.player_id: row.player_name for _, row in players.iterrows()} if players is not None else {}
-    player_role_map = {row.player_id: row.role for _, row in players.iterrows()} if players is not None else {}
-    player_team_map={int(row.player_id): int(row.team_id) for _, row in players.iterrows()} if players is not None else {}
-    if matches is None:
-        return roster_list
+    player_name_map = {row.player_id: row.player_name for _, row in players.iterrows()}
+    player_role_map = {row.player_id: row.role for _, row in players.iterrows()}
+    player_team_map = {int(row.player_id): int(row.team_id) for _, row in players.iterrows()}
 
     for _, m in matches.iterrows():
-        match_id = m.get("match_id")
-        match_date = m.get("match_date")
-        team_cols = []
-        if "team_a" in m and pd.notna(m["team_a"]):
-            team_cols.append(m["team_a"])
-        if "team_b" in m and pd.notna(m["team_b"]):
-            team_cols.append(m["team_b"])
-        teams_info = []
-        for tid in team_cols:
+
+        match_id = int(m["match_id"])
+        match_date = m["match_date"]
+
+        home_team = m.get("home_team")
+        away_team = m.get("away_team")
+
+        match_players = pms[pms["match_id"] == match_id]
+
+        def get_team_data(team_id):
             attackers, defenders, all_rounders = [], [], []
-            if players is not None:
-                pm_team = pms[pms["match_id"] == match_id]
-                for _, prow in pm_team.iterrows():
-                    pid = int(prow["player_id"])
-                    pt_id=player_team_map.get(pid,-1)
-                    if int(tid)==int(pt_id):
-                                pname = player_name_map.get(pid, "Unknown")
-                                role = player_role_map.get(pid,"Unknown")
-                                player_obj = {"player_id": int(pid), "player_name": pname}
-                                if role.lower() == "attacker":
-                                    attackers.append(player_obj)
-                                elif role.lower() == "defender":
-                                    defenders.append(player_obj)
-                                elif role.lower() == "all-rounder":
-                                    all_rounders.append(player_obj)
-            teams_info.append({
-                "team_id": int(tid),
-                "team_name": team_name_map.get(tid, "Unknown"),
+
+            for _, prow in match_players.iterrows():
+                pid = int(prow["player_id"])
+
+                if player_team_map.get(pid) == int(team_id):
+                    pname = player_name_map.get(pid, "Unknown")
+                    role = player_role_map.get(pid, "").lower()
+
+                    if role == "attacker":
+                        attackers.append(pname)
+                    elif role == "defender":
+                        defenders.append(pname)
+                    elif role == "all-rounder":
+                        all_rounders.append(pname)
+
+            return {
+                "name": team_name_map.get(team_id, "Unknown"),
                 "attackers": attackers,
                 "defenders": defenders,
-                "all_rounders": all_rounders,
-            })
-        roster_list.append({
-            "match_id": int(match_id),
+                "allRounders": all_rounders
+            }
+
+        roster_dict[str(match_id)] = {
             "match_date": str(match_date) if pd.notna(match_date) else None,
-            "teams": teams_info
-        })
+            "teamA": get_team_data(home_team),
+            "teamB": get_team_data(away_team)
+        }
 
-    return roster_list"""
-    player=dfs.get("player")
-    teams = dfs.get("team")
-    result = []
-
-    team_name_map = ({row.team_id: row.team_name for _, row in teams.iterrows()}if teams is not None else {})
-    if player is None:
-        return result
-
-    for _, p in player.iterrows():
-        team_name = team_name_map.get(p["team_id"], "UNKNOWN")
-        result.append({
-            "team name":team_name,
-            "player_id":int(p["player_id"]),
-            "player_name":str(p["player_name"]),
-            "role":str(p["role"])
-        })
-
-    return result
+    return roster_dict

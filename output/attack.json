@@ -1,142 +1,67 @@
 [
   {
-    "match_id": 1,
-    "inning": 1,
-    "team": "Satara Warriors",
-    "phase": "Early",
-    "points": 3
+    "1": {
+      "1": {
+        "Early": {
+          "Satara Warriors": 3,
+          "Pune Champions": 1
+        },
+        "Mid": {
+          "Satara Warriors": 4,
+          "Pune Champions": 3
+        }
+      },
+      "2": {
+        "Early": {
+          "Satara Warriors": 2,
+          "Pune Champions": 2
+        },
+        "Mid": {
+          "Satara Warriors": 3,
+          "Pune Champions": 5
+        }
+      }
+    }
   },
   {
-    "match_id": 1,
-    "inning": 1,
-    "team": "Pune Champions",
-    "phase": "Early",
-    "points": 1
+    "2": {
+      "1": {
+        "Early": {
+          "Solapur Royals": 4,
+          "Dharashiv Marshals": 2
+        },
+        "Mid": {
+          "Solapur Royals": 5,
+          "Dharashiv Marshals": 3
+        },
+        "End": {
+          "Solapur Royals": 3,
+          "Dharashiv Marshals": 4
+        }
+      },
+      "2": {
+        "Early": {
+          "Solapur Royals": 2,
+          "Dharashiv Marshals": 3
+        },
+        "Mid": {
+          "Solapur Royals": 4,
+          "Dharashiv Marshals": 5
+        },
+        "End": {
+          "Solapur Royals": 3,
+          "Dharashiv Marshals": 2
+        }
+      }
+    }
   },
   {
-    "match_id": 1,
-    "inning": 1,
-    "team": "Satara Warriors",
-    "phase": "Mid",
-    "points": 4
+    "3": {}
   },
   {
-    "match_id": 1,
-    "inning": 1,
-    "team": "Pune Champions",
-    "phase": "Mid",
-    "points": 3
+    "4": {}
   },
   {
-    "match_id": 1,
-    "inning": 2,
-    "team": "Satara Warriors",
-    "phase": "Early",
-    "points": 2
-  },
-  {
-    "match_id": 1,
-    "inning": 2,
-    "team": "Pune Champions",
-    "phase": "Early",
-    "points": 2
-  },
-  {
-    "match_id": 1,
-    "inning": 2,
-    "team": "Satara Warriors",
-    "phase": "Mid",
-    "points": 3
-  },
-  {
-    "match_id": 1,
-    "inning": 2,
-    "team": "Pune Champions",
-    "phase": "Mid",
-    "points": 5
-  },
-  {
-    "match_id": 2,
-    "inning": 1,
-    "team": "Solapur Royals",
-    "phase": "Early",
-    "points": 4
-  },
-  {
-    "match_id": 2,
-    "inning": 1,
-    "team": "Dharashiv Marshals",
-    "phase": "Early",
-    "points": 2
-  },
-  {
-    "match_id": 2,
-    "inning": 1,
-    "team": "Solapur Royals",
-    "phase": "Mid",
-    "points": 5
-  },
-  {
-    "match_id": 2,
-    "inning": 1,
-    "team": "Dharashiv Marshals",
-    "phase": "Mid",
-    "points": 3
-  },
-  {
-    "match_id": 2,
-    "inning": 1,
-    "team": "Solapur Royals",
-    "phase": "End",
-    "points": 3
-  },
-  {
-    "match_id": 2,
-    "inning": 1,
-    "team": "Dharashiv Marshals",
-    "phase": "End",
-    "points": 4
-  },
-  {
-    "match_id": 2,
-    "inning": 2,
-    "team": "Solapur Royals",
-    "phase": "Early",
-    "points": 2
-  },
-  {
-    "match_id": 2,
-    "inning": 2,
-    "team": "Dharashiv Marshals",
-    "phase": "Early",
-    "points": 3
-  },
-  {
-    "match_id": 2,
-    "inning": 2,
-    "team": "Solapur Royals",
-    "phase": "Mid",
-    "points": 4
-  },
-  {
-    "match_id": 2,
-    "inning": 2,
-    "team": "Dharashiv Marshals",
-    "phase": "Mid",
-    "points": 5
-  },
-  {
-    "match_id": 2,
-    "inning": 2,
-    "team": "Solapur Royals",
-    "phase": "End",
-    "points": 3
-  },
-  {
-    "match_id": 2,
-    "inning": 2,
-    "team": "Dharashiv Marshals",
-    "phase": "End",
-    "points": 2
+    "5": {}
   }
 ]
