@@ -10,8 +10,8 @@ async function initializeSearch() {
         // Run all fetches in parallel for speed
         const [matchesRes, playersRes, teamsRes] = await Promise.allSettled([
             fetch('matches_data.json').then(res => res.json()),
-            fetch('players.json').then(res => res.json()),
-            fetch('teams.json').then(res => res.json())
+            fetch('playerstep1.json').then(res => res.json()),
+            fetch('pointstable.json').then(res => res.json())
         ]);
 
         // 1. Index Matches
