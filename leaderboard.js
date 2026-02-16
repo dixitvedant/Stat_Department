@@ -11,7 +11,7 @@ let players = [];
 document.addEventListener("DOMContentLoaded", async () => {
     try {
         // Fetching player data from the profile JSON file
-        const response = await fetch('http://127.0.0.1:5000/LeaderBoard-Season');
+        const response = await fetch('Leaderboard.json');
         const data = await response.json();
 
         players = data.players;
