@@ -8,6 +8,9 @@ from h2h_list_json import build_h2h_json
 from defence_json import build_defence_json
 from match_wise_json import build_match_wise
 from LeaderBoard_season_json import LeaderBoard
+from match_details_json import build_match_details_json
+from season_player_stats import season_players_json
+#from player_profile import build_players_json
 
 app = Flask(__name__)
 
@@ -20,7 +23,25 @@ def load_clean_data():
 
     conn.close()
     return dfs
+"""
+@app.route("/player-profile")
+def get_player_season_profile():
+    dfs=load_clean_data()
+    data=build_players_json(dfs)
+    return jsonify(data)"""
 
+@app.route("/player-season")
+def get_player_season_stats():
+    dfs=load_clean_data()
+    data=season_players_json(dfs)
+    return jsonify(data)
+
+@app.route("/match-details")
+def get_match_details():
+    dfs=load_clean_data()
+    data=build_match_details_json(dfs)
+    return jsonify(data)
+    
 @app.route("/point-table")
 def get_point_table():
     filters = {}
