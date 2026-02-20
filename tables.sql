@@ -231,16 +231,33 @@ CREATE  TABLE Team_Attack(
 
 INSERT INTO Team_Attack (match_id,team_id,points,inning,phase)
 VALUES
-(1, 1, 8,  1, 'Early'),
-(1, 1, 6,  1, 'Mid'),
-(1, 1, 5,  1, 'End'),
-(1, 1, 7,  2, 'Early'),
-(1, 1, 6,  2, 'Mid'),
-(1, 2, 9,  1, 'Early'),
-(1, 2, 7,  1, 'Mid'),
-(1, 2, 6,  2, 'Early'),
-(1, 2, 5,  2, 'Mid'),
-(1, 2, 4,  2, 'End');
+INSERT INTO Team_Attack (Attack_id, match_id, team_id, points, inning, phase)
+VALUES
+(1, 1, 1, 3, 1, 'Early'),
+(2, 1, 2, 1, 1, 'Early'),
+(3, 1, 1, 4, 1, 'Mid'),
+(4, 1, 2, 3, 1, 'Mid'),
+(5, 1, 1, 2, 2, 'Early'),
+(6, 1, 2, 2, 2, 'Early'),
+(7, 1, 1, 3, 2, 'Mid'),
+(8, 1, 2, 5, 2, 'Mid'),
+(9, 2, 3, 4, 1, 'Early'),
+(10, 2, 4, 2, 1, 'Early'),
+(11, 2, 3, 5, 1, 'Mid'),
+(12, 2, 4, 3, 1, 'Mid'),
+(13, 2, 3, 3, 1, 'End'),
+(14, 2, 4, 4, 1, 'End'),
+(15, 2, 3, 2, 2, 'Early'),
+(16, 2, 4, 3, 2, 'Early'),
+(17, 2, 3, 4, 2, 'Mid'),
+(18, 2, 4, 5, 2, 'Mid'),
+(19, 2, 3, 3, 2, 'End'),
+(20, 2, 4, 2, 2, 'End'),
+(21, 1, 1, 5, 1, 'End'),
+(22, 1, 2, 3, 1, 'End'),
+(23, 1, 1, 2, 2, 'End'),
+(24, 1, 2, 6, 2, 'End');
+
 
 
 CREATE TABLE Team_Defence (
@@ -548,6 +565,7 @@ CREATE TABLE Injury_Report (
     FOREIGN KEY (player_id) REFERENCES Player(player_id),
     FOREIGN KEY (match_id) REFERENCES Match_details(match_id)
 );
+
 
 
 
