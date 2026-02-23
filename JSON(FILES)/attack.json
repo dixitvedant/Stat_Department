@@ -25,7 +25,7 @@
   },
   "M03": {
     "inning1": {
-      "Early": { "teamA": 4, "teamB": 2 },
+      "Early": { "teamA": 10, "teamB": 2 },
       "Mid": { "teamA": 5, "teamB": 3 },
       "End": { "teamA": 2, "teamB": 3 }
     },
