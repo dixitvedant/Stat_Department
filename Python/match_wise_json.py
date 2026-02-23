@@ -89,9 +89,9 @@ def build_match_wise(dfs,filters=None):
         away_score = m.get("away_team_score", "")
 
         score_text = f"{home_team_name} {home_score} - {away_score} {away_team_name}"
-
+        match_code = f"M{m_id:02d}"
         match_list.append({
-            "id": m_id,
+            "id": match_code,
             "name": f"{home_team_name} vs {away_team_name}",
             "date": m_date,
             "season": season_name,
@@ -102,3 +102,4 @@ def build_match_wise(dfs,filters=None):
 
 
     return {"matches": match_list}
+
