@@ -11,7 +11,7 @@ let players = [];
 document.addEventListener("DOMContentLoaded", async () => {
     try {
         // Fetching player data from the profile JSON file
-        const response = await fetch('player_profile.json');
+        const response = await fetch("player_profile.json");
         const data = await response.json();
 
         players = data.players;

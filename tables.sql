@@ -31,8 +31,9 @@ CREATE TABLE Player (
     team_id INT NOT NULL,
     player_name VARCHAR(50) NOT NULL,
     player_age INT CHECK (player_age > 0),
-    role VARCHAR(20) 
+    role VARCHAR(20),
         CHECK (role IN ('Attacker','Defender','All-Rounder','Unknown')),
+	image_url VARCHAR(200),
 
     jersey_no INT NOT NULL,
     
@@ -230,16 +231,33 @@ CREATE  TABLE Team_Attack(
 
 INSERT INTO Team_Attack (match_id,team_id,points,inning,phase)
 VALUES
-(1, 1, 8,  1, 'Early'),
-(1, 1, 6,  1, 'Mid'),
-(1, 1, 5,  1, 'End'),
-(1, 1, 7,  2, 'Early'),
-(1, 1, 6,  2, 'Mid'),
-(1, 2, 9,  1, 'Early'),
-(1, 2, 7,  1, 'Mid'),
-(1, 2, 6,  2, 'Early'),
-(1, 2, 5,  2, 'Mid'),
-(1, 2, 4,  2, 'End');
+INSERT INTO Team_Attack (Attack_id, match_id, team_id, points, inning, phase)
+VALUES
+(1, 1, 1, 3, 1, 'Early'),
+(2, 1, 2, 1, 1, 'Early'),
+(3, 1, 1, 4, 1, 'Mid'),
+(4, 1, 2, 3, 1, 'Mid'),
+(5, 1, 1, 2, 2, 'Early'),
+(6, 1, 2, 2, 2, 'Early'),
+(7, 1, 1, 3, 2, 'Mid'),
+(8, 1, 2, 5, 2, 'Mid'),
+(9, 2, 3, 4, 1, 'Early'),
+(10, 2, 4, 2, 1, 'Early'),
+(11, 2, 3, 5, 1, 'Mid'),
+(12, 2, 4, 3, 1, 'Mid'),
+(13, 2, 3, 3, 1, 'End'),
+(14, 2, 4, 4, 1, 'End'),
+(15, 2, 3, 2, 2, 'Early'),
+(16, 2, 4, 3, 2, 'Early'),
+(17, 2, 3, 4, 2, 'Mid'),
+(18, 2, 4, 5, 2, 'Mid'),
+(19, 2, 3, 3, 2, 'End'),
+(20, 2, 4, 2, 2, 'End'),
+(21, 1, 1, 5, 1, 'End'),
+(22, 1, 2, 3, 1, 'End'),
+(23, 1, 1, 2, 2, 'End'),
+(24, 1, 2, 6, 2, 'End');
+
 
 
 CREATE TABLE Team_Defence (
@@ -387,6 +405,95 @@ VALUES
 (5, 'Best Defender', 10, 3),
 (5, 'Best AllRounder', 11, 3);
 
+CREATE TABLE Player_Defence (
+    player_def_id INT PRIMARY KEY AUTO_INCREMENT,
+    match_id INT,
+    player_id INT,
+    inning_no INT,
+    start_seconds INT,
+    end_seconds INT,
+    duration_seconds INT,
+    FOREIGN KEY (match_id) REFERENCES Match_details(match_id),
+    FOREIGN KEY (player_id) REFERENCES Player(player_id)
+    );
+
+INSERT INTO Player_Defence
+(match_id, player_id, inning_no, start_seconds, end_seconds, duration_seconds)
+VALUES
+(1,1,1,30,90,60),
+(1,3,1,100,130,30),
+(1,3,2,50,80,30),
+(1,4,1,0,70,70),
+(1,4,1,150,200,50),
+(1,4,2,100,130,30),
+(1,5,2,200,260,60),
+(1,6,1,200,280,80),
+(1,6,2,50,150,100),
+(1,7,1,300,360,60),
+(1,7,2,150,210,60),
+(1,8,2,10,50,40),
+(1,9,1,50,90,40),
+(1,9,2,250,290,40),
+(1,10,1,180,210,30),
+(1,10,2,300,360,60);
+
+
+CREATE TABLE Player_Attack(
+    player_attack_id INT PRIMARY KEY AUTO_INCREMENT,
+    match_id INT,
+    player_id INT,
+    inning INT,
+    phase VARCHAR(10),
+    points INT,
+    FOREIGN KEY (match_id) REFERENCES Match_details(match_id),
+	FOREIGN KEY (player_id) REFERENCES Player(player_id)
+	);
+
+INSERT INTO Player_Attack
+(match_id, player_id, inning, phase, points)
+VALUES
+(1,1,1,'Early',3),
+(1,1,1,'Mid',2),
+(1,1,2,'End',3),
+(1,2,1,'Mid',4),
+(1,2,2,'End',2),
+(1,5,1,'Early',4),
+(1,5,2,'Mid',3),
+(1,5,2,'End',3),
+(1,6,1,'End',3),
+(1,6,2,'Mid',2),
+(2,7,1,'Early',4),
+(2,7,1,'Mid',3),
+(2,7,2,'End',4),
+(2,8,1,'Mid',5),
+(2,8,2,'End',3),
+(2,9,1,'Early',6),
+(2,9,2,'Mid',4),
+(2,9,2,'End',3),
+(2,10,1,'End',2),
+(2,10,2,'Mid',3),
+(3,1,1,'Early',2),
+(3,1,2,'End',3),
+(3,2,1,'Mid',3),
+(3,2,2,'End',2),
+(3,3,1,'Early',4),
+(3,3,2,'Mid',3),
+(4,5,1,'Early',5),
+(4,5,1,'Mid',3),
+(4,5,2,'End',4),
+(4,6,1,'Mid',4),
+(4,6,2,'End',3),
+(4,7,1,'Early',6),
+(4,7,2,'Mid',4),
+(5,5,1,'Early',4),
+(5,5,1,'Mid',3),
+(5,5,2,'End',5),
+(5,6,1,'Mid',4),
+(5,6,2,'End',3),
+(5,9,1,'Early',5),
+(5,9,2,'Mid',4);
+
+
 -- Don't add values here
 CREATE TABLE raw_match_file_log(
 	file_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -458,6 +565,8 @@ CREATE TABLE Injury_Report (
     FOREIGN KEY (player_id) REFERENCES Player(player_id),
     FOREIGN KEY (match_id) REFERENCES Match_details(match_id)
 );
+
+
 
 
 
