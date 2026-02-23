@@ -80,7 +80,8 @@ def build_defence_json(dfs,filters=None):
                 match_structure["defence"][inning_key][team_name] = []
 
             match_structure["defence"][inning_key][team_name].append(batch_data)
-
-        defence_dict[str(m_id)] = match_structure
+        match_code = f"M{m_id:02d}"
+        defence_dict[match_code] = match_structure
 
     return defence_dict
+
