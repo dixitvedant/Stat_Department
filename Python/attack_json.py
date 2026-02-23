@@ -63,5 +63,7 @@ def build_attack_json(dfs,filters=None):
                     if phase not in phase_dic[innings]:
                         phase_dic[innings][phase] = {}
                     phase_dic[innings][phase][team_name] = points
-        attack_dic[m_id]=phase_dic
+        match_code = f"M{m_id:02d}"
+        attack_dic[match_code]=phase_dic
     return attack_dic           
+
