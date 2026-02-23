@@ -66,12 +66,13 @@ def build_h2h_json(dfs,filters=None):
             winner_name = team_name_map.get(teamB_id)
 
         score_string = f"{team_name_map.get(teamA_id)} {teamA_score}-{teamB_score} {team_name_map.get(teamB_id)}"
-
+        match_code = f"M{m_id:02d}"
         h2h_dict["match"].append({
-            "match": f"{int(match_id)}",
+            "match": match_code,
             "date": str(m.get("match_date")) if pd.notna(m.get("match_date")) else None,
             "score": score_string,
             "winner": winner_name
         })
 
     return h2h_dict
+
