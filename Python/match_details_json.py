@@ -55,7 +55,11 @@ def build_match_details_json(dfs):
         # Team info
         home_team_name = team_name_map.get(m["home_team"], "Unknown")
         away_team_name = team_name_map.get(m["away_team"], "Unknown")
-        winner_team_name = team_name_map.get(m["winning_team"], "Unknown")
+        winning_team_id = m.get("winning_team")
+        if pd.isna(winning_team_id):
+            winner_team_name = "Draw"
+        else:
+            winner_team_name = team_name_map.get(winning_team_id, "Unknown")
         
         # Convert to names
         detail_list.append({
@@ -68,3 +72,4 @@ def build_match_details_json(dfs):
         })
 
     return {"matches": detail_list}
+
