@@ -338,28 +338,44 @@ VALUES
 (10, 3, 'Attacker');
 
 
-CREATE TABLE Player_season_stat (
-    player_id INT,
-    season_id INT,
-    total_attack_points INT ,
-    total_defense_points INT ,
-    total_dives INT,
-    matches_played INT,
+CREATE TABLE player_season_stat (
+    player_id INT NOT NULL,
+    season_id INT NOT NULL,
+    total_attack_points INT DEFAULT 0,
+    total_defense_points INT DEFAULT 0,
+    total_dives INT DEFAULT 0,
+    matches_played INT DEFAULT 0,
+    team_id INT NOT NULL,
+    highest_score INT,
+    pole_dives INT,
+    sky_dives INT,
+    assists INT,
+    total_touches INT,
+    avg_def_seconds INT,
+
     PRIMARY KEY (player_id, season_id),
-    FOREIGN KEY (player_id) REFERENCES Player(player_id),
-    FOREIGN KEY (season_id) REFERENCES Season(season_id)
+
+    FOREIGN KEY (player_id) REFERENCES player(player_id),
+    FOREIGN KEY (season_id) REFERENCES season(season_id),
+    FOREIGN KEY (team_id) REFERENCES team(team_id)
 );
 
-INSERT INTO Player_season_stat (player_id,season_id,total_attack_points,total_dives,matches_played) 
+
+INSERT INTO player_season_stat
+(player_id, season_id, total_attack_points, total_defense_points,
+ total_dives, matches_played, team_id,
+ highest_score, pole_dives, sky_dives,
+ assists, total_touches, avg_def_seconds)
 VALUES
-	(1, 1, 120, 30, 12, 10),
-	(2, 1, 85, 95, 20, 10),
-	(3, 1, 150, 40, 10, 10),
-	(4, 1, 60, 110, 25, 10),
-	(5, 1, 100, 80, 18, 10),
-	(6, 1, 45, 130, 30, 10),
-	(7, 1, 90, 60, 15, 10),
-	(8, 1, 70, 75, 16, 10);
+(1, 1, 120, 30, 12, 10, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(2, 1, 85, 95, 20, 10, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 1, 150, 40, 10, 10, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 1, 60, 110, 25, 10, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 1, 100, 80, 18, 10, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 1, 45, 130, 30, 10, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(7, 1, 90, 60, 15, 10, 1, NULL, NULL, NULL, NULL, NULL, NULL),
+(8, 1, 70, 75, 16, 10, 1, NULL, NULL, NULL, NULL, NULL, NULL);
+
 
 CREATE TABLE Tournament(
     tournament_id INT PRIMARY KEY AUTO_INCREMENT,
@@ -565,6 +581,7 @@ CREATE TABLE Injury_Report (
     FOREIGN KEY (player_id) REFERENCES Player(player_id),
     FOREIGN KEY (match_id) REFERENCES Match_details(match_id)
 );
+
 
 
 
