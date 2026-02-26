@@ -1,4 +1,6 @@
 from flask import Flask, jsonify,request
+from flask_cors import CORS
+import os
 from attack_json import build_attack_json
 from data_cleaning import clean_table, standardize_columns
 from database_connectivity import connect_db, fetch_tables
@@ -10,9 +12,10 @@ from match_wise_json import build_match_wise
 from LeaderBoard_season_json import LeaderBoard
 from match_details_json import build_match_details_json
 from season_player_stats import season_players_json
-#from player_profile import build_players_json
+from player_profile import build_players_json
 
 app = Flask(__name__)
+CORS(app)
 
 def load_clean_data():
     conn = connect_db()
@@ -23,12 +26,12 @@ def load_clean_data():
 
     conn.close()
     return dfs
-"""
+
 @app.route("/player-profile")
 def get_player_season_profile():
     dfs=load_clean_data()
     data=build_players_json(dfs)
-    return jsonify(data)"""
+    return jsonify(data)
 
 @app.route("/player-season")
 def get_player_season_stats():
@@ -160,4 +163,5 @@ def get_leaderboard_season():
     return jsonify(data)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
