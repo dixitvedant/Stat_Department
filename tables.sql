@@ -361,20 +361,17 @@ CREATE TABLE player_season_stat (
 );
 
 
-INSERT INTO player_season_stat
-(player_id, season_id, total_attack_points, total_defense_points,
- total_dives, matches_played, team_id,
- highest_score, pole_dives, sky_dives,
- assists, total_touches, avg_def_seconds)
+INSERT INTO player_season_stat 
+(player_id, season_id, total_attack_points, total_defence_points, total_dives, matches_played, team_id, highest_attack_points, pole_dives, sky_dives, assists, total_touches, out_of_field, highest_def_time)
 VALUES
-(1, 1, 120, 30, 12, 10, 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(2, 1, 85, 95, 20, 10, 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 1, 150, 40, 10, 10, 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 1, 60, 110, 25, 10, 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 1, 100, 80, 18, 10, 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(6, 1, 45, 130, 30, 10, 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(7, 1, 90, 60, 15, 10, 1, NULL, NULL, NULL, NULL, NULL, NULL),
-(8, 1, 70, 75, 16, 10, 1, NULL, NULL, NULL, NULL, NULL, NULL);
+(1,1,120,30,12,10,1,24,7,5,12,95,1,12),
+(2,1,85,95,20,10,1,18,8,6,9,80,2,22),
+(3,1,150,40,10,10,1,28,6,4,14,110,1,10),
+(4,1,60,110,25,10,1,15,9,7,6,70,3,30),
+(5,1,100,80,18,10,1,21,7,6,10,88,2,18),
+(6,1,45,130,30,10,1,12,11,8,5,60,3,35),
+(7,1,90,60,15,10,1,19,6,5,11,82,1,20),
+(8,1,70,75,16,10,1,17,7,5,8,75,2,16);
 
 
 CREATE TABLE Tournament(
@@ -581,6 +578,7 @@ CREATE TABLE Injury_Report (
     FOREIGN KEY (player_id) REFERENCES Player(player_id),
     FOREIGN KEY (match_id) REFERENCES Match_details(match_id)
 );
+
 
 
 
