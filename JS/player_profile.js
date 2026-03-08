@@ -1,117 +1,137 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // We use 'id' to match the link from leaderboard.js: player_profile.html?id=...
+
     const urlParams = new URLSearchParams(window.location.search);
-    const playerId = urlParams.get('id'); 
+    const playerId = urlParams.get("playerId");
 
     if (playerId) {
         fetchPlayerData(playerId);
     } else {
-        console.error("No Player ID found in URL.");
+        console.error("No Player ID found in URL");
     }
+
 });
 
 async function fetchPlayerData(id) {
+
     try {
-        const response = await fetch('player_profile.json');
-        const allData = await response.json();
-        
-        // Find the specific player using the ID from the URL
-        const player = allData.players.find(p => p.id === id);
+
+        const response = await fetch("http://127.0.0.1:5000/player-profile");
+        const data = await response.json();
+
+        const player = data.players.find(p => p.id === id);
 
         if (player) {
             renderProfile(player);
         } else {
-            console.error("Player not found with ID:", id);
-            // Optional: Redirect to home or show error message on UI
+            console.error("Player not found:", id);
         }
+
     } catch (err) {
-        console.error("Error loading player details:", err);
+        console.error("Error loading player:", err);
     }
+
 }
 
 function renderProfile(p) {
-    // --- 1. Identity Section ---
-    if (document.getElementById("playerName")) document.getElementById("playerName").innerText = p.name;
-    if (document.getElementById("playerTeam")) document.getElementById("playerTeam").innerText = p.team;
-    if (document.getElementById("playerRoleBadge")) document.getElementById("playerRoleBadge").innerText = p.role;
-    if (document.getElementById("heroTotalPoints")) document.getElementById("heroTotalPoints").innerText = p.stats.total_pts;
-    if (document.getElementById("heroMatches")) document.getElementById("heroMatches").innerText = p.stats.matches;
-    if (p.image && document.getElementById("playerImg")) document.getElementById("playerImg").src = p.image;
 
-    // --- 2. Point Breakdown ---
-    if (document.getElementById("ptsAttacker")) document.getElementById("ptsAttacker").innerText = p.stats.attacker_pts || 0;
-    if (document.getElementById("ptsDefender")) document.getElementById("ptsDefender").innerText = p.stats.defender_pts || 0;
-    if (document.getElementById("ptsTotal")) document.getElementById("ptsTotal").innerText = p.stats.total_pts;
-    if (document.getElementById("ptsTeamTotal")) document.getElementById("ptsTeamTotal").innerText = p.stats.team_total || 0;
+    /* ---------- Identity Section ---------- */
 
-    // --- 3. Career Highlights ---
-    if (document.getElementById("highScore")) document.getElementById("highScore").innerText = p.stats.highest_score || 0;
-    if (document.getElementById("defTime")) document.getElementById("defTime").innerText = p.stats.longest_def_time || "0s";
+    document.getElementById("playerName").innerText = p.name;
+    document.getElementById("playerTeam").innerText = p.team;
+    document.getElementById("playerRoleBadge").innerText = p.role;
 
-    // --- 4. Role-Based Section Management ---
+    document.getElementById("heroTotalPoints").innerText =
+        p.stats.total_pts || 0;
+
+    document.getElementById("heroMatches").innerText =
+        p.stats.matches || 0;
+
+
+    /* ---------- Point Breakdown ---------- */
+
+    document.getElementById("ptsAttacker").innerText =
+        p.stats.attacker_pts || 0;
+
+    document.getElementById("ptsDefender").innerText =
+        p.stats.defender_pts || 0;
+
+    document.getElementById("ptsTotal").innerText =
+        p.stats.total_pts || 0;
+
+    /* IMPORTANT: TEAM TOTAL */
+    document.getElementById("ptsTeamTotal").innerText =
+        p.stats.team_total || 0;
+
+
+    /* ---------- Career Highlights ---------- */
+
+    document.getElementById("highScore").innerText =
+        p.stats.highest_attack_points || 0;
+
+    document.getElementById("defTime").innerText =
+        p.stats.highest_defence_time || "0m 0s";
+
+
+    /* ---------- Role Based Sections ---------- */
+
     const attackerSection = document.getElementById("attackerSection");
     const defenderSection = document.getElementById("defenderSection");
 
     if (p.role === "Defender") {
-        if (attackerSection) attackerSection.style.display = "none";
-        if (defenderSection) {
-            defenderSection.style.display = "block";
-            // Populate Defender Detail if available
-            const defDetail = document.getElementById("defTimeDetail");
-            if (defDetail) defDetail.innerText = p.stats.avg_def_time || p.stats.longest_def_time;
-        }
+
+        attackerSection.style.display = "none";
+        defenderSection.style.display = "block";
+
+        document.getElementById("defDetailTime").innerText =
+            p.stats.total_defence_time || "0m 0s";
+
+        document.getElementById("avgDefTime").innerText =
+            p.stats.avg_defence_time || "0m 0s";
+
     } else {
-        // Show Attacker stats (also for All-Rounders)
-        if (attackerSection) {
-            attackerSection.style.display = "block";
-            if (document.getElementById("poleDives")) document.getElementById("poleDives").innerText = p.stats.pole_dives || 0;
-            if (document.getElementById("skyDives")) document.getElementById("skyDives").innerText = p.stats.sky_dives || 0;
-            if (document.getElementById("assists")) document.getElementById("assists").innerText = p.stats.assists || 0;
-            if (document.getElementById("avgPoints")) document.getElementById("avgPoints").innerText = p.stats.avg_pts || 0;
-            if (document.getElementById("successRate")) document.getElementById("successRate").innerText = (p.stats.success_rate || 0) + "%";
-            if (document.getElementById("totalTouches")) document.getElementById("totalTouches").innerText = p.stats.total_touches || 0;
-        }
-        if (defenderSection) defenderSection.style.display = "none";
+
+        attackerSection.style.display = "block";
+        defenderSection.style.display = "none";
+
+        document.getElementById("poleDives").innerText =
+            p.stats.pole_dive || 0;
+
+        document.getElementById("skyDives").innerText =
+            p.stats.sky_dive || 0;
+
+        document.getElementById("assists").innerText =
+            p.stats.assist || 0;
+
+        document.getElementById("avgPoints").innerText =
+            p.stats.avg_attacking_points || 0;
+
+        /* IMPORTANT: TOTAL TOUCHES */
+        document.getElementById("totalTouches").innerText =
+            p.stats.total_touches || 0;
+
     }
 
-    // --- 5. Performance Metrics (Progress Bars) ---
-    // Matches Bar
-    if (document.getElementById("metricMatches")) {
-        document.getElementById("metricMatches").innerText = p.stats.matches;
-        document.getElementById("barMatches").style.width = Math.min(p.stats.matches * 5, 100) + "%";
-    }
 
-    // Touches Bar
-    const totalTouches = p.stats.total_touches || 0;
-    if (document.getElementById("metricTouches")) {
-        document.getElementById("metricTouches").innerText = totalTouches;
-        document.getElementById("barTouches").style.width = Math.min(totalTouches / 2, 100) + "%";
-    }
+    /* ---------- Performance Metrics ---------- */
 
-    // Avg Pts Bar
-    const avgPts = p.stats.avg_pts || 0;
-    if (document.getElementById("metricAvgPts")) {
-        document.getElementById("metricAvgPts").innerText = avgPts;
-        document.getElementById("barAvgPts").style.width = Math.min(avgPts * 8, 100) + "%";
-    }
+    const matches = p.stats.matches || 0;
 
-    // Success Rate Bar
-    const successRate = p.stats.success_rate || 0;
-    if (document.getElementById("metricSuccess")) {
-        document.getElementById("metricSuccess").innerText = successRate + "%";
-        document.getElementById("barSuccess").style.width = successRate + "%";
-    }
+    document.getElementById("metricMatches").innerText = matches;
+    document.getElementById("barMatches").style.width =
+        Math.min(matches * 5, 100) + "%";
 
-    // --- 6. Team Impact ---
-    if (document.getElementById("rateWithPlayer")) {
-        const withRate = p.stats.win_rate_with || 0;
-        document.getElementById("rateWithPlayer").innerText = withRate + "%";
-        document.getElementById("rateWithBar").style.width = withRate + "%";
-    }
 
-    if (document.getElementById("rateWithoutPlayer")) {
-        const withoutRate = p.stats.win_rate_without || 0;
-        document.getElementById("rateWithoutPlayer").innerText = withoutRate + "%";
-        document.getElementById("rateWithoutBar").style.width = withoutRate + "%";
-    }
-}   
+    const touches = p.stats.total_touches || 0;
+
+    document.getElementById("metricTouches").innerText = touches;
+    document.getElementById("barTouches").style.width =
+        Math.min(touches * 2, 100) + "%";
+
+
+    const avgPts = p.stats.avg_attacking_points || 0;
+
+    document.getElementById("metricAvgPts").innerText = avgPts;
+    document.getElementById("barAvgPts").style.width =
+        Math.min(avgPts * 8, 100) + "%";
+
+}
