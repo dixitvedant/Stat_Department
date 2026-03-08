@@ -173,7 +173,7 @@ VALUES
 (30, 30, 1, 2, 90, 0, 1);
 
 CREATE  TABLE team_stat(
-	team_id INT PRIMARY KEY,
+	team_id INT ,
 	matches_played INT,
 	matches_wins INT,
 	matches_lost INT,
@@ -181,6 +181,7 @@ CREATE  TABLE team_stat(
 	total_points INT,
 	recent_form JSON,
     season_id INT, --updated
+	PRIMARY KEY (team_id,season_id),
     FOREIGN KEY(team_id) REFERENCES Team(team_id),
     FOREIGN KEY(season_id) REFERENCES Season(season_id)
 );
@@ -578,6 +579,7 @@ CREATE TABLE Injury_Report (
     FOREIGN KEY (player_id) REFERENCES Player(player_id),
     FOREIGN KEY (match_id) REFERENCES Match_details(match_id)
 );
+
 
 
 
