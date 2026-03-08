@@ -32,11 +32,11 @@ function hideLoader() {
 
 // FETCH ALL DATA
 Promise.all([
-    fetch("matches_data.json").then(r => r.json()),
-    fetch("attack.json").then(r => r.json()),
-    fetch("defence.json").then(r => r.json()),
-    fetch("playerstep1.json").then(r => r.json()), // Master table for ID-to-Name lookup
-    fetch("roster.json").then(r => r.json())       // Roster containing IDs
+    fetch("http://127.0.0.1:5000/match-details").then(r => r.json()),
+    fetch("http://127.0.0.1:5000/attacker").then(r => r.json()),
+    fetch("http://127.0.0.1:5000/defence").then(r => r.json()),
+    fetch("http://127.0.0.1:5000/player-season").then(r => r.json()), // Master table for ID-to-Name lookup
+    fetch("http://127.0.0.1:5000/roaster").then(r => r.json())       // Roster containing IDs
 ]).then(([matches, attack, defence, players, roster]) => {
     
     // Store master players for lookup logic
@@ -62,64 +62,98 @@ Promise.all([
     document.getElementById("ovAttacker").textContent = matchInfo.bestAttacker || "–";
     document.getElementById("ovDefender").textContent = matchInfo.bestDefender || "–";
 
-    if (rosterData) loadRoster();
+    if (rosterData) loadRoster(matchId);
 
     // H2H SECTION
-    fetch("h2h.json")
-        .then(res => res.json())
-        .then(h2hData => {
-            const h2hMatches = h2hData[matchId];
-            const h2hContent = document.getElementById("h2hContent");
+   fetch("http://127.0.0.1:5000/h2h")
+    .then(res => res.json())
+    .then(h2hData => {
 
-            if (!h2hMatches || h2hMatches.length === 0) {
-                h2hContent.innerHTML = "<p class='text-muted'>No previous matches found.</p>";
-                return;
-            }
+        const h2hContent = document.getElementById("h2hContent");
 
-            const teamAName = rosterData?.teamA?.name || "Team A";
-            const teamBName = rosterData?.teamB?.name || "Team B";
+        // Get team names from roster
+        const teamAName = rosterData?.home_team?.name;
+        const teamBName = rosterData?.away_team?.name;
 
-            const teamAWins = h2hMatches.filter(m => m.winner === teamAName).length;
-            const teamBWins = h2hMatches.filter(m => m.winner === teamBName).length;
-            const draws = h2hMatches.filter(m => m.winner === "Draw").length;
-            const total = h2hMatches.length;
+        if (!teamAName || !teamBName) {
+            h2hContent.innerHTML =
+                "<p class='text-muted'>Team data not available.</p>";
+            return;
+        }
 
-            const teamAPercent = (teamAWins / total) * 100;
-            const drawPercent = (draws / total) * 100;
-            const teamBPercent = (teamBWins / total) * 100;
+        // 🔥 IMPORTANT: Create sorted key (same logic as backend)
+        let key1 = `${teamAName} vs ${teamBName}`;
+	let key2 = `${teamBName} vs ${teamAName}`;
 
-            h2hContent.innerHTML = `
-                <h6 class="mt-3 mb-2 text-center">Last ${total} Matches</h6>
-                <div class="d-flex justify-content-between mb-1 fw-semibold small">
-                    <span>${teamAName} (${teamAWins})</span>
-                    <span>Draws (${draws})</span>
-                    <span>${teamBName} (${teamBWins})</span>
-                </div>
-                <div style="display: flex; height: 14px; border-radius: 8px; overflow: hidden; background: #e5e7eb;">
-                    <div style="width: ${teamAPercent}%; background: #2563eb;"></div>
-                    <div style="width: ${drawPercent}%; background: #9ca3af;"></div>
-                    <div style="width: ${teamBPercent}%; background: #dc2626;"></div>
-                </div>
-                <table class="table table-striped mt-4 small">
-                    <thead>
-                        <tr><th>Match</th><th>Date</th><th>Score</th><th>Winner</th></tr>
-                    </thead>
-                    <tbody>
-                        ${h2hMatches.map(m => `
-                            <tr>
-                                <td>${m.match}</td>
-                                <td>${m.date || "–"}</td>
-                                <td>${m.score || "–"}</td>
-                                <td class="fw-semibold">${m.winner}</td>
-                            </tr>
-                        `).join("")}
-                    </tbody>
-                </table>`;
-        });
+	let h2hMatches = h2hData[key1] || h2hData[key2] || [];
+        if (!h2hMatches.length) {
+            h2hContent.innerHTML =
+                "<p class='text-muted'>No previous matches found.</p>";
+            return;
+        }
+
+        const total = h2hMatches.length;
+
+        const teamAWins = h2hMatches.filter(
+            m => m.winner === teamAName
+        ).length;
+
+        const teamBWins = h2hMatches.filter(
+            m => m.winner === teamBName
+        ).length;
+
+        const draws = h2hMatches.filter(
+            m => m.winner === "Draw"
+        ).length;
+
+        const teamAPercent = ((teamAWins / total) * 100).toFixed(1);
+        const drawPercent = ((draws / total) * 100).toFixed(1);
+        const teamBPercent = ((teamBWins / total) * 100).toFixed(1);
+
+        h2hContent.innerHTML = `
+            <h6 class="mt-3 mb-2 text-center">
+                Last ${total} Matches
+            </h6>
+
+            <div class="d-flex justify-content-between mb-1 fw-semibold small">
+                <span>${teamAName} (${teamAWins})</span>
+                <span>Draws (${draws})</span>
+                <span>${teamBName} (${teamBWins})</span>
+            </div>
+
+            <div style="display:flex;height:14px;border-radius:8px;overflow:hidden;background:#e5e7eb;">
+                <div style="width:${teamAPercent}%;background:#2563eb;"></div>
+                <div style="width:${drawPercent}%;background:#9ca3af;"></div>
+                <div style="width:${teamBPercent}%;background:#dc2626;"></div>
+            </div>
+
+            <table class="table table-striped mt-4 small">
+                <thead>
+                    <tr>
+                        <th>Match</th>
+                        <th>Date</th>
+                        <th>Score</th>
+                        <th>Winner</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${h2hMatches.map(m => `
+                        <tr>
+                            <td>${m.match || "–"}</td>
+                            <td>${m.date || "–"}</td>
+                            <td>${m.score || "–"}</td>
+                            <td class="fw-semibold">${m.winner || "–"}</td>
+                        </tr>
+                    `).join("")}
+                </tbody>
+            </table>
+        `;
+    })
+    .catch(err => console.error("H2H load failed:", err));
 });
 
 // MVP SECTION
-fetch("mvp.json")
+fetch("http://127.0.0.1:5000/LeaderBoard")
     .then(r => r.json())
     .then(mvpData => {
         const list = mvpData[matchId];
@@ -171,8 +205,12 @@ function drawAttack(inning) {
     const data = matchData.attack?.[inning];
     if (!data) { hideLoader(); return alert("Attack data not found"); }
     const labels = Object.keys(data);
-    const teamA = labels.map(p => -data[p].teamA);
-    const teamB = labels.map(p => data[p].teamB);
+    const teamNames = Object.keys(data[labels[0]]);
+    const teamAName = teamNames[0];
+    const teamBName = teamNames[1];
+
+    const teamA = labels.map(p => -data[p][teamAName]);
+    const teamB = labels.map(p => data[p][teamBName]);
     if (chart) chart.destroy();
     chart = new Chart(canvas, {
         type: "bar",
@@ -195,7 +233,9 @@ function drawAttack(inning) {
 }
 
 function drawDefence(inning) {
-    const timeline = defenceData[inning];
+    const inningData = defenceData[inning];
+    const firstTeam = Object.keys(inningData)[0];
+    const timeline = inningData[firstTeam];
     if (!timeline) { hideLoader(); return alert("Defence data not found"); }
     if (chart) chart.destroy();
     chart = new Chart(canvas, {
@@ -210,23 +250,58 @@ function drawDefence(inning) {
 }
 
 // ROSTER LOADING
-function loadRoster() {
-    if (!rosterData) return;
-    document.getElementById("teamAName").innerHTML = `<i class="bi bi-shield-fill-check text-primary me-2"></i> ${rosterData.teamA.name}`;
-    document.getElementById("teamBName").innerHTML = `<i class="bi bi-shield-fill-check text-warning me-2"></i> ${rosterData.teamB.name}`;
+function loadRoster(matchId) {
+    try {
+        if (!rosterData) {
+            console.error("Roster data missing");
+            return;
+        }
 
-    document.getElementById("teamAStats").innerHTML = "";
-    document.getElementById("teamBStats").innerHTML = "";
+        const home = rosterData.home_team;
+        const away = rosterData.away_team;
 
-    fillListWithStats("teamAAttackers", rosterData.teamA.attackers || [], "teamAStats");
-    fillListWithStats("teamADefenders", rosterData.teamA.defenders || [], "teamAStats");
-    fillListWithStats("teamAAll", rosterData.teamA.allRounders || [], "teamAStats");
+        if (!home || !away) {
+            console.error("Invalid roster structure");
+            return;
+        }
 
-    fillListWithStats("teamBAttackers", rosterData.teamB.attackers || [], "teamBStats");
-    fillListWithStats("teamBDefenders", rosterData.teamB.defenders || [], "teamBStats");
-    fillListWithStats("teamBAll", rosterData.teamB.allRounders || [], "teamBStats");
+        // ✅ Set Team Names
+        document.getElementById("teamAName").innerText = home.name;
+        document.getElementById("teamBName").innerText = away.name;
+
+        // Helper to fill list
+        function populateList(id, players) {
+            const ul = document.getElementById(id);
+            if (!ul) return;
+
+            ul.innerHTML = "";
+
+            if (players && players.length > 0) {
+                players.forEach(player => {
+                    const li = document.createElement("li");
+                    li.className = "mb-1";
+                    li.textContent = player;
+                    ul.appendChild(li);
+                });
+            } else {
+                ul.innerHTML = "<li>No players available</li>";
+            }
+        }
+
+        // ✅ Fill Home Team
+        populateList("teamAAttackers", home.attackers);
+        populateList("teamADefenders", home.defenders);
+        populateList("teamAAll", home.allRounders);
+
+        // ✅ Fill Away Team
+        populateList("teamBAttackers", away.attackers);
+        populateList("teamBDefenders", away.defenders);
+        populateList("teamBAll", away.allRounders);
+
+    } catch (err) {
+        console.error("Roster load failed:", err);
+    }
 }
-
 /**
  * UPDATED FUNCTION: 
  * Instead of linking to playerstep1.html, it links to the players list page
@@ -268,9 +343,15 @@ function fillListWithStats(listId, idArray, statsContainerId) {
 }
 
 function getTotalPlayers(statsContainerId) {
-    const team = statsContainerId === "teamAStats" ? rosterData.teamA : rosterData.teamB;
+    const team = statsContainerId === "teamAStats" 
+        ? rosterData.home_team 
+        : rosterData.away_team;
+
     if (!team) return 0;
-    return (team.attackers?.length || 0) + (team.defenders?.length || 0) + (team.allRounders?.length || 0);
+
+    return (team.attackers?.length || 0) +
+           (team.defenders?.length || 0) +
+           (team.allRounders?.length || 0);
 }
 
 // Section Switching
