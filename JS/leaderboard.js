@@ -11,7 +11,7 @@ let players = [];
 document.addEventListener("DOMContentLoaded", async () => {
     try {
         // Fetching player data from the profile JSON file
-        const response = await fetch("player_profile.json");
+        const response = await fetch("http://127.0.0.1:5000/player-profile");
         const data = await response.json();
 
         players = data.players;
@@ -75,34 +75,34 @@ function applyFilters() {
     const selectedSeason = document.getElementById('seasonFilter').value;
     const selectedTourney = document.getElementById('tournamentFilter').value;
 
-    // 1. Filter raw data based on dropdown selection
     const filtered = players.filter(p => {
         const matchSeason = selectedSeason === 'all' || p.season === selectedSeason;
         const matchTourney = selectedTourney === 'all' || p.tournament === selectedTourney;
         return matchSeason && matchTourney;
     });
 
-    // 2. Sort for Attackers: Based on total points (Highest to Lowest)
-    const attackers = [...filtered].sort((a, b) => b.stats.total_pts - a.stats.total_pts);
+    // BEST ATTACKERS
+    const attackers = [...filtered]
+        .filter(p => p.role === "Attacker")
+        .sort((a, b) => b.stats.avg_attacking_points - a.stats.avg_attacking_points);
 
-    // 3. Sort for Defenders: Based on defense time (Longest to Shortest)
-    const defenders = [...filtered].sort((a, b) => {
-        return timeToSeconds(b.stats.avg_def_time) - timeToSeconds(a.stats.avg_def_time);
-    });
+    // BEST DEFENDERS
+    const defenders = [...filtered]
+        .filter(p => p.role === "Defender")
+        .sort((a, b) =>
+            timeToSeconds(b.stats.avg_defence_time) -
+            timeToSeconds(a.stats.avg_defence_time)
+        );
 
-    // 4. Sort for Impact: Calculated by Win Rate difference (Player's influence on game outcome)
-    const impactPlayers = [...filtered].sort((a, b) => {
-        const impactA = (a.stats.win_rate_with || 0) - (a.stats.win_rate_without || 0);
-        const impactB = (b.stats.win_rate_with || 0) - (b.stats.win_rate_without || 0);
-        return impactB - impactA;
-    });
+    // BEST ALL ROUNDERS
+    const allrounders = [...filtered]
+        .filter(p => p.role === "All-Rounder")
+        .sort((a, b) => b.stats.avg_attacking_points - a.stats.avg_attacking_points);
 
-    // 5. Render the data to the UI using the shared render function
-    renderCard(attackers, 'attacker', 'total_pts', ' Pts');
-    renderCard(defenders, 'defender', 'avg_def_time', '');
-    renderCard(impactPlayers, 'allrounder', 'win_rate_with', '% WR');
+    renderCard(attackers, 'attacker', 'avg_attacking_points', ' Avg');
+    renderCard(defenders, 'defender', 'avg_defence_time', '');
+    renderCard(allrounders, 'allrounder', 'avg_attacking_points', ' Avg');
 }
-
 /**
  * UI LOGIC: RENDERING
  * Generates the HTML for the "Podium" (#1 spot) and the "Mini Rows" (#2 to #5 spots).
@@ -121,7 +121,7 @@ function renderCard(data, id, key, unit) {
     // TOP PERFORMER (#1 Rank): High-visibility hero card
     const top = data[0];
     podium.innerHTML = `
-        <a href="player_profile.html?id=${top.id}" class="player-link">
+        <a href="player_profile.html?playerId=${top.id}" class="player-link">
             <div class="top-hero shadow-sm">
                 <span class="rank-crown"><i class="bi bi-trophy-fill"></i> #1</span>
                 <img src="${top.image}" alt="${top.name}" onerror="this.src='https://placehold.co/200'">
@@ -133,8 +133,8 @@ function renderCard(data, id, key, unit) {
     `;
 
     // RUNNERS UP (#2 - #5 Rank): Compact horizontal rows
-    list.innerHTML = data.slice(1, 5).map((p, i) => `
-        <a href="player_profile.html?id=${p.id}" class="player-link">
+    list.innerHTML = data.slice(1,5).map((p, i) => `
+        <a href="player_profile.html?playerId=${p.id}" class="player-link">
             <div class="mini-row">
                 <div class="mini-rank">#${i + 2}</div>
                 <div class="mini-info">
