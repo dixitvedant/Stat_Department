@@ -6,7 +6,7 @@ const increment = 10;
 /**
  * INITIAL DATA FETCH
  */
-fetch("playerstep1.json")
+fetch("http://127.0.0.1:5000/player-season")
     .then(res => res.json())
     .then(data => {
         allPlayers = data.players;
@@ -136,4 +136,4 @@ function renderPlayers() {
 
 function goToProfile(id) {
     window.location.href = `player_profile.html?playerId=${encodeURIComponent(id)}`;
-}a
+}
