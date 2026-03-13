@@ -8,13 +8,15 @@ from roaster_json import build_roaster_json
 from h2h_list_json import build_h2h_json
 from defence_json import build_defence_json
 from match_wise_json import build_match_wise
-from LeaderBoard_season_json import LeaderBoard
+from LeaderBoard_season_json import LeaderBoard_season
 from match_details_json import build_match_details_json
 from season_player_stats import season_players_json
 from player_profile import build_players_json
+from LeaderBoard import LeaderBoard_match
 
 app = Flask(__name__)
 CORS(app)
+app.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
 
 def load_clean_data():
     conn = connect_db()
@@ -25,6 +27,12 @@ def load_clean_data():
 
     conn.close()
     return dfs
+
+@app.route("/LeaderBoard")
+def get_LeaderBoard_match():
+    dfs=load_clean_data()
+    data=LeaderBoard_match(dfs)
+    return jsonify(data)
 
 @app.route("/player-profile")
 def get_player_season_profile():
@@ -138,6 +146,7 @@ def get_defence():
 
 @app.route("/match-wise")
 def get_match_wise():
+
     filters = {}
 
     if request.args.get("tournament_id"):
@@ -151,16 +160,36 @@ def get_match_wise():
 
     if request.args.get("team_id"):
         filters["team_id"] = int(request.args.get("team_id"))
-    dfs=load_clean_data()
-    data=build_match_wise(dfs,filters)
-    return jsonify(data)
+
+    page = int(request.args.get("page", 1))
+    limit = int(request.args.get("limit", 20))
+
+    dfs = load_clean_data()
+
+    data = build_match_wise(dfs, filters)
+
+    all_matches = data["matches"]
+
+    total_matches = len(all_matches)
+
+    start = (page - 1) * limit
+    end = start + limit
+
+    page_matches = all_matches[start:end]
+
+    return jsonify({
+        "matches": page_matches,
+        "page": page,
+        "limit": limit,
+        "total": total_matches
+    })
 
 @app.route("/LeaderBoard-Season")
 def get_leaderboard_season():
     dfs=load_clean_data()
-    data=LeaderBoard(dfs)
+    data=LeaderBoard_season(dfs)
     return jsonify(data)
 
-if __name__ == "__main__":
-   app.run(debug=True)
 
+if __name__ == "__main__":
+    app.run(debug=True)
