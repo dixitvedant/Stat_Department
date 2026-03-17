@@ -103,7 +103,8 @@ VALUES
 
 CREATE TABLE Match_details(
     match_id INT PRIMARY KEY,
-    season_id INT,
+	match_name VARCHAR(20),
+    tournament_id INT,
     venue VARCHAR(30) NOT NULL,
     home_team INT NOT NULL,
     away_team INT NOT NULL,
@@ -112,19 +113,20 @@ CREATE TABLE Match_details(
 	home_team_score INT, --updated
 	away_team_score INT, --updated
     result VARCHAR(40), --updated
+	UNIQUE (tournament_id, match_name),
     FOREIGN KEY(home_team) REFERENCES Team(team_id),
     FOREIGN KEY(away_team) REFERENCES Team(team_id),
     FOREIGN KEY(winning_team) REFERENCES Team(team_id),
-    FOREIGN KEY(season_id) REFERENCES Season(season_id) 
+    FOREIGN KEY(tournament_id) REFERENCES tournament(tournament_id) 
 );
 
-INSERT INTO Match_details (match_id, season_id,venue, home_team, away_team, match_date, winning_team, home_team_score, away_team_score, result)
+INSERT INTO Match_details (match_id, match_name, tournament_id,venue, home_team, away_team, match_date, winning_team, home_team_score, away_team_score, result)
 VALUES 
-(1, 1, 'Pune', 1, 2, '2026-01-10', 1, 18, 15, NULL),
-(2, 1, 'Mumbai', 3, 4, '2026-01-12', 4, 20, 25, NULL),
-(3, 1, 'Nashik', 5, 6, '2026-01-15', NULL, 15, 15, NULL),
-(4, 1, 'Nagpur', 7, 8, '2026-01-18', 8, 10, 35, NULL),
-(5, 1,' Kolhapur', 2, 3, '2026-01-20', 2, 28, 15, NULL);
+(1, "M01", 1, 'Pune', 1, 2, '2026-01-10', 1, 18, 15, NULL),
+(2, "M02", 1, 'Mumbai', 3, 4, '2026-01-12', 4, 20, 25, NULL),
+(3, "M03", 1, 'Nashik', 5, 6, '2026-01-15', NULL, 15, 15, NULL),
+(4, "M04", 1, 'Nagpur', 7, 8, '2026-01-18', 8, 10, 35, NULL),
+(5, "M05", 1,' Kolhapur', 2, 3, '2026-01-20', 2, 28, 15, NULL);
 
 
 CREATE TABLE Player_match_stat(
@@ -133,44 +135,45 @@ CREATE TABLE Player_match_stat(
 	match_id INT,
 	attack_points INT,
 	defense_points INT,
-	successful_dives INT,
-	out_given INT,
+	pole_dives INT,
+	sky_dives INT,
+	touches INT,
     FOREIGN KEY(player_id) REFERENCES Player(player_id),
     FOREIGN KEY(match_id) REFERENCES Match_details(match_id)
 );
 
-INSERT INTO Player_match_stat (stat_id, player_id, match_id, attack_points, defense_points, successful_dives, out_given)
+INSERT INTO Player_match_stat (stat_id, player_id, match_id, attack_points, defense_points, pole_dives, sky_dives, touches)
 VALUES 
-(1, 1, 1, 0, 60, 0, 0),
-(2, 2, 1, 0, 0, 0, 0),
-(3, 3, 1, 2, 60, 0, 0),
-(4, 4, 1, 8, 150, 1, 0),
-(5, 5, 1, 0, 60, 0, 0),
-(6, 6, 1, 2, 180, 0, 0),
-(7, 7, 1, 0, 120, 1, 0),
-(8, 8, 1, 0, 40, 0, 0),
-(9, 9, 1, 2, 80, 0, 0),
-(10, 10, 1, 4, 90, 0, 0),
-(11, 11, 1, 2, 0, 0, 0),
-(12, 12, 1, 0, 0, 0, 0),
-(13, 13, 1, 0, 0, 0, 0),
-(14, 14, 1, 0, 0, 0, 0),
-(15, 15, 1, 0, 0, 0, 0),
-(16, 16, 1, 4, 260, 0, 0),
-(17, 17, 1, 6, 135, 1, 0),
-(18, 18, 1, 0, 0, 0, 0),
-(19, 19, 1, 0, 100, 0, 0),
-(20, 20, 1, 0, 60, 0, 0),
-(21, 21, 1, 0, 0, 0, 0),
-(22, 22, 1, 0, 10, 0, 0),
-(23, 23, 1, 2, 60, 0, 0),
-(24, 24, 1, 0, 0, 1, 0),
-(25, 25, 1, 6, 0, 0, 0),
-(26, 26, 1, 0, 20, 0, 0),
-(27, 27, 1, 0, 0, 0, 0),
-(28, 28, 1, 0, 0, 0, 0),
-(29, 29, 1, 0, 0, 0, 0),
-(30, 30, 1, 2, 90, 0, 1);
+(1, 1, 1, 0, 60, 0, 0, 0),
+(2, 2, 1, 0, 0, 0, 0, 0),
+(3, 3, 1, 2, 60, 0, 0, 0),
+(4, 4, 1, 8, 150, 1, 0, 0),
+(5, 5, 1, 0, 60, 0, 0, 0),
+(6, 6, 1, 2, 180, 0, 0, 0),
+(7, 7, 1, 0, 120, 1, 0, 0),
+(8, 8, 1, 0, 40, 0, 0, 0),
+(9, 9, 1, 2, 80, 0, 0, 0),
+(10, 10, 1, 4, 90, 0, 0, 0),
+(11, 11, 1, 2, 0, 0, 0, 0),
+(12, 12, 1, 0, 0, 0, 0, 0),
+(13, 13, 1, 0, 0, 0, 0, 0),
+(14, 14, 1, 0, 0, 0, 0, 0),
+(15, 15, 1, 0, 0, 0, 0, 0),
+(16, 16, 1, 4, 260, 0, 0, 0),
+(17, 17, 1, 6, 135, 1, 0, 0),
+(18, 18, 1, 0, 0, 0, 0, 0),
+(19, 19, 1, 0, 100, 0, 0, 0),
+(20, 20, 1, 0, 60, 0, 0, 0),
+(21, 21, 1, 0, 0, 0, 0, 0),
+(22, 22, 1, 0, 10, 0, 0, 0),
+(23, 23, 1, 2, 60, 0, 0, 0),
+(24, 24, 1, 0, 0, 1, 0, 0),
+(25, 25, 1, 6, 0, 0, 0, 0),
+(26, 26, 1, 0, 20, 0, 0, 0),
+(27, 27, 1, 0, 0, 0, 0, 0),
+(28, 28, 1, 0, 0, 0, 0, 0),
+(29, 29, 1, 0, 0, 0, 0, 0),
+(30, 30, 1, 2, 90, 0, 1, 0);
 
 CREATE  TABLE team_stat(
 	team_id INT ,
@@ -180,13 +183,13 @@ CREATE  TABLE team_stat(
 	matches_draws INT,
 	total_points INT,
 	recent_form JSON,
-    season_id INT, --updated
-	PRIMARY KEY (team_id,season_id),
+    tournament_id INT, --updated
+	PRIMARY KEY (team_id,tournament_id),
     FOREIGN KEY(team_id) REFERENCES Team(team_id),
-    FOREIGN KEY(season_id) REFERENCES Season(season_id)
+    FOREIGN KEY(tournament_id) REFERENCES tournament(tournament_id)
 );
 
-INSERT INTO team_stat (team_id, matches_played, matches_wins, matches_lost, matches_draws, total_points,recent_form,season_id)
+INSERT INTO team_stat (team_id, matches_played, matches_wins, matches_lost, matches_draws, total_points,recent_form,tournament_id)
 VALUES 
 (1, 7, 4, 3, 0, 8, ["W", "W", "W", "L", "W"], 1),
 (2, 7, 7, 0, 0, 14, ["W", "W", "W", "W", "W"], 1),
@@ -197,7 +200,7 @@ VALUES
 (7, 7, 6, 1, 0, 12, ["L", "W", "W", "W", "W"], 1),
 (8, 7, 5, 1, 1, 11, ["W", "D", "W", "L", "W"], 1);
 
-CREATE TABLE Match_Stats (
+/*CREATE TABLE Match_Stats (
 	stat_id INT PRIMARY KEY AUTO_INCREMENT,
 	match_id INT,
 	category VARCHAR(50) NOT NULL,
@@ -216,7 +219,7 @@ VALUES
 (6, 1, 'Defender Self Out', 'Out of Field', 0, 1),
 (7, 1, 'Defender Self Out', 'Late Entry', 0, 0),
 (8, 1, 'Defender Self Out', 'Retired', 0, 0),
-(9, 1, 'Defender Self Out', 'Warning', 0, 0);
+(9, 1, 'Defender Self Out', 'Warning', 0, 0);*/
 
 --NEW TABLES
 CREATE  TABLE Team_Attack(
@@ -224,15 +227,13 @@ CREATE  TABLE Team_Attack(
     match_id INT,
     team_id INT NOT NULL,
     points INT NOT NULL,
-    inning INT CHECK(inning IN (1,2,-1)),
+    inning INT CHECK(inning IN (1, 4)),
     phase VARCHAR(10) CHECK(phase IN ('Early','Mid','End','Unknown')),
     FOREIGN KEY (match_id) REFERENCES Match_details(match_id),
     FOREIGN KEY (team_id) REFERENCES Team(team_id)
 );
 
 INSERT INTO Team_Attack (match_id,team_id,points,inning,phase)
-VALUES
-INSERT INTO Team_Attack (Attack_id, match_id, team_id, points, inning, phase)
 VALUES
 (1, 1, 1, 3, 1, 'Early'),
 (2, 1, 2, 1, 1, 'Early'),
@@ -275,7 +276,7 @@ CREATE TABLE Team_Defence (
 	FOREIGN KEY (team_id)
 	REFERENCES Team(team_id),
 -- TABLE-LEVEL CHECK constraints
-    CHECK (inning_no IN (1, 2,-1)),
+    CHECK (inning_no IN (1, 4)),
     CHECK (batch_no > 0),
     CHECK (start_time >= 0),
     CHECK (end_time > start_time),
@@ -298,7 +299,7 @@ VALUES
 (1, 2, 2, 2, 2.20,4.40,2.20),
 (1, 2, 2, 3, 4.40, 7,2.20);
 
-CREATE TABLE Season (
+/*CREATE TABLE Season (
 	season_id INT PRIMARY KEY AUTO_INCREMENT,
 	season_name VARCHAR(30) NOT NULL,
 	tournament_id INT NOT NULL,
@@ -336,14 +337,14 @@ VALUES
 (7, 3, 'All-Rounder'),
 (8, 3, 'Defender'),
 (9, 3, 'Attacker'),
-(10, 3, 'Attacker');
+(10, 3, 'Attacker');*/
 
 
-CREATE TABLE player_season_stat (
+CREATE TABLE player_tournament_stat (
     player_id INT NOT NULL,
-    season_id INT NOT NULL,
+    tournament_id INT NOT NULL,
     total_attack_points INT DEFAULT 0,
-    total_defense_points INT DEFAULT 0,
+    total_defence_points INT DEFAULT 0,
     total_dives INT DEFAULT 0,
     matches_played INT DEFAULT 0,
     team_id INT NOT NULL,
@@ -354,16 +355,16 @@ CREATE TABLE player_season_stat (
     total_touches INT,
     avg_def_seconds INT,
 
-    PRIMARY KEY (player_id, season_id),
+    PRIMARY KEY (player_id, tournament_id),
 
     FOREIGN KEY (player_id) REFERENCES player(player_id),
-    FOREIGN KEY (season_id) REFERENCES season(season_id),
+    FOREIGN KEY (tournament_id) REFERENCES tournament(tournament_id),
     FOREIGN KEY (team_id) REFERENCES team(team_id)
 );
 
 
-INSERT INTO player_season_stat 
-(player_id, season_id, total_attack_points, total_defence_points, total_dives, matches_played, team_id, highest_attack_points, pole_dives, sky_dives, assists, total_touches, out_of_field, highest_def_time)
+INSERT INTO player_tournament_stat 
+(player_id, tournament_id, total_attack_points, total_defence_points, total_dives, matches_played, team_id, highest_attack_points, pole_dives, sky_dives, assists, total_touches, out_of_field, highest_def_time)
 VALUES
 (1,1,120,30,12,10,1,24,7,5,12,95,1,12),
 (2,1,85,95,20,10,1,18,8,6,9,80,2,22),
@@ -396,7 +397,7 @@ VALUES
 ('Kho-Kho Pro League', 'Knockout', 2024),
 ('National Games Kho-Kho', 'All to all', 2024);
 
-CREATE TABLE Match_Awards(
+/*CREATE TABLE Match_Awards(
     match_id INT,
     award_type VARCHAR(20) CHECK (award_type IN ('Best AllRounder','Best Attacker','Best Defender')),   
     player_id INT,
@@ -505,7 +506,7 @@ VALUES
 (5,6,1,'Mid',4),
 (5,6,2,'End',3),
 (5,9,1,'Early',5),
-(5,9,2,'Mid',4);
+(5,9,2,'Mid',4);*/
 
 
 -- Don't add values here
@@ -570,15 +571,6 @@ CREATE TABLE raw_match_stats (
 	);
 
 
-CREATE TABLE Injury_Report (
-    injury_id INT PRIMARY KEY AUTO_INCREMENT,
-    player_id INT,
-    match_id INT,
-    injury_type VARCHAR(50) NOT NULL,
-    recovery_days INT CHECK(recovery_days>0),
-    FOREIGN KEY (player_id) REFERENCES Player(player_id),
-    FOREIGN KEY (match_id) REFERENCES Match_details(match_id)
-);
 
 
 
