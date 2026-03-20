@@ -5,7 +5,7 @@ from data_cleaning import clean_table, standardize_columns
 from database_connectivity import connect_db, fetch_tables
 from Point_Table_json import Point_Table
 from roaster_json import build_roaster_json
-from h2h_list_json import build_h2h_json
+from h2h_json import build_h2h_json
 from defence_json import build_defence_json
 from match_wise_json import build_match_wise
 from LeaderBoard_tournament_json import LeaderBoard_tournament
