@@ -1,8 +1,9 @@
-def season_players_json(dfs):
+def tournament_players_json(dfs,filters=None):
     # Fetch required dataframes
-    pms = dfs.get("player_season_stat")
+    pms = dfs.get("player_tournament_stat")
     player = dfs.get("player")
     team = dfs.get("team")
+    tournament=dfs.get("tournament")
 
     # If essential data is missing, return empty list
     if pms is None or player is None:
@@ -28,22 +29,38 @@ def season_players_json(dfs):
         for _, row in team.iterrows()
     }
 
+    tournament_name_map = {
+    row.tournament_id: row.tournament_name
+    for _, row in tournament.iterrows()
+    }
+
+
     result = {}
 
+    if filters:
+        if filters.get("tournament") and filters["tournament"] != "all":
+            tname = filters["tournament"].lower()
+
+            valid_tournaments = [
+                tid for tid, name in tournament_name_map.items()
+                if name.lower() == tname
+            ]
+
+            pms = pms[pms["tournament_id"].isin(valid_tournaments)]
     
     # Loop season-wise
     
-    for season_id in pms["season_id"].unique():
+    for tournamnet_id in pms["tournament_id"].unique():
 
         # Filter data for that specific season
-        season_df = pms[pms["season_id"] == season_id]
+        tournamnet_df = pms[pms["tournament_id"] == tournamnet_id]
 
         players_list = []
 
         
         # Loop player-wise within season
         
-        for _, row in season_df.iterrows():
+        for _, row in tournamnet_df.iterrows():
 
             player_id = int(row["player_id"])
 
@@ -96,6 +113,6 @@ def season_players_json(dfs):
             })
 
         # Append season-wise data
-        result["players"]=players_list
+        result[tournament_name_map[tournamnet_id]] = players_list
 
     return result
