@@ -6,21 +6,18 @@ def sec_to_ms(sec):
     s = int(sec) % 60
     return f"{m}m {s}s"
 
-def build_players_json(dfs):
+def build_players_json(dfs,filters=None):
 
-    pss = dfs.get("player_season_stat")
+    pss = dfs.get("player_tournament_stat")
     player = dfs.get("player")
     team = dfs.get("team")
-    season = dfs.get("season")
     tournament = dfs.get("tournament")
-    ts=dfs.get("team_stat")
 
     if pss is None or player is None:
         return {"players": []}
 
     players_list = []
-    season_list=[]
-    team_list=[]
+    
     # Maps
     player_name_map = {row.player_id: row.player_name for _, row in player.iterrows()}
     player_role_map = {row.player_id: row.role for _, row in player.iterrows()}
@@ -28,15 +25,36 @@ def build_players_json(dfs):
     player_jersey_map = {row.player_id: row.jersey_no for _, row in player.iterrows()}
 
     team_name_map = {row.team_id: row.team_name for _, row in team.iterrows()}
-    season_name_map = {row.season_id: row.season_name for _, row in season.iterrows()}
-    season_tournament_map = {row.season_id: row.tournament_id for _, row in season.iterrows()}
     tournament_name_map = {row.tournament_id: row.tournament_name for _, row in tournament.iterrows()}
-    team_points_map = {(row.team_id, row.season_id): row.total_points for _, row in ts.iterrows()}
+    
+    # APPLY FILTERS 
+    if filters:
+
+        if filters.get("tournament") and filters["tournament"] != "all":
+            pss = pss[
+                pss["tournament_id"].isin([
+                    tid for tid, tname in tournament_name_map.items()
+                    if tname == filters["tournament"]
+                ])
+            ]
+        
+        if filters.get("name"):
+            name_filter = filters["name"].lower()
+
+            # Step 1: filter PLAYER table
+            filtered_players = player[
+                player["player_name"].str.lower().str.contains(rf'\b{name_filter}\b', regex=True)
+            ]
+
+            # Step 2: get matching IDs
+            valid_player_ids = filtered_players["player_id"]
+
+            # Step 3: filter pss
+            pss = pss[pss["player_id"].isin(valid_player_ids)]
     
     for _, row in pss.iterrows():
 
         player_id = row["player_id"]
-        season_id = row["season_id"]
 
         name = player_name_map.get(player_id, "Unknown")
         role = player_role_map.get(player_id, "Unknown")
@@ -44,14 +62,11 @@ def build_players_json(dfs):
 
         team_id = player_team_map.get(player_id)
         team_name = team_name_map.get(team_id, "Unknown")
-
-        season_name = season_name_map.get(season_id, "Unknown")
-        tournament_id = season_tournament_map.get(season_id)
-        tournament_name = tournament_name_map.get(tournament_id, "Unknown")
+        
+        tournament_name = tournament_name_map.get(row.get("tournament_id"), "Unknown")
         
         matches = row["matches_played"] or 0
         
-        team_points = team_points_map.get((team_id, season_id), 0)
         
         total_attack = row["total_attack_points"] or 0
         total_defense = row["total_defence_points"] or 0
@@ -64,7 +79,7 @@ def build_players_json(dfs):
         team_code = team_name[:3].upper()
         initials = "".join([x[0] for x in name.split()][:2]).upper()
         player_code = f"{team_code}_{initials}"
-        total_points=int(row["total_attack_points"])+int(row["total_defence_points"])
+        total_points=int((row["total_attack_points"])*30)+int(row["total_defence_points"])
         players_list.append({
 
             "id": player_code,
@@ -72,7 +87,6 @@ def build_players_json(dfs):
             "team": team_name,
             "role": role,
             "jersey_no": jersey,
-            "season": season_name,
             "tournament": tournament_name,
 
             "stats": {
@@ -84,17 +98,14 @@ def build_players_json(dfs):
                 "attacker_pts": total_attack,
                 "defender_pts": total_defense,   
                 "avg_attacking_points": avg_attack,
-                "assist": int(row["assists"] or 0),
                 "highest_attack_points": int(row["highest_attack_points"] or 0),
                 "total_defence_time": sec_to_ms(int(total_defense)),
                 "highest_defence_time": sec_to_ms(int(row["highest_def_time"] or 0)),
                 "avg_defence_time": sec_to_ms(avg_def_time),
-                "total_touches": int(row["total_touches"]),
-                "team_total": int(team_points),
                 "out_of_field": int(row["out_of_field"] or 0)
 
             }
 
         })
-
+    
     return {"players": players_list}
