@@ -9,10 +9,7 @@ def build_match_wise(dfs, filters=None):
     if matches is None:
         return {"matches": []}
 
-    # -------------------
     # LOOKUP TABLES
-    # -------------------
-
     team_name_map = {
         row.team_id: row.team_name
         for _, row in teams.iterrows()
@@ -22,10 +19,6 @@ def build_match_wise(dfs, filters=None):
         row.tournament_id: row.tournament_name
         for _, row in tournament.iterrows()
     } if tournament is not None else {}
-
-    # -------------------
-    # BUILD JSON
-    # -------------------
 
     match_list = []
 
@@ -49,13 +42,11 @@ def build_match_wise(dfs, filters=None):
 
         tournament_name = tournament_name_map.get(tournament_id, "Unknown")
 
-        home_score = m.get("home_team_score", "")
-        away_score = m.get("away_team_score", "")
-
-        score_text = f"{home_team_name} {home_score} - {away_score} {away_team_name}"
+        # ✅ ONLY RESULT (same as H2H)
+        score_text = m.get("result")
 
         match_list.append({
-            "id": m.get("match_name", f"M{match_id:02d}"),  # use DB match_name
+            "id": m.get("match_name", f"M{match_id:02d}"),
             "name": f"{home_team_name} vs {away_team_name}",
             "date": str(m["match_date"]),
             "tournament": tournament_name,
@@ -63,10 +54,7 @@ def build_match_wise(dfs, filters=None):
             "winner": winner_name
         })
 
-    # -------------------
-    # APPLY FILTERS
-    # -------------------
-
+    # FILTERS
     if filters:
 
         if filters.get("query"):
