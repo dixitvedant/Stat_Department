@@ -13,16 +13,11 @@ EXPECTED_TABLES = [
     "Season",
     "Tournament",
     "Match_details",
-    "Match_Stats",
-    "Match_Awards",
     "Player_match_stat",
-    "Player_season_stat",
-    "Player_Role_History",
+    "Player_tournament_stat",
     "Team_stat",
     "Team_Attack",
-    "Team_Defence",
-    "Player_Attack",
-    "Player_Defence"
+    "Team_Defence"
 ]
 
 def connect_db():
