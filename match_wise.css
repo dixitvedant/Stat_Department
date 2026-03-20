@@ -1,0 +1,168 @@
+/* --- EXISTING STYLES --- */
+body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.match-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #e5e7eb !important;
+}
+
+.match-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px -10px rgba(0, 0, 0, 0.1) !important;
+    border-color: #2563eb !important;
+}
+
+/* --- NEW CHANGES FOR SEASON, TOURNAMENT & SCORE --- */
+
+/* The Score Box */
+.score-display {
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    transition: background 0.3s ease;
+}
+
+.match-card:hover .score-display {
+    background: #eff6ff;
+    border-style: solid;
+    border-color: #bfdbfe;
+}
+
+.score-display span {
+    letter-spacing: 0.5px;
+    font-size: 0.95rem;
+}
+
+/* Filter Polish */
+.form-select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.1);
+}
+
+/* Season & Tournament Badges */
+.badge {
+    font-weight: 600;
+    padding: 0.5em 0.8em;
+}
+
+.bg-secondary-subtle {
+    background-color: #f1f5f9 !important;
+    color: #475569 !important;
+}
+
+/* Hero Section Tweaks */
+.page-hero {
+    background: linear-gradient(to bottom, #ffffff, #f8fafc);
+}
+
+/* Search Input Focus */
+.input-group:focus-within {
+    border-radius: 8px;
+}
+
+.transition-all {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Loading Spinner centering */
+#loadingSpinner {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* FOOTER */
+main-footer {
+    background-color: #ffffff;
+    padding: 60px 0 20px;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 80px;
+}
+
+.footer-logo {
+    color: #2563eb;
+    font-weight: 800;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.footer-description {
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.footer-title {
+    color: #0f172a;
+    font-weight: 700;
+    font-size: 16px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links li a {
+    text-decoration: none;
+    color: #64748b;
+    font-size: 14px;
+    transition: color 0.2s ease;
+}
+
+.footer-links li a:hover {
+    color: #2563eb;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+}
+
+.social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background: #f1f5f9;
+    color: #475569;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background: #2563eb;
+    color: white;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    font-size: 13px;
+    color: #94a3b8;
+}
+
+.footer-bottom p {
+    margin: 0;
+}
+
+/* responsive adjustment */
+@media (max-width: 768px) {
+    .main-footer {
+        text-align: center;
+    }
+
+    .social-links {
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+}

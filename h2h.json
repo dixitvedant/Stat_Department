@@ -1,0 +1,365 @@
+{
+  "M01": [
+    {
+      "match": "M45",
+      "date": "2024-02-01",
+      "score": "Maharashtra 34–30 Gujarat",
+      "winner": "Maharashtra"
+    
+    },
+    {
+      "match": "M38",
+      "date": "2024-01-18",
+      "score": "Gujarat 32–29 Maharashtra",
+      "winner": "Gujarat"
+    },
+    {
+      "match": "M29",
+      "date": "2023-12-10",
+      "score": "Match Drawn",
+      "winner": "Draw"
+    },
+    {
+      "match": "M21",
+      "date": "2023-11-25",
+      "score": "Maharashtra 31–27 Gujarat",
+      "winner": "Maharashtra"
+    },
+    {
+      "match": "M14",
+      "date": "2023-10-30",
+      "score": "Gujarat 30–28 Maharashtra",
+      "winner": "Gujarat"
+    }
+  ],
+
+  "M02": [
+    {
+      "match": "M41",
+      "date": "2024-02-03",
+      "score": "Delhi 33–28 Karnataka",
+      "winner": "Delhi"
+    },
+    {
+      "match": "M36",
+      "date": "2024-01-12",
+      "score": "Karnataka 31–29 Delhi",
+      "winner": "Karnataka"
+    },
+    {
+      "match": "M27",
+      "date": "2023-12-01",
+      "score": "Delhi 30–30 Karnataka",
+      "winner": "Draw"
+    },
+    {
+      "match": "M18",
+      "date": "2023-11-10",
+      "score": "Delhi 29–26 Karnataka",
+      "winner": "Delhi"
+    },
+    {
+      "match": "M09",
+      "date": "2023-10-20",
+      "score": "Karnataka 32–27 Delhi",
+      "winner": "Karnataka"
+
+    }
+  ],
+
+  "M03": [
+    {
+      "match": "M40",
+      "date": "2024-02-05",
+      "score": "Pune 31–29 Mumbai",
+      "winner": "Pune"
+    },
+    {
+      "match": "M34",
+      "date": "2024-01-15",
+      "score": "Mumbai 33–30 Pune",
+      "winner": "Mumbai"
+    },
+    {
+      "match": "M26",
+      "date": "2023-12-05",
+      "score": "Pune 30–28 Mumbai",
+      "winner": "Pune"
+    },
+    {
+      "match": "M17",
+      "date": "2023-11-12",
+      "score": "Mumbai 29–27 Pune",
+      "winner": "Mumbai"
+    },
+    {
+      "match": "M08",
+      "date": "2023-10-18",
+      "score": "Match Drawn",
+      "winner": "Draw"
+    }
+  ],
+
+  "M04": [
+    {
+      "match": "M39",
+      "date": "2024-02-02",
+      "score": "Rajasthan 28–26 Haryana",
+      "winner": "Rajasthan"
+    },
+    {
+      "match": "M31",
+      "date": "2024-01-08",
+      "score": "Haryana 30–27 Rajasthan",
+      "winner": "Haryana"
+    },
+    {
+      "match": "M24",
+      "date": "2023-12-12",
+      "score": "Rajasthan 29–25 Haryana",
+      "winner": "Rajasthan"
+    },
+    {
+      "match": "M16",
+      "date": "2023-11-05",
+      "score": "Haryana 28–26 Rajasthan",
+      "winner": "Haryana",
+      "totalWickets": 18
+    },
+    {
+      "match": "M07",
+      "date": "2023-10-10",
+      "score": "Match Drawn",
+      "winner": "Draw",
+      "totalWickets": 17
+    }
+  ],
+
+  "M05": [
+    {
+      "match": "M42",
+      "date": "2024-02-06",
+      "score": "Tamil Nadu 32–29 Kerala",
+      "winner": "Tamil Nadu",
+      "totalWickets": 21
+    },
+    {
+      "match": "M35",
+      "date": "2024-01-14",
+      "score": "Kerala 31–30 Tamil Nadu",
+      "winner": "Kerala",
+      "totalWickets": 20
+    },
+    {
+      "match": "M28",
+      "date": "2023-12-08",
+      "score": "Tamil Nadu 30–28 Kerala",
+      "winner": "Tamil Nadu",
+      "totalWickets": 19
+    },
+    {
+      "match": "M20",
+      "date": "2023-11-20",
+      "score": "Kerala 29–27 Tamil Nadu",
+      "winner": "Kerala",
+      "totalWickets": 18
+    },
+    {
+      "match": "M12",
+      "date": "2023-10-25",
+      "score": "Match Drawn",
+      "winner": "Draw",
+      "totalWickets": 17
+    }
+  ],
+
+  "M06": [
+    {
+      "match": "M43",
+      "date": "2024-02-04",
+      "score": "UP 30–27 Bihar",
+      "winner": "Uttar Pradesh",
+      "totalWickets": 19
+    },
+    {
+      "match": "M33",
+      "date": "2024-01-10",
+      "score": "Bihar 29–28 UP",
+      "winner": "Bihar",
+      "totalWickets": 18
+    },
+    {
+      "match": "M25",
+      "date": "2023-12-06",
+      "score": "UP 31–29 Bihar",
+      "winner": "Uttar Pradesh",
+      "totalWickets": 20
+    },
+    {
+      "match": "M15",
+      "date": "2023-11-02",
+      "score": "Bihar 28–26 UP",
+      "winner": "Bihar",
+      "totalWickets": 17
+    },
+    {
+      "match": "M06",
+      "date": "2023-10-05",
+      "score": "Match Drawn",
+      "winner": "Draw",
+      "totalWickets": 16
+    }
+  ],
+
+  "M07": [
+    {
+      "match": "M44",
+      "date": "2024-02-07",
+      "score": "West Bengal 32–29 Odisha",
+      "winner": "West Bengal",
+      "totalWickets": 21
+    },
+    {
+      "match": "M32",
+      "date": "2024-01-09",
+      "score": "Odisha 31–30 West Bengal",
+      "winner": "Odisha",
+      "totalWickets": 20
+    },
+    {
+      "match": "M23",
+      "date": "2023-12-02",
+      "score": "West Bengal 30–28 Odisha",
+      "winner": "West Bengal",
+      "totalWickets": 19
+    },
+    {
+      "match": "M13",
+      "date": "2023-10-28",
+      "score": "Odisha 29–27 West Bengal",
+      "winner": "Odisha",
+      "totalWickets": 18
+    },
+    {
+      "match": "M05",
+      "date": "2023-10-01",
+      "score": "Match Drawn",
+      "winner": "Draw",
+      "totalWickets": 17
+    }
+  ],
+
+  "M08": [
+    {
+      "match": "M37",
+      "date": "2024-01-20",
+      "score": "Assam 28–25 Manipur",
+      "winner": "Assam",
+      "totalWickets": 17
+    },
+    {
+      "match": "M30",
+      "date": "2024-01-05",
+      "score": "Manipur 29–27 Assam",
+      "winner": "Manipur",
+      "totalWickets": 18
+    },
+    {
+      "match": "M22",
+      "date": "2023-11-30",
+      "score": "Assam 30–28 Manipur",
+      "winner": "Assam",
+      "totalWickets": 19
+    },
+    {
+      "match": "M11",
+      "date": "2023-10-22",
+      "score": "Manipur 27–26 Assam",
+      "winner": "Manipur",
+      "totalWickets": 16
+    },
+    {
+      "match": "M04",
+      "date": "2023-09-30",
+      "score": "Match Drawn",
+      "winner": "Draw",
+      "totalWickets": 15
+    }
+  ],
+
+  "M09": [
+    {
+      "match": "M46",
+      "date": "2024-02-08",
+      "score": "Goa 31–28 Chhattisgarh",
+      "winner": "Goa",
+      "totalWickets": 20
+    },
+    {
+      "match": "M37",
+      "date": "2024-01-22",
+      "score": "Chhattisgarh 30–29 Goa",
+      "winner": "Chhattisgarh",
+      "totalWickets": 19
+    },
+    {
+      "match": "M28",
+      "date": "2023-12-09",
+      "score": "Goa 29–27 Chhattisgarh",
+      "winner": "Goa",
+      "totalWickets": 18
+    },
+    {
+      "match": "M19",
+      "date": "2023-11-18",
+      "score": "Chhattisgarh 28–26 Goa",
+      "winner": "Chhattisgarh",
+      "totalWickets": 17
+    },
+    {
+      "match": "M10",
+      "date": "2023-10-15",
+      "score": "Match Drawn",
+      "winner": "Draw",
+      "totalWickets": 16
+    }
+  ],
+
+  "M10": [
+    {
+      "match": "M47",
+      "date": "2024-02-09",
+      "score": "Telangana 30–27 Andhra",
+      "winner": "Telangana",
+      "totalWickets": 19
+    },
+    {
+      "match": "M38",
+      "date": "2024-01-25",
+      "score": "Andhra 29–28 Telangana",
+      "winner": "Andhra Pradesh",
+      "totalWickets": 18
+    },
+    {
+      "match": "M27",
+      "date": "2023-12-03",
+      "score": "Telangana 31–29 Andhra",
+      "winner": "Telangana",
+      "totalWickets": 20
+    },
+    {
+      "match": "M16",
+      "date": "2023-11-08",
+      "score": "Andhra 28–26 Telangana",
+      "winner": "Andhra Pradesh",
+      "totalWickets": 17
+    },
+    {
+      "match": "M07",
+      "date": "2023-10-12",
+      "score": "Match Drawn",
+      "winner": "Draw",
+      "totalWickets": 16
+    }
+  ]
+}

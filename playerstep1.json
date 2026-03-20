@@ -1,0 +1,28 @@
+{
+  "players": [
+    {
+      "id": "MAH_SP",
+      "name": "Sagar Pawar",
+      "team": "Maharashtra",
+      "role": "Attacker",
+      "tournament": "National Championship 2026",
+      "stats": { "matches": 12, "points": 95 }
+    },
+    {
+      "id": "GUJ_RS",
+      "name": "Rahul Solanki",
+      "team": "Gujarat",
+      "role": "Attacker",
+      "tournament": "Federation Cup",
+      "stats": { "matches": 12, "points": 110 }
+    },
+    {
+      "id": "DEL_RS",
+      "name": "Rohit Sharma",
+      "team": "Delhi",
+      "role": "Attacker",
+      "tournament": "National Championship 2026",
+      "stats": { "matches": 15, "points": 130 }
+    }
+  ]
+}

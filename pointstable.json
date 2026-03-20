@@ -1,0 +1,147 @@
+{
+  "tournaments": [
+    "National Championship 2026",
+    "Zonal League 2025",
+    "Invitational Cup 2024"
+  ],
+  "tables": {
+    "National Championship 2026": [
+      {
+        "pos": 1,
+        "name": "Maharashtra",
+        "played": 12,
+        "win": 9,
+        "loss": 2,
+        "nr": 1,
+        "pts": 19,
+        "form": ["W", "W", "W", "L", "W"],
+        "id": "mah-01"
+      },
+      {
+        "pos": 2,
+        "name": "Gujarat",
+        "played": 12,
+        "win": 8,
+        "loss": 3,
+        "nr": 1,
+        "pts": 17,
+        "form": ["W", "W", "L", "W", "L"],
+        "id": "guj-02"
+      },
+      {
+        "pos": 3,
+        "name": "Karnataka",
+        "played": 11,
+        "win": 7,
+        "loss": 4,
+        "nr": 0,
+        "pts": 14,
+        "form": ["L", "W", "W", "L", "W"],
+        "id": "kar-03"
+      },
+      {
+        "pos": 4,
+        "name": "Delhi",
+        "played": 12,
+        "win": 6,
+        "loss": 6,
+        "nr": 0,
+        "pts": 12,
+        "form": ["W", "L", "L", "W", "L"],
+        "id": "del-04"
+      },
+      {
+        "pos": 5,
+        "name": "Odisha",
+        "played": 12,
+        "win": 5,
+        "loss": 5,
+        "nr": 2,
+        "pts": 12,
+        "form": ["L", "W", "L", "D", "W"],
+        "id": "odi-05"
+      },
+      {
+        "pos": 6,
+        "name": "Rajasthan",
+        "played": 12,
+        "win": 5,
+        "loss": 6,
+        "nr": 1,
+        "pts": 11,
+        "form": ["W", "L", "W", "L", "L"],
+        "id": "raj-06"
+      },
+      {
+        "pos": 7,
+        "name": "Telangana",
+        "played": 12,
+        "win": 4,
+        "loss": 7,
+        "nr": 1,
+        "pts": 9,
+        "form": ["L", "L", "W", "W", "L"],
+        "id": "tel-07"
+      },
+      {
+        "pos": 8,
+        "name": "Tamil Nadu",
+        "played": 12,
+        "win": 3,
+        "loss": 8,
+        "nr": 1,
+        "pts": 7,
+        "form": ["L", "L", "L", "W", "W"],
+        "id": "tam-08"
+      },
+      {
+        "pos": 9,
+        "name": "West Bengal",
+        "played": 12,
+        "win": 2,
+        "loss": 9,
+        "nr": 1,
+        "pts": 5,
+        "form": ["L", "L", "L", "L", "W"],
+        "id": "ben-09"
+      },
+      {
+        "pos": 10,
+        "name": "Kerala",
+        "played": 12,
+        "win": 1,
+        "loss": 10,
+        "nr": 1,
+        "pts": 3,
+        "form": ["L", "L", "L", "L", "L"],
+        "id": "ker-10"
+      }
+    ],
+    "Zonal League 2025": [
+      {
+        "pos": 1,
+        "name": "Delhi",
+        "played": 5,
+        "win": 4,
+        "loss": 1,
+        "nr": 0,
+        "pts": 8,
+        "form": ["W", "W", "L", "W", "W"],
+        "id": "del-04"
+      }
+    ],
+    "Invitational Cup 2024": [
+      {
+        "pos": 1,
+        "name": "Odisha",
+        "played": 5,
+        "win": 5,
+        "loss": 0,
+        "nr": 0,
+        "pts": 10,
+        "form": ["W", "W", "W", "W", "W"],
+        "id": "odi-05"
+      }
+    ]
+  }
+}

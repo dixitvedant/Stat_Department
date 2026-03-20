@@ -1,0 +1,98 @@
+{
+  "tournaments": [
+    {
+      "tournament_name": "National Championship 2026",
+      "leaderboards": {
+        "mvp": [
+          {
+            "rank": 1,
+            "name": "Pawan Sehrawat",
+            "team": "Karnataka Kings",
+            "value": 158.4,
+            "label": "Rating",
+            "image": "https://placehold.co/200"
+          },
+          {
+            "rank": 2,
+            "name": "Naveen Kumar",
+            "team": "Delhi Dynamos",
+            "value": 146.0,
+            "label": "Rating",
+            "image": "https://placehold.co/200"
+          }
+        ],
+        "attackers": [
+          {
+            "rank": 1,
+            "name": "Sagar Pawar",
+            "team": "Maharashtra Tycoons",
+            "value": 115,
+            "label": "Pts",
+            "image": "https://placehold.co/200"
+          },
+          {
+            "rank": 2,
+            "name": "Amit Verma",
+            "team": "Mumbai Aces",
+            "value": 102,
+            "label": "Pts",
+            "image": "https://placehold.co/200"
+          }
+        ],
+        "defenders": [
+          {
+            "rank": 1,
+            "name": "Deepak Hooda",
+            "team": "Haryana Steelers",
+            "value": 225,
+            "label": "sec",
+            "image": "https://placehold.co/200"
+          },
+          {
+            "rank": 2,
+            "name": "Vikram Singh",
+            "team": "Rajasthan Warriors",
+            "value": 210,
+            "label": "sec",
+            "image": "https://placehold.co/200"
+          }
+        ]
+      }
+    },
+    {
+      "tournament_name": "Federation Cup 2026",
+      "leaderboards": {
+        "mvp": [
+          {
+            "rank": 1,
+            "name": "Sandeep Narwal",
+            "team": "Haryana Giants",
+            "value": 162.1,
+            "label": "Rating",
+            "image": "https://placehold.co/200"
+          }
+        ],
+        "attackers": [
+          {
+            "rank": 1,
+            "name": "Pradeep Narwal",
+            "team": "UP Yoddhas",
+            "value": 140,
+            "label": "Pts",
+            "image": "https://placehold.co/200"
+          }
+        ],
+        "defenders": [
+          {
+            "rank": 1,
+            "name": "Fazel Atrachali",
+            "team": "Gujarat Giants",
+            "value": 310,
+            "label": "sec",
+            "image": "https://placehold.co/200"
+          }
+        ]
+      }
+    }
+  ]
+}
