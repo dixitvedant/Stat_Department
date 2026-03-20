@@ -8,9 +8,9 @@ from roaster_json import build_roaster_json
 from h2h_list_json import build_h2h_json
 from defence_json import build_defence_json
 from match_wise_json import build_match_wise
-from LeaderBoard_season_json import LeaderBoard_season
+from LeaderBoard_tournament_json import LeaderBoard_tournament
 from match_details_json import build_match_details_json
-from season_player_stats import season_players_json
+from tournament_player_stats import tournament_players_json
 from player_profile import build_players_json
 from LeaderBoard import LeaderBoard_match
 
@@ -30,77 +30,100 @@ def load_clean_data():
 
 @app.route("/LeaderBoard")
 def get_LeaderBoard_match():
+    filters = {}
+
+    tournament = request.args.get("tournament")
+    match_name = request.args.get("match")
+    if tournament and tournament != "all":
+        filters["tournament"] = tournament
+    if match_name:
+        filters["match"] = match_name
     dfs=load_clean_data()
-    data=LeaderBoard_match(dfs)
+    data=LeaderBoard_match(dfs,filters)
     return jsonify(data)
 
 @app.route("/player-profile")
-def get_player_season_profile():
+def get_player_profile():
+    filters = {}
+
+    tournament = request.args.get("tournament")
+    player_name = request.args.get("playerId")
+    if tournament and tournament != "all":
+        filters["tournament"] = tournament
+    if player_name:
+        filters["name"] = player_name 
     dfs=load_clean_data()
-    data=build_players_json(dfs)
+    data=build_players_json(dfs,filters)
     return jsonify(data)
 
-@app.route("/player-season")
-def get_player_season_stats():
+@app.route("/player-tournament")
+def get_player_tournament_stats():
+    filters = {}
+
+    tournament = request.args.get("tournament")
+
+    if tournament:
+        filters["tournament"] = tournament
     dfs=load_clean_data()
-    data=season_players_json(dfs)
+    data=tournament_players_json(dfs,filters)
     return jsonify(data)
 
 @app.route("/match-details")
 def get_match_details():
+    tournament_name = request.args.get("tournament")
+    match_name = request.args.get("id")
+
+    filters = {}
+
+    if tournament_name:
+        filters["tournament"] = tournament_name
+
+    if match_name:
+        filters["match"] = match_name
     dfs=load_clean_data()
-    data=build_match_details_json(dfs)
+    data=build_match_details_json(dfs,filters)
     return jsonify(data)
     
 @app.route("/point-table")
 def get_point_table():
     filters = {}
 
-    if request.args.get("tournament_id"):
-        filters["tournament_id"] = int(request.args.get("tournament_id"))
+    if request.args.get("tournament"):
+        filters["tournament"] = request.args.get("tournament")
 
-    if request.args.get("season_id"):
-        filters["season_id"] = int(request.args.get("season_id"))
     dfs = load_clean_data()
-    data = Point_Table(dfs,filters)
+    data = Point_Table(dfs, filters)
+
     return jsonify(data)
 
 @app.route("/roaster")
 def get_roaster():
-    filters={}
-    if request.args.get("tournament_id"):
-        filters["tournament_id"] = int(request.args.get("tournament_id"))
+    tournament_name = request.args.get("tournament")
+    match_name = request.args.get("id")
 
-    if request.args.get("season_id"):
-        filters["season_id"] = int(request.args.get("season_id"))
+    filters = {}
 
-    if request.args.get("match_id"):
-        filters["match_id"] = int(request.args.get("match_id"))
+    if tournament_name:
+        filters["tournament"] = tournament_name
 
-    if request.args.get("team_id"):
-        filters["team_id"] = int(request.args.get("team_id"))
-
-    if request.args.get("role"):
-        filters["role"] = request.args.get("role")
+    if match_name:
+        filters["match"] = match_name
     dfs=load_clean_data()
     data=build_roaster_json(dfs,filters)
     return jsonify(data)
 
 @app.route("/attacker")
 def get_attacker():
+    tournament_name = request.args.get("tournament")
+    match_name = request.args.get("id")
+
     filters = {}
 
-    if request.args.get("tournament_id"):
-        filters["tournament_id"] = int(request.args.get("tournament_id"))
+    if tournament_name:
+        filters["tournament"] = tournament_name
 
-    if request.args.get("season_id"):
-        filters["season_id"] = int(request.args.get("season_id"))
-
-    if request.args.get("match_id"):
-        filters["match_id"] = int(request.args.get("match_id"))
-
-    if request.args.get("team_id"):
-        filters["team_id"] = int(request.args.get("team_id"))
+    if match_name:
+        filters["match"] = match_name
 
     dfs=load_clean_data()
     data=build_attack_json(dfs,filters)
@@ -108,38 +131,32 @@ def get_attacker():
 
 @app.route("/h2h")
 def get_h2h():
+    tournament_name = request.args.get("tournament")
+    match_name = request.args.get("id")
+
     filters = {}
 
-    if request.args.get("tournament_id"):
-        filters["tournament_id"] = int(request.args.get("tournament_id"))
+    if tournament_name:
+        filters["tournament"] = tournament_name
 
-    if request.args.get("season_id"):
-        filters["season_id"] = int(request.args.get("season_id"))
-
-    if request.args.get("match_id"):
-        filters["match_id"] = int(request.args.get("match_id"))
-
-    if request.args.get("team_id"):
-        filters["team_id"] = int(request.args.get("team_id"))
+    if match_name:
+        filters["match"] = match_name
     dfs=load_clean_data()
     data=build_h2h_json(dfs,filters)
     return jsonify(data)
 
 @app.route("/defence")
 def get_defence():
+    tournament_name = request.args.get("tournament")
+    match_name = request.args.get("id")
+
     filters = {}
 
-    if request.args.get("tournament_id"):
-        filters["tournament_id"] = int(request.args.get("tournament_id"))
+    if tournament_name:
+        filters["tournament"] = tournament_name
 
-    if request.args.get("season_id"):
-        filters["season_id"] = int(request.args.get("season_id"))
-
-    if request.args.get("match_id"):
-        filters["match_id"] = int(request.args.get("match_id"))
-
-    if request.args.get("team_id"):
-        filters["team_id"] = int(request.args.get("team_id"))
+    if match_name:
+        filters["match"] = match_name
     dfs=load_clean_data()
     data=build_defence_json(dfs,filters)
     return jsonify(data)
@@ -149,17 +166,22 @@ def get_match_wise():
 
     filters = {}
 
-    if request.args.get("tournament_id"):
-        filters["tournament_id"] = int(request.args.get("tournament_id"))
+    query = request.args.get("query")
+    season = request.args.get("season")
+    year = request.args.get("year")
+    tournament = request.args.get("tournament")
 
-    if request.args.get("season_id"):
-        filters["season_id"] = int(request.args.get("season_id"))
+    if query:
+        filters["query"] = query
 
-    if request.args.get("match_id"):
-        filters["match_id"] = int(request.args.get("match_id"))
+    if season and season != "all":
+        filters["season"] = season
 
-    if request.args.get("team_id"):
-        filters["team_id"] = int(request.args.get("team_id"))
+    if year and year != "all":
+        filters["year"] = year
+
+    if tournament and tournament != "all":
+        filters["tournament"] = tournament
 
     page = int(request.args.get("page", 1))
     limit = int(request.args.get("limit", 20))
@@ -183,11 +205,16 @@ def get_match_wise():
         "limit": limit,
         "total": total_matches
     })
-
-@app.route("/LeaderBoard-Season")
+    
+@app.route("/LeaderBoard-tournament")
 def get_leaderboard_season():
+    filters = {}
+
+    tournament = request.args.get("tournament")
+    if tournament and tournament != "all":
+        filters["tournament"] = tournament
     dfs=load_clean_data()
-    data=LeaderBoard_season(dfs)
+    data=LeaderBoard_tournament(dfs,filters)
     return jsonify(data)
 
 
