@@ -4,47 +4,48 @@ import pandas as pd
 def Point_Table(dfs,filters=None):
 
     ts = dfs.get("team_stat")
-    season = dfs.get("season")
+    tournament=dfs.get("tournament")
     teams = dfs.get("team")
 
     if ts is None:
         return {"seasons": [], "tables": {}}
     
-    if filters:
-        if filters.get("tournament_id") is not None:
-            ts = ts[ts["tournament_id"] == int(filters["tournament_id"])]
-
-        if filters.get("season_id") is not None:
-            ts = ts[ts["season_id"] == int(filters["season_id"])]
-
-
     team_name_map = {
         row.team_id: row.team_name
         for _, row in teams.iterrows()
     } if teams is not None else {}
 
-    season_name_map = {
-        row.season_id: row.season_name
-        for _, row in season.iterrows()
-    } if season is not None else {}
+    tournament_name_map = {
+        row.tournament_id: row.tournament_name
+        for _, row in tournament.iterrows()
+    } if tournament is not None else {}
 
     final_output = {
-        "seasons": [],
+        "tournament": [],
         "tables": {}
     }
 
-    for season_id, season_group in ts.groupby("season_id"):
+    if filters.get("tournament") and filters["tournament"] != "all":
+        ts = ts[
+            ts["tournament_id"].isin([
+                tid for tid, tname in tournament_name_map.items()
+                if tname == filters["tournament"]
+            ])
+        ]
 
-        season_name = season_name_map.get(season_id, str(season_id))
-        final_output["seasons"].append(str(season_name))
+    
+    for tournamnet_id, tournamnet_group in ts.groupby("tournament_id"):
 
-        season_group = season_group.sort_values(
+        tournament_name = tournament_name_map.get(tournamnet_id, str(tournamnet_id))
+        final_output["tournament"].append(str(tournament_name))
+
+        tournamnet_group = tournamnet_group.sort_values(
             by="total_points", ascending=False
         ).reset_index(drop=True)
 
         table_list = []
 
-        for index, row in season_group.iterrows():
+        for index, row in tournamnet_group.iterrows():
 
             team_name = team_name_map.get(row["team_id"], "UNKNOWN")
 
@@ -63,6 +64,6 @@ def Point_Table(dfs,filters=None):
                 "id": team_name  
             })
 
-        final_output["tables"][str(season_name)] = table_list
+        final_output["tables"][str(tournament_name)] = table_list
 
     return final_output
