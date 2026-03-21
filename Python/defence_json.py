@@ -24,7 +24,7 @@ def build_defence_json(dfs, filters=None):
     # Filters
     if filters:
 
-    # Tournament filter 
+        # Tournament filter 
         if filters.get("tournament") and filters["tournament"] != "all":
             matches = matches[
                 matches["tournament_id"].isin([
@@ -36,6 +36,7 @@ def build_defence_json(dfs, filters=None):
         # Match filter
         if filters.get("match"):
             matches = matches[matches["match_name"] == filters["match"]]
+
     # Filter defence only once
     defence = defence[
         defence["match_id"].isin(matches["match_id"])
@@ -58,11 +59,9 @@ def build_defence_json(dfs, filters=None):
 
         match_defence = defence[defence["match_id"] == m_id]
 
+        # dynamic innings
         match_structure = {
-            "defence": {
-                "inning1": {},
-                "inning2": {}
-            }
+            "defence": {}
         }
 
         # Loop defence rows
@@ -70,6 +69,10 @@ def build_defence_json(dfs, filters=None):
 
             inning = int(d.get("inning_no"))
             inning_key = f"inning{inning}"
+
+            # Create inning dynamically
+            if inning_key not in match_structure["defence"]:
+                match_structure["defence"][inning_key] = {}
 
             team_id = int(d.get("team_id"))
             team_name = team_name_map.get(team_id, "Unknown")
