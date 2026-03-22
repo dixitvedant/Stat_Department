@@ -102,8 +102,6 @@ def build_players_json(dfs,filters=None):
                 "total_defence_time": sec_to_ms(int(total_defense)),
                 "highest_defence_time": sec_to_ms(int(row["highest_def_time"] or 0)),
                 "avg_defence_time": sec_to_ms(avg_def_time),
-                "out_of_field": int(row["out_of_field"] or 0)
-
             }
 
         })
