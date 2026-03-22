@@ -91,7 +91,6 @@ def build_players_json(dfs,filters=None):
 
             "stats": {
                 "matches":int(row["matches_played"] or 0),
-                "simple_touch": int(row["total_touches"] or 0),
                 "pole_dive": int(row["pole_dives"] or 0),
                 "sky_dive": int(row["sky_dives"] or 0),
                 "total_pts":total_points,
