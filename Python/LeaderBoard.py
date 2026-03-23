@@ -1,9 +1,11 @@
 def LeaderBoard_match(dfs, filters=None):
+    # Get required tables
     pms = dfs.get("player_match_stat")
     player = dfs.get("player")
     matches = dfs.get("match_details")
     tournament = dfs.get("tournament")
 
+     # If no player_match_stat or player data, return empty result
     if pms is None or player is None:
         return {}
 
