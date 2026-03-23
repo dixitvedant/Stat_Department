@@ -66,6 +66,9 @@ def build_h2h_json(dfs, filters=None):
     # If no specific match, return all H2H groups
     h2h_result = {}
 
+    # Create copy
+    matches=matches.copy()
+    
     # Create team pair (same pair regardless of order)
     matches["pair"] = matches.apply(
         lambda row: tuple(sorted([row["home_team"], row["away_team"]])),
