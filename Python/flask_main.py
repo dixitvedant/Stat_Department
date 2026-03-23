@@ -1,7 +1,6 @@
 from flask import Flask, jsonify,request
 from flask_cors import CORS
 from attack_json import build_attack_json
-from data_cleaning import clean_table, standardize_columns
 from database_connectivity import connect_db, fetch_tables
 from Point_Table_json import Point_Table
 from roaster_json import build_roaster_json
@@ -16,15 +15,10 @@ from LeaderBoard import LeaderBoard_match
 
 app = Flask(__name__)
 CORS(app)
-app.config["JSONIFY_PRETTYPRINT_REGULAR"] = True
 
 def load_clean_data():
     conn = connect_db()
     dfs = fetch_tables(conn)
-
-    for key, df in dfs.items():
-        dfs[key] = clean_table(standardize_columns(df), key)
-
     conn.close()
     return dfs
 
@@ -33,7 +27,7 @@ def get_LeaderBoard_match():
     filters = {}
 
     tournament = request.args.get("tournament")
-    match_name = request.args.get("match")
+    match_name = request.args.get("id")
     if tournament and tournament != "all":
         filters["tournament"] = tournament
     if match_name:
@@ -167,15 +161,11 @@ def get_match_wise():
     filters = {}
 
     query = request.args.get("query")
-    season = request.args.get("season")
     year = request.args.get("year")
     tournament = request.args.get("tournament")
 
     if query:
         filters["query"] = query
-
-    if season and season != "all":
-        filters["season"] = season
 
     if year and year != "all":
         filters["year"] = year
