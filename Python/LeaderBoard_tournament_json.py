@@ -39,9 +39,9 @@ def LeaderBoard_tournament(dfs, filters=None):
         }
 
         # Top 3 attackers
-        attackers = t_df[t_df["role"] == "Attacker"] \
-            .sort_values(by="total_attack_points", ascending=False) \
-            .head(3)
+        attackers = (t_df[t_df["role"] == "Attacker"] 
+            .sort_values(by="total_attack_points", ascending=False) 
+            .head(3))
 
         for _, row in attackers.iterrows():
             tournament_result["attackers"].append({
@@ -50,9 +50,9 @@ def LeaderBoard_tournament(dfs, filters=None):
             })
 
         # Top 3 defenders
-        defenders = t_df[t_df["role"] == "Defender"] \
-            .sort_values(by="total_defence_points", ascending=False) \
-            .head(3)
+        defenders = (t_df[t_df["role"] == "Defender"] 
+            .sort_values(by="total_defence_points", ascending=False) 
+            .head(3))
 
         for _, row in defenders.iterrows():
             tournament_result["defenders"].append({
@@ -69,9 +69,9 @@ def LeaderBoard_tournament(dfs, filters=None):
                 all_rounders["total_defence_points"]
             )
 
-            all_rounders = all_rounders \
-                .sort_values(by="total_score", ascending=False) \
-                .head(3)
+            all_rounders = (all_rounders 
+                .sort_values(by="total_score", ascending=False) 
+                .head(3))
 
             for _, row in all_rounders.iterrows():
                 tournament_result["allrounders"].append({
