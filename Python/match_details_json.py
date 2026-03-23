@@ -70,7 +70,7 @@ def build_match_details_json(dfs, filters=None):
         best_all_rounder_id = None
         if not all_rounders.empty:
             idx = (
-                (all_rounders["attack_points"].fillna(0) * 20) +
+                (all_rounders["attack_points"].fillna(0) * 30) +
                 all_rounders["defense_points"].fillna(0)
             ).idxmax()
             best_all_rounder_id = all_rounders.loc[idx]["player_id"]
