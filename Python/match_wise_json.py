@@ -2,19 +2,22 @@ import pandas as pd
 
 def build_match_wise(dfs, filters=None):
 
+    # Get required tables from dictionary
     matches = dfs.get("match_details")
     teams = dfs.get("team")
     tournament = dfs.get("tournament")
 
+    # If no match data is available, return empty list
     if matches is None:
         return {"matches": []}
 
-    # LOOKUP TABLES
+    # Create mapping of team_id to team_name
     team_name_map = {
         row.team_id: row.team_name
         for _, row in teams.iterrows()
     } if teams is not None else {}
 
+    # Create mapping of tournament_id to tournament_name
     tournament_name_map = {
         row.tournament_id: row.tournament_name
         for _, row in tournament.iterrows()
@@ -22,17 +25,21 @@ def build_match_wise(dfs, filters=None):
 
     match_list = []
 
+    # Loop through each match record
     for _, m in matches.iterrows():
 
+        # Extract basic IDs
         match_id = int(m["match_id"])
         tournament_id = int(m["tournament_id"])
 
         home_team_id = int(m["home_team"])
         away_team_id = int(m["away_team"])
 
+        # Get team names using mapping
         home_team_name = team_name_map.get(home_team_id, "Unknown")
         away_team_name = team_name_map.get(away_team_id, "Unknown")
 
+        # Determine winner
         winner_raw = m.get("winning_team")
 
         if pd.isna(winner_raw):
@@ -40,41 +47,47 @@ def build_match_wise(dfs, filters=None):
         else:
             winner_name = team_name_map.get(int(winner_raw), "Draw")
 
+        # Get tournament name
         tournament_name = tournament_name_map.get(tournament_id, "Unknown")
 
-        # ✅ ONLY RESULT (same as H2H)
+        # Get match result text
         score_text = m.get("result")
 
+        # Append formatted match data
         match_list.append({
-            "id": m.get("match_name", f"M{match_id:02d}"),
-            "name": f"{home_team_name} vs {away_team_name}",
+            "id": m.get("match_name"),  # match identifier
+            "name": f"{home_team_name} vs {away_team_name}",  # match title
             "date": str(m["match_date"]),
             "tournament": tournament_name,
             "score": score_text,
             "winner": winner_name
         })
 
-    # FILTERS
+    # Apply filters if provided
     if filters:
 
+        # Filter by search query (match name)
         if filters.get("query"):
             match_list = [
                 m for m in match_list
                 if filters["query"].lower() in m["name"].lower()
             ]
 
+        # Filter by tournament
         if filters.get("tournament") and filters["tournament"] != "all":
             match_list = [
                 m for m in match_list
                 if m["tournament"] == filters["tournament"]
             ]
 
+        # Filter by year (from date string)
         if filters.get("year") and filters["year"] != "all":
             match_list = [
                 m for m in match_list
                 if filters["year"] in m["date"]
             ]
 
+    # Return final result
     return {
         "matches": match_list
     }
