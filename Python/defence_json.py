@@ -53,7 +53,7 @@ def build_defence_json(dfs, filters=None):
             t_id, f"Tournament_{t_id}"
         )
 
-        # Create tournament level
+        # tournament level bifurcation
         if tournament_name not in defence_dict:
             defence_dict[tournament_name] = {}
 
