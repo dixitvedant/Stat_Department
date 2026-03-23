@@ -1,8 +1,10 @@
 def LeaderBoard_tournament(dfs, filters=None):
+    # Get required tables
     pms = dfs.get("player_tournament_stat")
     player = dfs.get("player")
     tournament = dfs.get("tournament")
 
+     # If no tournament or player or player_tournament_stat data, return empty result
     if pms is None or player is None or tournament is None:
         return {}
 
