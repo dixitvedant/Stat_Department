@@ -62,8 +62,8 @@ def Point_Table(dfs, filters=None):
             team_name = team_name_map.get(row["team_id"], "UNKNOWN")
 
             # Convert recent form string to list
-            recent_form = json.loads(row["recent_form"]) \
-                if pd.notna(row["recent_form"]) else []
+            recent_form = (json.loads(row["recent_form"]) 
+                if pd.notna(row["recent_form"]) else [])
 
             # Append team data
             table_list.append({
