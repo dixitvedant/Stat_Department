@@ -28,7 +28,7 @@ def build_match_details_json(dfs, filters=None):
             matches = matches[matches["tournament_id"].isin(t_ids)]
 
         # Filter matches by match name (M01, M02)
-        if filters.get("match_name"):
+        if filters.get("match"):
             matches = matches[matches["match_name"] == filters["match"]]
 
     detail_list = []
