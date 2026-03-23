@@ -2,6 +2,7 @@ import pandas as pd
 
 def build_roaster_json(dfs, filters=None):
     
+    # Get required tables
     matches = dfs.get("match_details")
     players = dfs.get("player")
     pms = dfs.get("player_match_stat")
@@ -10,20 +11,34 @@ def build_roaster_json(dfs, filters=None):
 
     roster_dict = {}
 
+    # If no match data, return empty result
     if matches is None:
         return roster_dict
 
-    # ---------------------------
-    # Apply filters
-    # ---------------------------
+    # Create lookup maps
+
+    # Map team_id to team_name
+    team_name_map = {row.team_id: row.team_name for _, row in teams.iterrows()} if teams is not None else {}
+
+    # Map player_id to player_name
+    player_name_map = {row.player_id: row.player_name for _, row in players.iterrows()} if players is not None else {}
+
+    # Map player_id to role
+    player_role_map = {row.player_id: row.role for _, row in players.iterrows()} if players is not None else {}
+
+    # Map player_id to team_id
+    player_team_map = {int(row.player_id): int(row.team_id) for _, row in players.iterrows()} if players is not None else {}
+    
+    # Tournament ID to name 
     tournament_name_map = (
         {int(row.tournament_id): row.tournament_name for _, row in tournament.iterrows()}
         if tournament is not None else {}
     )
 
+    # Apply filter if required 
     if filters:
 
-        # Tournament filter
+        # Filter matches by tournament
         if filters.get("tournament") and tournament is not None:
             matches = matches[
                 matches["tournament_id"].isin([
@@ -32,42 +47,38 @@ def build_roaster_json(dfs, filters=None):
                 ])
             ]
 
-        # Match filter (id = M01, M02)
+        # Filter matches by match name (M01, M02)
         if filters.get("match"):
             matches = matches[matches["match_name"] == filters["match"]]
-            # Also filter player stats for this match only
+
+            # Filter player match stats for selected match
             pms = pms[pms["match_id"].isin(matches["match_id"])]
 
-
+    # If no matches left after filtering
     if matches.empty:
         return roster_dict
 
-    # ---------------------------
-    # Maps
-    # ---------------------------
-    team_name_map = {row.team_id: row.team_name for _, row in teams.iterrows()} if teams is not None else {}
-    player_name_map = {row.player_id: row.player_name for _, row in players.iterrows()} if players is not None else {}
-    player_role_map = {row.player_id: row.role for _, row in players.iterrows()} if players is not None else {}
-    player_team_map = {int(row.player_id): int(row.team_id) for _, row in players.iterrows()} if players is not None else {}
-
-    # ---------------------------
-    # Build roster
-    # ---------------------------
+    # Build roster data
     for _, m in matches.iterrows():
 
+        # Get match details
         match_id = int(m["match_id"])
         match_date = m.get("match_date")
         home_team = m.get("home_team")
         away_team = m.get("away_team")
         tournament_id = m.get("tournament_id")
+
+        # Get tournament name
         tournament_name = tournament_name_map.get(tournament_id, "Unknown")
 
+        # Create tournament entry if not exists
         if tournament_name not in roster_dict:
             roster_dict[tournament_name] = {}
 
-        # Filter match stats for current match
+        # Get player stats for current match
         match_players = pms[pms["match_id"] == match_id]
 
+        # Function to get players of a team grouped by role
         def get_team_data(team_id):
             attackers = []
             defenders = []
@@ -75,9 +86,14 @@ def build_roaster_json(dfs, filters=None):
 
             for _, prow in match_players.iterrows():
                 pid = int(prow["player_id"])
+
+                # Check if player belongs to this team
                 if player_team_map.get(pid) == int(team_id):
+
                     pname = player_name_map.get(pid, "Unknown")
                     role = player_role_map.get(pid, "").lower()
+
+                    # Group players by role
                     if role == "attacker":
                         attackers.append(pname)
                     elif role == "defender":
@@ -85,6 +101,7 @@ def build_roaster_json(dfs, filters=None):
                     elif role == "all-rounder":
                         all_rounders.append(pname)
 
+            # Return structured team data
             return {
                 "name": team_name_map.get(team_id, "Unknown"),
                 "attackers": attackers,
@@ -92,10 +109,12 @@ def build_roaster_json(dfs, filters=None):
                 "allRounders": all_rounders
             }
 
+        # Store match roster under tournament
         roster_dict[tournament_name][m.get("match_name")] = {
             "match_date": str(match_date) if pd.notna(match_date) else None,
             "home_team": get_team_data(home_team),
             "away_team": get_team_data(away_team)
         }
 
+    # Return final roster data
     return roster_dict
