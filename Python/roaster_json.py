@@ -30,10 +30,7 @@ def build_roaster_json(dfs, filters=None):
     player_team_map = {int(row.player_id): int(row.team_id) for _, row in players.iterrows()} if players is not None else {}
     
     # Tournament ID to name 
-    tournament_name_map = (
-        {int(row.tournament_id): row.tournament_name for _, row in tournament.iterrows()}
-        if tournament is not None else {}
-    )
+    tournament_name_map = {int(row.tournament_id): row.tournament_name for _, row in tournament.iterrows()} if tournament is not None else {}
 
     # Apply filter if required 
     if filters:
