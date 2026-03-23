@@ -42,7 +42,7 @@ def build_attack_json(dfs, filters=None):
         t_id = m["tournament_id"]
         match_name = m.get("match_name")
 
-        # 🔥 Replace ID with NAME
+        # Replace ID with NAME
         tournament_name = tournament_name_map.get(t_id, f"Tournament_{t_id}")
 
         if tournament_name not in attack_dic:
