@@ -11,36 +11,36 @@ def build_match_wise(dfs, filters=None):
     if matches is None:
         return {"matches": []}
 
-    # Create mapping of team_id to team_name
-    team_name_map = {
-        row.team_id: row.team_name
-        for _, row in teams.iterrows()
-    } if teams is not None else {}
+    # Create mapping of team_id to team_name (optimized)
+    team_name_map = (
+        teams.set_index("team_id")["team_name"].to_dict()
+        if teams is not None else {}
+    )
 
-    # Create mapping of tournament_id to tournament_name
-    tournament_name_map = {
-        row.tournament_id: row.tournament_name
-        for _, row in tournament.iterrows()
-    } if tournament is not None else {}
+    # Create mapping of tournament_id to tournament_name (optimized)
+    tournament_name_map = (
+        tournament.set_index("tournament_id")["tournament_name"].to_dict()
+        if tournament is not None else {}
+    )
 
     match_list = []
 
-    # Loop through each match record
-    for _, m in matches.iterrows():
+    # Loop through each match record (optimized)
+    for m in matches.itertuples(index=False):
 
         # Extract basic IDs
-        match_id = int(m["match_id"])
-        tournament_id = int(m["tournament_id"])
+        match_id = int(m.match_id)
+        tournament_id = int(m.tournament_id)
 
-        home_team_id = int(m["home_team"])
-        away_team_id = int(m["away_team"])
+        home_team_id = int(m.home_team)
+        away_team_id = int(m.away_team)
 
         # Get team names using mapping
         home_team_name = team_name_map.get(home_team_id, "Unknown")
         away_team_name = team_name_map.get(away_team_id, "Unknown")
 
         # Determine winner
-        winner_raw = m.get("winning_team")
+        winner_raw = getattr(m, "winning_team", None)
 
         if pd.isna(winner_raw):
             winner_name = "Draw"
@@ -51,13 +51,13 @@ def build_match_wise(dfs, filters=None):
         tournament_name = tournament_name_map.get(tournament_id, "Unknown")
 
         # Get match result text
-        score_text = m.get("result")
+        score_text = getattr(m, "result", None)
 
         # Append formatted match data
         match_list.append({
-            "id": m.get("match_name"),  # match identifier
+            "id": getattr(m, "match_name", None),  # match identifier
             "name": f"{home_team_name} vs {away_team_name}",  # match title
-            "date": str(m["match_date"]),
+            "date": str(m.match_date),
             "tournament": tournament_name,
             "score": score_text,
             "winner": winner_name
@@ -73,11 +73,11 @@ def build_match_wise(dfs, filters=None):
                 if filters["query"].lower() in m["name"].lower()
             ]
 
-        # Filter by tournament
+        # Filter by tournament (case-insensitive fix)
         if filters.get("tournament") and filters["tournament"] != "all":
             match_list = [
                 m for m in match_list
-                if m["tournament"] == filters["tournament"]
+                if m["tournament"].lower() == filters["tournament"].lower()
             ]
 
         # Filter by year (from date string)
