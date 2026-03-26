@@ -5,25 +5,29 @@ def LeaderBoard_match(dfs, filters=None):
     matches = dfs.get("match_details")
     tournament = dfs.get("tournament")
 
-     # If no player_match_stat or player data, return empty result
+    # If no player_match_stat or player data, return empty result
     if pms is None or player is None:
         return {}
 
     result = {}
 
-    # Mappings
-    player_name_map = {row.player_id: row.player_name for _, row in player.iterrows()}
-    player_role_map = {row.player_id: row.role for _, row in player.iterrows()}
+    # Mappings 
+    player_name_map = (
+        player.set_index("player_id")["player_name"].to_dict()
+    )
+    player_role_map = (
+        player.set_index("player_id")["role"].to_dict()
+    )
 
-    match_name_map = {
-        (row.tournament_id, row.match_id): row.match_name
-        for _, row in matches.iterrows()
-    }
+    match_name_map = (
+        matches.set_index(["tournament_id", "match_id"])["match_name"].to_dict()
+        if matches is not None else {}
+    )
 
-    tournament_map = {
-        row.tournament_id: row.tournament_name
-        for _, row in tournament.iterrows()
-    }
+    tournament_map = (
+        tournament.set_index("tournament_id")["tournament_name"].to_dict()
+        if tournament is not None else {}
+    )
 
     # Prepare dataframe
     pms = pms.copy()
@@ -64,29 +68,31 @@ def LeaderBoard_match(dfs, filters=None):
         }
 
         # ATTACKERS (Top 3)
-        attackers = (match_df[match_df["role"] == "Attacker"] 
-            .sort_values(by="attack_points", ascending=False) \
-            .head(3))
+        attackers = (
+            match_df[match_df["role"] == "Attacker"]
+            .sort_values(by="attack_points", ascending=False)
+            .head(3)
+        )
 
-        for _, row in attackers.iterrows():
+        for row in attackers.itertuples(index=False):  
             match_result["attackers"].append({
-                "name": player_name_map.get(row["player_id"], "Unknown"),
-                "points": int(row["attack_points"])
+                "name": player_name_map.get(row.player_id, "Unknown"),
+                "points": int(row.attack_points)
             })
 
-       
         # DEFENDERS (Top 3)
-        defenders = (match_df[match_df["role"] == "Defender"] 
-            .sort_values(by="defense_points", ascending=False) 
-            .head(3))
+        defenders = (
+            match_df[match_df["role"] == "Defender"]
+            .sort_values(by="defense_points", ascending=False)
+            .head(3)
+        )
 
-        for _, row in defenders.iterrows():
+        for row in defenders.itertuples(index=False):  
             match_result["defenders"].append({
-                "name": player_name_map.get(row["player_id"], "Unknown"),
-                "points": int(row["defense_points"])
+                "name": player_name_map.get(row.player_id, "Unknown"),
+                "points": int(row.defense_points)
             })
 
-       
         # ALL-ROUNDERS (Top 3)
         all_rounders = match_df[match_df["role"] == "All-Rounder"].copy()
 
@@ -96,17 +102,18 @@ def LeaderBoard_match(dfs, filters=None):
                 all_rounders["defense_points"]
             )
 
-            all_rounders = (all_rounders 
-                .sort_values(by="total_score", ascending=False) 
-                .head(3))
+            all_rounders = (
+                all_rounders
+                .sort_values(by="total_score", ascending=False)
+                .head(3)
+            )
 
-            for _, row in all_rounders.iterrows():
+            for row in all_rounders.itertuples(index=False):  # optimized
                 match_result["allrounders"].append({
-                    "name": player_name_map.get(row["player_id"], "Unknown"),
-                    "points": int(row["total_score"])
+                    "name": player_name_map.get(row.player_id, "Unknown"),
+                    "points": int(row.total_score)
                 })
 
-        
         match_name = match_name_map.get((tournament_id, match_id), "Unknown")
         tournament_name = tournament_map.get(tournament_id, "Unknown")
 
