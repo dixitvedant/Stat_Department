@@ -1,5 +1,5 @@
 def build_defence_json(dfs, filters=None):
-
+    # Get required tables
     matches = dfs.get("match_details")
     teams = dfs.get("team")
     tournaments = dfs.get("tournament")
@@ -10,16 +10,16 @@ def build_defence_json(dfs, filters=None):
     if matches is None or defence is None:
         return defence_dict
 
-    # Mappings
-    team_name_map = {
-        row.team_id: row.team_name
-        for _, row in teams.iterrows()
-    } if teams is not None else {}
+    # Mappings 
+    team_name_map = (
+        teams.set_index("team_id")["team_name"].to_dict()
+        if teams is not None else {}
+    )
 
-    tournament_name_map = {
-        row.tournament_id: row.tournament_name
-        for _, row in tournaments.iterrows()
-    } if tournaments is not None else {}
+    tournament_name_map = (
+        tournaments.set_index("tournament_id")["tournament_name"].to_dict()
+        if tournaments is not None else {}
+    )
 
     # Filters
     if filters:
@@ -29,25 +29,30 @@ def build_defence_json(dfs, filters=None):
             matches = matches[
                 matches["tournament_id"].isin([
                     tid for tid, tname in tournament_name_map.items()
-                    if tname == filters["tournament"]
+                    if tname.lower() == filters["tournament"].lower()
                 ])
             ]
 
-        # Match filter
+        # Match filter 
         if filters.get("match"):
-            matches = matches[matches["match_name"] == filters["match"]]
+            matches = matches[
+                matches["match_name"].str.lower() == filters["match"].lower()
+            ]
 
     # Filter defence only once
     defence = defence[
         defence["match_id"].isin(matches["match_id"])
     ]
 
-    # Loop through matches
-    for _, m in matches.iterrows():
+    # Group defence by match_id to avoid repeated filtering
+    defence_grouped = defence.groupby("match_id")
 
-        m_id = int(m.get("match_id"))
-        t_id = m.get("tournament_id")
-        match_name = m.get("match_name")
+    # Loop through matches 
+    for m in matches.itertuples(index=False):
+
+        m_id = int(m.match_id)
+        t_id = m.tournament_id
+        match_name = getattr(m, "match_name", None)
 
         tournament_name = tournament_name_map.get(
             t_id, f"Tournament_{t_id}"
@@ -57,37 +62,43 @@ def build_defence_json(dfs, filters=None):
         if tournament_name not in defence_dict:
             defence_dict[tournament_name] = {}
 
-        match_defence = defence[defence["match_id"] == m_id]
+        # Get match defence data 
+        match_defence = (
+            defence_grouped.get_group(m_id)
+            if m_id in defence_grouped.groups else None
+        )
 
         # dynamic innings
         match_structure = {
             "defence": {}
         }
 
-        # Loop defence rows
-        for _, d in match_defence.iterrows():
+        if match_defence is not None:
 
-            inning = int(d.get("inning_no"))
-            inning_key = f"inning{inning}"
+            # Loop defence rows 
+            for d in match_defence.itertuples(index=False):
 
-            # Create inning dynamically
-            if inning_key not in match_structure["defence"]:
-                match_structure["defence"][inning_key] = {}
+                inning = int(d.inning_no)
+                inning_key = f"inning{inning}"
 
-            team_id = int(d.get("team_id"))
-            team_name = team_name_map.get(team_id, "Unknown")
+                # Create inning dynamically
+                if inning_key not in match_structure["defence"]:
+                    match_structure["defence"][inning_key] = {}
 
-            batch_data = {
-                "batch": f"Batch {int(d.get('batch_no'))}",
-                "start": float(d.get("start_time")),
-                "end_time": float(d.get("end_time")),
-                "duration": float(d.get("duration"))
-            }
+                team_id = int(d.team_id)
+                team_name = team_name_map.get(team_id, "Unknown")
 
-            if team_name not in match_structure["defence"][inning_key]:
-                match_structure["defence"][inning_key][team_name] = []
+                batch_data = {
+                    "batch": f"Batch {int(d.batch_no)}",
+                    "start": float(d.start_time),
+                    "end_time": float(d.end_time),
+                    "duration": float(d.duration)
+                }
 
-            match_structure["defence"][inning_key][team_name].append(batch_data)
+                if team_name not in match_structure["defence"][inning_key]:
+                    match_structure["defence"][inning_key][team_name] = []
+
+                match_structure["defence"][inning_key][team_name].append(batch_data)
 
         # Store under tournament → match
         defence_dict[tournament_name][match_name] = match_structure
