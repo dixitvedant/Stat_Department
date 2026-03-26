@@ -11,19 +11,26 @@ def build_h2h_json(dfs, filters=None):
     if matches is None or matches.empty:
         return {}
 
-    # Create mappings for team and tournament names
-    team_name_map = {row.team_id: row.team_name for _, row in teams.iterrows()} if teams is not None else {}
-    tournament_name_map = {row.tournament_id: row.tournament_name for _, row in tournament.iterrows()} if tournament is not None else {}
+    # Create mappings for team and tournament names (optimized)
+    team_name_map = (
+        teams.set_index("team_id")["team_name"].to_dict()
+        if teams is not None else {}
+    )
+
+    tournament_name_map = (
+        tournament.set_index("tournament_id")["tournament_name"].to_dict()
+        if tournament is not None else {}
+    )
 
     # Apply filters if provided
     if filters:
 
-        # Filter matches by tournament
+        # Filter matches by tournament (case-insensitive fix)
         if filters.get("tournament") and filters["tournament"] != "all":
             matches = matches[
                 matches["tournament_id"].isin([
                     tid for tid, tname in tournament_name_map.items()
-                    if tname == filters["tournament"]
+                    if tname.lower() == filters["tournament"].lower()
                 ])
             ]
 
@@ -34,8 +41,10 @@ def build_h2h_json(dfs, filters=None):
     # If specific match is provided, return last 5 H2H matches
     if filters and filters.get("match"):
 
-        # Get selected match
-        base_match = matches[matches["match_name"] == filters["match"]]
+        # Get selected match (case-insensitive fix)
+        base_match = matches[
+            matches["match_name"].str.lower() == filters["match"].lower()
+        ]
 
         if base_match.empty:
             return {}
@@ -66,14 +75,14 @@ def build_h2h_json(dfs, filters=None):
     # If no specific match, return all H2H groups
     h2h_result = {}
 
-    # Create copy
-    matches=matches.copy()
+    # Create copy 
+    matches = matches.copy()
     
-    # Create team pair (same pair regardless of order)
-    matches["pair"] = matches.apply(
-        lambda row: tuple(sorted([row["home_team"], row["away_team"]])),
-        axis=1
-    )
+    # Create team pair (optimized, removed apply)
+    matches["pair"] = list(zip(
+        matches[["home_team", "away_team"]].min(axis=1),
+        matches[["home_team", "away_team"]].max(axis=1)
+    ))
 
     # Group matches by team pair
     grouped = matches.groupby("pair")
@@ -99,21 +108,21 @@ def build_match_list(matches, team_name_map):
 
     result_list = []
 
-    # Loop through each match
-    for _, m in matches.iterrows():
+    # Loop through each match (optimized)
+    for m in matches.itertuples(index=False):
 
-        result_value = m.get("result")
+        result_value = getattr(m, "result", None)
 
         # Determine winner
         if result_value == "Match Drawn":
             winner_name = "Draw"
         else:
-            winner_name = team_name_map.get(m.get("winning_team"))
+            winner_name = team_name_map.get(getattr(m, "winning_team", None))
 
         # Append match details
         result_list.append({
-            "match": m.get("match_name"),
-            "date": str(m.get("match_date")) if pd.notna(m.get("match_date")) else None,
+            "match": getattr(m, "match_name", None),
+            "date": str(getattr(m, "match_date", None)) if pd.notna(getattr(m, "match_date", None)) else None,
             "score": result_value,
             "winner": winner_name
         })
