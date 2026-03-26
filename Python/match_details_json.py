@@ -9,64 +9,65 @@ def build_match_details_json(dfs, filters=None):
     player = dfs.get("player")
     tournament = dfs.get("tournament")
 
-    # If required data is missing, return empty result
+    # Return empty if required data missing
     if matches is None or pms is None:
         return {}
 
     # Apply filters
     if filters:
 
-        # Filter matches by tournament name
+        # Filter by tournament
         if filters.get("tournament") and tournament is not None:
-
-            # Get tournament IDs matching the selected name
             t_ids = tournament[
                 tournament["tournament_name"] == filters["tournament"]
-            ]["tournament_id"].tolist()
-
-            # Keep only matches from selected tournament
+            ]["tournament_id"]
             matches = matches[matches["tournament_id"].isin(t_ids)]
 
-        # Filter matches by match name (M01, M02)
+        # Filter by match name
         if filters.get("match"):
             matches = matches[matches["match_name"] == filters["match"]]
 
     detail_list = []
 
     # Create lookup maps
-    player_name_map = {row.player_id: row.player_name for _, row in player.iterrows()} if player is not None else {}
-    team_name_map = {row.team_id: row.team_name for _, row in teams.iterrows()} if teams is not None else {}
-    player_role_map = {row.player_id: row.role for _, row in player.iterrows()} if player is not None else {}
+    player_name_map = player.set_index("player_id")["player_name"].to_dict() if player is not None else {}
+    player_role_map = player.set_index("player_id")["role"].to_dict() if player is not None else {}
+    team_name_map = teams.set_index("team_id")["team_name"].to_dict() if teams is not None else {}
 
-    # Loop through each match
-    for _, m in matches.iterrows():
+    # Group player stats by match_id
+    pms_grouped = pms.groupby("match_id")
 
-        m_id = int(m["match_id"])
+    # Loop through matches
+    for m in matches.itertuples(index=False):
 
-        # Get player stats for current match
-        match_pms = pms[pms["match_id"] == m_id].copy()
+        m_id = m.match_id
 
-        # Add role column to player stats
-        match_pms["role"] = match_pms["player_id"].map(player_role_map)
+        # Get player stats for match (do not skip if missing)
+        match_pms = pms_grouped.get_group(m_id) if m_id in pms_grouped.groups else pd.DataFrame()
 
-        # Separate players by role
-        attackers = match_pms[match_pms["role"] == "Attacker"]
-        defenders = match_pms[match_pms["role"] == "Defender"]
-        all_rounders = match_pms[match_pms["role"] == "All-Rounder"]
+        # Add role column if data exists
+        if not match_pms.empty:
+            match_pms = match_pms.copy()
+            match_pms["role"] = match_pms["player_id"].map(player_role_map)
 
-        # Find best attacker based on attack points
+        # Split by roles
+        attackers = match_pms[match_pms["role"] == "Attacker"] if not match_pms.empty else pd.DataFrame()
+        defenders = match_pms[match_pms["role"] == "Defender"] if not match_pms.empty else pd.DataFrame()
+        all_rounders = match_pms[match_pms["role"] == "All-Rounder"] if not match_pms.empty else pd.DataFrame()
+
+        # Best attacker
         best_attacker_id = (
             attackers.loc[attackers["attack_points"].fillna(0).idxmax()]["player_id"]
             if not attackers.empty else None
         )
 
-        # Find best defender based on defense points
+        # Best defender
         best_defender_id = (
             defenders.loc[defenders["defense_points"].fillna(0).idxmax()]["player_id"]
             if not defenders.empty else None
         )
 
-        # Find best all-rounder based on combined score
+        # Best all-rounder
         best_all_rounder_id = None
         if not all_rounders.empty:
             idx = (
@@ -76,16 +77,16 @@ def build_match_details_json(dfs, filters=None):
             best_all_rounder_id = all_rounders.loc[idx]["player_id"]
 
         # Get team names
-        home_team_name = team_name_map.get(m["home_team"], "Unknown")
-        away_team_name = team_name_map.get(m["away_team"], "Unknown")
+        home_team_name = team_name_map.get(m.home_team, "Unknown")
+        away_team_name = team_name_map.get(m.away_team, "Unknown")
 
         # Determine winner
-        winning_team_id = m.get("winning_team")
+        winning_team_id = m.winning_team
         winner_team_name = "Draw" if pd.isna(winning_team_id) else team_name_map.get(winning_team_id, "Unknown")
 
         # Append match details
         detail_list.append({
-            "id": m.get("match_name"),
+            "id": m.match_name,
             "name": f"{home_team_name} vs {away_team_name}",
             "winner": winner_team_name,
             "bestAttacker": player_name_map.get(best_attacker_id, "Unknown"),
@@ -93,5 +94,5 @@ def build_match_details_json(dfs, filters=None):
             "bestAllrounder": player_name_map.get(best_all_rounder_id, "Unknown")
         })
 
-    # Return final result
+    # Return final output
     return {"matches": detail_list}
