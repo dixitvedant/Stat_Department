@@ -41,13 +41,16 @@ def get_player_profile():
     filters = {}
 
     tournament = request.args.get("tournament")
-    player_name = request.args.get("playerId")
+    player_code = request.args.get("playerId")  
     if tournament and tournament != "all":
         filters["tournament"] = tournament
-    if player_name:
-        filters["name"] = player_name 
-    dfs=load_clean_data()
-    data=build_players_json(dfs,filters)
+
+    if player_code:
+        filters["player_code"] = player_code
+
+    dfs = load_clean_data()
+    data = build_players_json(dfs, filters)
+
     return jsonify(data)
 
 @app.route("/player-tournament")
