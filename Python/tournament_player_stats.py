@@ -9,7 +9,7 @@ def tournament_players_json(dfs,filters=None):
     if pms is None or player is None:
         return []
 
-    # Create lookup maps for fast access (optimized)
+    # Create lookup maps for fast access 
 
     # Map: player_id → {name, role, jersey_no}
     player_map = (
@@ -17,13 +17,13 @@ def tournament_players_json(dfs,filters=None):
         .to_dict(orient="index")
     )
 
-    # Map: team_id → team_name (optimized)
+    # Map: team_id → team_name 
     team_map = (
         team.set_index("team_id")["team_name"].to_dict()
         if team is not None else {}
     )
 
-    # Map: tournament_id → tournament_name (optimized)
+    # Map: tournament_id → tournament_name 
     tournament_name_map = (
         tournament.set_index("tournament_id")["tournament_name"].to_dict()
         if tournament is not None else {}
@@ -42,20 +42,20 @@ def tournament_players_json(dfs,filters=None):
 
             pms = pms[pms["tournament_id"].isin(valid_tournaments)]
     
-    # Group by tournament_id to avoid repeated filtering (optimized)
+    # Group by tournament_id to avoid repeated filtering 
     pms_grouped = pms.groupby("tournament_id")
     
-    # Loop season-wise (optimized)
+    # Loop season-wise 
     for tournamnet_id, tournamnet_df in pms_grouped:
 
         players_list = []
 
-        # Loop player-wise within season (optimized)
+        # Loop player-wise within season 
         for row in tournamnet_df.itertuples(index=False):
 
             player_id = int(row.player_id)
 
-            # Extract attack & defense stats (handle NULL safely)
+            # Extract attack & defense stats 
             attack = int(row.total_attack_points or 0)
             defense = int(row.total_defence_points or 0)
 
@@ -72,7 +72,6 @@ def tournament_players_json(dfs,filters=None):
             elif role == "Defender":
                 points = defense
             elif role == "All-Rounder":
-                # Custom scoring logic for all-rounders
                 points = (attack * 30) + defense
             else:
                 points = 0
@@ -87,8 +86,8 @@ def tournament_players_json(dfs,filters=None):
             formatted_id = f"{team_code}_{initials}"
 
             players_list.append({
-                "id": formatted_id,           # Frontend-friendly ID
-                "player_id": player_id,       # Original numeric DB ID
+                "id": formatted_id,           
+                "player_id": player_id,       
                 "name": str(name),
                 "jersey_no": int(jersey_no) if jersey_no is not None else None,
                 "team": team_name,
